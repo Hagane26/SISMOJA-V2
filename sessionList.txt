@@ -1,9 +1,9 @@
 modul
 
-i_umum
+i_umum (infoUmum)
     i_identitas
-    i_modelp
     i_ppp
+    i_modelp
 
 ki
     ki_pembukaan
@@ -11,3 +11,4 @@ ki
     ki_penutup
 
 lampiran
+

@@ -47,11 +47,11 @@
                         <div class="col g-2 align-items-center ms-5 mb-2 mt-3">
                             <center>
                                 <div class="row-auto mb-2">
-                                    <input type="submit" class="btn btn-primary" style="width: 15rem"
-                                        value="login">
+                                    <input type="submit" class="btn btn-primary fw-bold" style="width: 15rem"
+                                        value="Masuk">
 
                                 </div>
-                                <p class="mt-3">atau tidak punya akun? <a href="/register"> Silahkan Daftar</a></p>
+                                <p class="mt-3">atau tidak punya akun? <a href="/daftar"> Silahkan Daftar</a></p>
                             </center>
                         </div>
                     </form>

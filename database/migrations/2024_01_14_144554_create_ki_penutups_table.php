@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('ki_penutups', function (Blueprint $table) {
             $table->id();
+
+            $table->string('langkah')->nullable();
+            $table->text('isi')->nullable();
+            $table->integer('waktu')->nullable();
+            $table->unsignedBigInteger('ki_id')->nullable();
+
             $table->timestamps();
         });
     }

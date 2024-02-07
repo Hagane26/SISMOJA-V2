@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\dataModul;
 use Illuminate\Http\Request;
 
 use App\Models\infoUmum;
 use App\Models\i_identitas;
 use App\Models\i_ppp;
 use App\Models\i_modelp;
+
+use App\Models\komponen_inti;
 use Illuminate\Support\Facades\Auth;
 
 class modul_informasiUmum_ctrl extends Controller
 {
 
-    public function infoUmum($step){
+    public function index($step){
         Auth::check();
 
         if(!is_numeric($step) || session()->has('modul') == 0){
@@ -24,29 +27,34 @@ class modul_informasiUmum_ctrl extends Controller
 
         switch($step){
             case 1:
+                $s_a = "border-2 border-primary";
                 $go = "identitas";
                 break;
             case 2:
+                $s_a = "border-2 border-primary";
                 $go = "komponenAwal";
                 break;
             case 3:
+                $s_a = "border-2 border-primary";
                 $go = "ppp";
                 break;
             case 4:
+                $s_a = "border-2 border-primary";
                 $go = "sarana";
                 break;
             case 5:
+                $s_a = "border-2 border-primary";
                 $go = "target";
                 break;
             case 6:
+                $s_a = "border-2 border-primary";
                 $go = "model";
                 break;
-            case 'selesai':
+            case 7:
+                $s_a = "bg-success text-white";
                 $go = "selesai";
                 break;
         }
-
-        $s_a = "border-2 border-primary";
 
         $data = [
             'judul' => $modul['judul'],
@@ -55,7 +63,7 @@ class modul_informasiUmum_ctrl extends Controller
             'progress' => $step * 20,
             'view' => 'modul.1'.$go,
 
-            'step1' => $s_a,
+            'step1' => "$s_a",
             'step2' => '',
             'step3' => '',
         ];
@@ -83,9 +91,226 @@ class modul_informasiUmum_ctrl extends Controller
             'institusi.required' => "Institusi Kosong",
         ]);
 
-        if($modul['i1'] == 0){
-            
+        $data = [
+            'nama' => $req->penyusun,
+            'institusi' => $req->institusi,
+            'mapel' => $req->mapel,
+            'fase' => $req->fase,
+            'kelas' => $req->kelas,
+            'TAwal' => $req->TA_awal,
+            'TAkhir' => $req->TA_akhir,
+            'kali' => $req->kali,
+            'waktu' => $req->waktu,
+        ];
+
+        $waktu = $req->waktu * $req->kali;
+
+        if($modul['i2'] == 0){
+            $parcel = i_identitas::create($data);
+        }else{
+            $parcel = i_identitas::where('id',$modul['i1']['id'])->update($data);
+        }
+
+        if($parcel){
+            $infoUmum = infoUmum::where('id',$modul['i1']['id'])->update(['identitas_id'=>$parcel->id]);
+            $data_iu = infoUmum::where('id',$modul['i1']['id'])->get()->first();
+            $modul['i1'] = $data_iu;
+            $modul['i2'] = $parcel;
+            $modul['waktu'] = $waktu;
+            session(['modul'=>$modul]);
+            return redirect('/modul/buat/informasiUmum/2');
+        }else{
+            return back()->withErrors('Terjadi Kesalahan Input!');
         }
     }
 
+    public function komponenAwal(Request $req){
+        $modul = session()->get('modul');
+
+        $req->validate([
+            'komponen' => 'required'
+        ]);
+
+        $parcel = infoUmum::where('id',$modul['i1']['id'])->update(['komponenAwal'=>$req->komponen]);
+
+        if($parcel){
+            $data = infoUmum::where('id',$modul['i1']['id'])->get()->first();
+            $modul['i1'] = $data;
+            session(['modul'=>$modul]);
+            return redirect('/modul/buat/informasiUmum/3');
+        }else{
+            return back()->withErrors('Terjadi Kesalahan Input!');
+        }
+    }
+
+    public function profilPancasila(Request $req){
+        $modul = session()->get('modul');
+
+        $subjudul = [
+            'Beriman, Bertakwa kepada Tuhan Yang Maha Esa dan Berakhlak Mulia',
+            'Berkebhinekaan Global',
+            'Bergotong Royong',
+            'Mandiri',
+            'Bernalar Kritis',
+            'Kreatif',
+        ];
+
+        if($modul['i3'] == 0){
+            for($i = 0;$i < count($req->all()) - 1;$i++){
+                $s = "in_" . ($i + 1);
+                $parcel = i_ppp::create([
+                    'subjudul' => $subjudul[$i],
+                    'isi' => $req[$s],
+                    'informasi_id' => $modul['i1']['id'],
+                ]);
+            }
+        }else{
+
+        }
+
+        if($parcel){
+            $data = i_ppp::where('informasi_id',$modul['i1']['id'])->get()->all();
+            $modul['i3'] = $data;
+            session(['modul'=>$modul]);
+            return redirect('/modul/buat/informasiUmum/4');
+        }else{
+            return back()->withErrors('Terjadi Kesalahan Input!');
+        }
+    }
+
+    public function sarana(Request $req){
+        $modul = session()->get('modul');
+
+        $req ->validate([
+            'sarana' => 'required',
+            'prasarana' => 'required'
+        ]);
+
+        $parcel = infoUmum::where('id',$modul['i1']['id'])->update([
+            'sarana' => $req->sarana,
+            'prasarana' => $req->prasarana
+        ]);
+
+        if($parcel){
+            $data = infoUmum::where('id',$modul['i1']['id'])->get()->first();
+            $modul['i1'] = $data;
+            session(['modul'=>$modul]);
+            return redirect('/modul/buat/informasiUmum/5');
+        }else{
+            return back()->withErrors('Terjadi Kesalahan Input!');
+        }
+    }
+
+    public function target(Request $req){
+        $modul = session()->get('modul');
+
+        $req ->validate([
+            'target' => 'required',
+        ]);
+
+        $parcel = infoUmum::where('id',$modul['i1']['id'])->update([
+            'target' => $req->target,
+        ]);
+
+        if($parcel){
+            $data = infoUmum::where('id',$modul['i1']['id'])->get()->first();
+            $modul['i1'] = $data;
+            session(['modul'=>$modul]);
+            return redirect('/modul/buat/informasiUmum/6');
+        }else{
+            return back()->withErrors('Terjadi Kesalahan Input!');
+        }
+    }
+
+    public function model(Request $req){
+        $modul = session()->get('modul');
+        $pec = 3;
+        $moc = 3;
+        $mec = 6;
+        $tec = 6;
+
+        $data = array();
+        $btn = array();
+        $kat = array();
+
+        $wt = 0;
+        $total = $pec + $moc + $mec + $tec;
+
+        for($i = 0; $i < $pec;$i++){
+            $s = "pe-" . $i + 1;
+            array_push($data,$req[$s]);
+            array_push($btn,$s);
+            array_push($kat,'Pendekatan');
+        }
+
+        for($i = 0; $i < $moc;$i++){
+            $s = "mo-" . $i + 1;
+            array_push($data,$req[$s]);
+            array_push($btn,$s);
+            array_push($kat,'Model');
+        }
+
+        for($i = 0; $i < $mec;$i++){
+            $s = "me-" . $i + 1;
+            array_push($data,$req[$s]);
+            array_push($btn,$s);
+            array_push($kat,'Metode');
+        }
+
+        for($i = 0; $i < $tec;$i++){
+            $s = "te-" . $i + 1;
+            array_push($data,$req[$s]);
+            array_push($btn,$s);
+            array_push($kat,'Teknik');
+        }
+
+        if($modul['i4'] == 0){
+            for( $i = 0;$i < $total;$i++){
+                $parcel = i_modelp::create([
+                    'metode' => $data[$i],
+                    'kategori' => $kat[$i],
+                    'btn' => $btn[$i],
+                    'informasi_id' => $modul['i1']['id'],
+                ]);
+                if($data[$i] != ""){
+                    $wt +=1;
+                }
+            }
+        }else{
+            for( $i = 0;$i < $total;$i++){
+                $parcel = i_modelp::where('id',$modul['i4'][$i]['id'])->update([
+                    'metode' => $data[$i],
+                    'kategori' => $kat[$i],
+                    'btn' => $btn[$i],
+                ]);
+                if($data[$i] != ""){
+                    $wt +=1;
+                }
+            }
+        }
+
+        if($parcel){
+            $data = i_modelp::where('informasi_id',$modul['i1']['id'])->get()->all();
+            $modul['i4'] = $data;
+            $modul['i4t'] = $wt;
+            session(['modul'=>$modul]);
+            return redirect('/modul/buat/informasiUmum/7');
+        }else{
+            return back()->withErrors('Terjadi Kesalahan Input!');
+        }
+    }
+
+    public function selesai(){
+        $modul = session()->get('modul');
+
+        if($modul['k1'] == 0){
+            $ki = komponen_inti::create();
+            dataModul::where('id',$modul['mod_id'])->update(['komponen_id'=>$ki->id]);
+            $modul['k1'] = komponen_inti::where('id',$ki->id)->get()->first();
+            session(['modul'=>$modul]);
+            return redirect('/modul/buat/komponenInti/1');
+        }else{
+            return redirect('/modul/buat/komponenInti/1');
+        }
+    }
 }

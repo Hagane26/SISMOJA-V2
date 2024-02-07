@@ -2,6 +2,10 @@
 
 @section('judul','Informasi Umum')
 
+@section('nav')
+    @include('users.navbarUser')
+@endsection
+
 @section('isi')
     <div class="position-absolute top-0 start-50 translate-middle-x mt-3">
 
@@ -37,7 +41,6 @@
                 </form>
             </div>
         </div>
-
     </div>
 @endsection
 

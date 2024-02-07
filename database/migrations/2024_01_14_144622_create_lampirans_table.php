@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('lampirans', function (Blueprint $table) {
             $table->id();
+
+            $table->text('glossarium')->nullable();
+            $table->text('dapus')->nullable();
+
             $table->timestamps();
         });
     }

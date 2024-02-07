@@ -2,6 +2,10 @@
 
 @section('judul','Buat Modul')
 
+@section('nav')
+    @include('users.navbarUser')
+@endsection
+
 @section('isi')
     <div class="card border-primary start-50 top-50 translate-middle" style="width:100%">
         <div class="card-body">

@@ -3,9 +3,7 @@
         <h4 class="card-title">Pertanyaan Pemantik</h4>
 
         <div class="row g-2 align-items-center ms-5 mb-2">
-            <textarea name="pemantik" id="editor">
-                {{ session()->has('ki_pemantik') == 1 ? session()->get('ki_pemantik') : '' }}
-            </textarea>
+            <textarea name="pemantik" id="editor"></textarea>
         </div>
 
         <div class="position-relative bottom-0 start-50 translate-middle-x mt-3" style="width:50%">

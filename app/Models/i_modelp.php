@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class i_modelp extends Model
 {
-    protected $guard = ['id'];
+    protected $guarded = ['id'];
     use HasFactory;
 }

@@ -2,15 +2,16 @@
 
 @section('judul','Komponen Inti')
 
-@section('isi')
+@section('nav')
     @include('users.navbarUser')
-    @include('users.stepbar')
+@endsection
 
+@section('isi')
     <div class="position-absolute top-0 start-50 translate-middle-x mt-3 ms-2">
 
         <div class="position-relative mt-4 mb-5">
             <div class="progress" style="height: 5px;">
-                <div class="progress-bar bg-success" role="progressbar" aria-label="Progress" style="width: {{ $res['pos_s'] }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-success" role="progressbar" aria-label="Progress" style="width: {{ $res['progress'] }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <a href="/modul/buat/inti/1" type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-{{ $res['pos'] == 0 ? 'primary' : ($res['pos'] > 0 ? 'success' : 'secondary') }} rounded-pill" style="width: 2rem; height:2rem; margin-left:0%;">1</a>
             <a href="/modul/buat/inti/2" type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-{{ $res['pos'] == 1 ? 'primary' : ($res['pos'] > 1 ? 'success' : 'secondary') }} rounded-pill" style="width: 2rem; height:2rem; margin-left:14.3%;">2</a>
@@ -44,4 +45,8 @@
         </div>
 
     </div>
+@endsection
+
+@section('sidemenu')
+    @include('users.stepbar')
 @endsection

@@ -2,11 +2,11 @@
 
 @section('judul', $res->judul)
 
-@section('isi')
+@section('nav')
     @include('users.navbarUser')
+@endsection
 
-    <div class="position-absolute top-0 start-50 translate-middle-x mt-5 ms-5">
-
+@section('isi')
         <div class="card mb-5" style="width: 55rem">
             <h3 class="card-header">MODUL AJAR : <b>{{ $res->judul }}</b></h3>
             <div class="card-body">
@@ -348,16 +348,7 @@
                         <div class="card mb-2 border-2 border-primary">
                             <div class="card-body">
                                 <center><h5 class="card-title">Penutup</h5></center>
-                                @foreach ($res->ki_penutup as $pp)
-                                <label class="form-label fw-bold">{{ $pp->langkah }}</label>
-                                <div class="mb-3 row mx-lg-5">
-                                    <div class="form-control">
-                                        @php
-                                            echo $pp->isi
-                                        @endphp
-                                    </div>
-                                </div>
-                                @endforeach
+                                {{json_encode($res->ki_penutup) }}
 
                             </div>
                         </div>
@@ -434,5 +425,4 @@
             </div>
         </div>
 
-    </div>
 @endsection

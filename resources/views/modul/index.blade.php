@@ -2,11 +2,11 @@
 
 @section('judul','Informasi Umum')
 
-@section('isi')
+@section('nav')
     @include('users.navbarUser')
+@endsection
 
-    <div class="position-absolute top-0 start-50 translate-middle-x mt-3 ms-2">
-
+@section('isi')
         <div class="card" style="width: 55rem">
             <div class="card-body">
                 <h4 class="card-title">Modul Saya</h4>
@@ -15,10 +15,10 @@
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col" style="width: 30%">Materi</th>
-                        <th scope="col" style="width: 25%">Nama Penyusun</th>
+                        <th scope="col" style="width: 25%">Materi</th>
+                        <th scope="col" style="width: 20%">Nama Penyusun</th>
                         <th scope="col">Terakhir Diperbaharui</th>
-                        <th scope="col" style="width: 20%">Aksi</th>
+                        <th scope="col" style="width: 25%">Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -39,6 +39,10 @@
                                         Lihat
                                     </button>
 
+                                    <button type="submit" formaction="/modul/lihat" class="btn btn-primary bi-printer">
+                                        Print
+                                    </button>
+
                                     <button type="submit" formaction="/modul/hapus" class="btn btn-danger bi-trash3">
                                     </button>
                                 </form>
@@ -51,6 +55,4 @@
             </div>
         </div>
 
-
-    </div>
 @endsection

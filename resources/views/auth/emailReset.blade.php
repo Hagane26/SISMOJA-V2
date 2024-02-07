@@ -61,7 +61,7 @@
                                             value="Daftar">
 
                                             <p class="mt-3">
-                                                Telah punya akun? <a href="/masuk">Silahkan Masuk</a>
+                                                Telah punya akun? <a href="/login">Silahkan Masuk</a>
                                             </p>
                                     </div>
                                 </center>

@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ki_penutup extends Model
 {
-    protected $guard = ['id'];
+    protected $guarded = ['id'];
     use HasFactory;
 }

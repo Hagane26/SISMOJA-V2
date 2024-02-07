@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ki_kegiatan extends Model
 {
-    protected $guard = ['id'];
+    protected $guarded = ['id'];
     use HasFactory;
 }

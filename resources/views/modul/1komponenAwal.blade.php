@@ -4,9 +4,7 @@
 
         <div class="row g-2 align-items-center ms-5 mb-2">
             <label class="col-form-label">Kegiatan Pembelajaran</label>
-            <textarea name="kp" id="editor">
-                {{ session()->has('informasiUmum') == 1 ? session()->get('informasiUmum')['komponenAwal'] : '' }}
-            </textarea>
+            <textarea name="komponen" id="editor"></textarea>
         </div>
 
         <div class="position-relative bottom-0 start-50 translate-middle-x mt-3" style="width:50%">

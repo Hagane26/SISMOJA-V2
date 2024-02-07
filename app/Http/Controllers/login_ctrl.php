@@ -27,6 +27,11 @@ class login_ctrl extends Controller
         }else{
             return redirect()->back()->withErrors(['msg'=>'Email atau Password Salah!!']);
         }
+    }
 
+    public function aksi_logout(){
+        Auth::logout();
+        session()->flush();
+        return back();
     }
 }

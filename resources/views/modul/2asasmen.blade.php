@@ -4,23 +4,17 @@
 
         <div class="row g-2 align-items-center ms-5 mb-2">
             <label class="col-form-label">Asasmen Diagnostik</label>
-            <textarea name="a_d" id="editor">
-                {{ session()->has('ki_a_d') == 1 ? session()->get('ki_a_d') : '' }}
-            </textarea>
+            <textarea name="ad" id="editor"></textarea>
         </div>
 
         <div class="row g-2 align-items-center ms-5 mb-2">
             <label class="col-form-label">Asasmen Formatif</label>
-            <textarea name="a_f" id="editor2">
-                {{ session()->has('ki_a_f') == 1 ? session()->get('ki_a_f') : '' }}
-            </textarea>
+            <textarea name="af" id="editor2"></textarea>
         </div>
 
         <div class="row g-2 align-items-center ms-5 mb-2">
             <label class="col-form-label">Asasmen Sumatif</label>
-            <textarea name="a_s" id="editor3">
-                {{ session()->has('ki_a_s') == 1 ? session()->get('ki_a_s') : '' }}
-            </textarea>
+            <textarea name="as" id="editor3"></textarea>
         </div>
 
         <div class="position-relative bottom-0 start-50 translate-middle-x mt-3" style="width:50%">

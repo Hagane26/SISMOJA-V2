@@ -2,7 +2,7 @@
     <div class="card-body">
         <h4 class="card-title">Refleksi</h4>
 
-        <textarea name="i_1" id="editor"></textarea>
+        <textarea name="refleksi" id="editor"></textarea>
 
         <div class="position-relative bottom-0 start-50 translate-middle-x mt-3" style="width:50%">
             <div class="row">
@@ -10,7 +10,7 @@
                 <a href="" class="btn btn-danger col bi-x-square"> Batalkan </a>
             </div>
         </div>
-        <a href="/modul/buat/2/selesai" class="btn btn-primary mt-2 mb-5" style="width: 100%">Komponen Inti Selesai</a>
+
     </div>
 </div>
 
