@@ -18,6 +18,15 @@ class register_ctrl extends Controller
 
     public function aksi_register(Request $req){
         session()->flush();
+
+        $req->validate([
+            'password'=>'min:8',
+            'passwordC'=>'min:8',
+        ],[
+            'password.min' => "Password Minimal 8 Karakter",
+            'passwordC.min' => "Password Minimal 8 Karakter"
+        ]);
+
         $pass = $req->password;
         $cpass = $req->passwordC;
         $email = $req->email;

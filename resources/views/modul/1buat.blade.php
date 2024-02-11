@@ -13,12 +13,18 @@
 
             <form action="/modul/buat-aksi" method="post" class="ms-5 mt-3">
                 @csrf
+                @if (Auth::user()->status_info == 0)
+                    <p class="bi bi-info-circle-fill"> Anda Belum Melengkapi Profil</p>
+                @endif
                 <div class="row">
                     <div class="col-8">
                         <input type="text" class="form-control mb-3" name="judul" id="judul">
                     </div>
                     <div class="col-3">
-                        <button type="submit" class="btn btn-success bi-pencil-square"> Mulai Buat Modul</button>
+                        <button type="submit" class="btn btn-success bi-pencil-square"
+                        @if (Auth::user()->status_info == 0)
+                            {{ "disabled" }}
+                        @endif> Mulai Buat Modul</button>
                     </div>
                 </div>
             </form>

@@ -60,7 +60,7 @@ class modul_informasiUmum_ctrl extends Controller
             'judul' => $modul['judul'],
             'aksi' => 'informasiUmum/' . $go . '-aksi',
             'pos' => $step - 1,
-            'progress' => $step * 20,
+            'progress' => $step * 13,
             'view' => 'modul.1'.$go,
 
             'step1' => "$s_a",

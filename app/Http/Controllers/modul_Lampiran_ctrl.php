@@ -71,13 +71,13 @@ class modul_Lampiran_ctrl extends Controller
         $loc = 'lampiran/' . Auth::user()->id . '/' . $modul['mod_id'];
 
         $file1 = $req->file("LKPD");
-        $fname1 = "L1.".$file1->getClientOriginalExtension();
+        $fname1 = "L1-".$modul['mod_id']."-".Auth::user()->id.".".$file1->getClientOriginalExtension();
 
         $file2 = $req->file("BB");
-        $fname2 = "L2.".$file2->getClientOriginalExtension();
+        $fname2 = "L2-".$modul['mod_id']."-".Auth::user()->id.".".$file2->getClientOriginalExtension();
 
         $file3 = $req->file("PR");
-        $fname3 = "L3.".$file1->getClientOriginalExtension();
+        $fname3 = "L3-".$modul['mod_id']."-".Auth::user()->id.".".$file1->getClientOriginalExtension();
 
         Storage::putFileAs($loc,$file1,$fname1);
         Storage::putFileAs($loc,$file2,$fname2);

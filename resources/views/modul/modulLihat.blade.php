@@ -38,7 +38,7 @@
                             <label class="col-sm-4 col-form-label">Tahun Ajaran</label>
                             <label class="col-sm-1 col-form-label">:</label>
                             <div class="col">
-                                <input type="text" class="form-control" readonly value="{{ $res->data_informasi->identitas->TAawal . $res->data_informasi->identitas->TAkhir }}">
+                                <input type="text" class="form-control" readonly value="{{ $res->data_informasi->identitas->TAwal . " / " . $res->data_informasi->identitas->TAkhir }}">
                             </div>
                         </div>
 
@@ -62,7 +62,7 @@
                             <label class="col-sm-4 col-form-label">Alokasi Waktu</label>
                             <label class="col-sm-1 col-form-label">:</label>
                             <div class="col">
-                                <input type="text" class="form-control" readonly value="{{ $res->data_informasi->identitas->alokasi_waktu }}">
+                                <input type="text" class="form-control" readonly value="{{ $res->data_informasi->identitas->waktu *  $res->data_informasi->identitas->kali . " Menit ( " . $res->data_informasi->identitas->kali . " x " . $res->data_informasi->identitas->waktu . " Menit )"}}">
                             </div>
                         </div>
 
@@ -376,11 +376,13 @@
                         <div class="card mb-4 border-2 border-primary">
                             <div class="card-body">
                                 <center><h5 class="card-title">Lampiran LKPD</h5></center>
-                                <div class="ratio ratio-16x9">
-                                    <embed src="{{ asset('lampiran/' . $res['users_id'] .'/' . $res['id'] .'/' . 'L1.pdf ') }}"
-                                    width="800"
-                                    height="500">
-                                </div>
+                                <iframe
+                                        class="embed-responsive-item"
+                                        src="{{ asset('pth/L1-'.$res['mod_id'].'-'.$res['users_id'].'.html') }}"
+                                        frameborder="0"
+                                        style="resize: both"
+                                        id="Iframe">
+                                    </iframe>
                             </div>
                         </div>
 
@@ -388,9 +390,13 @@
                             <div class="card-body">
                                 <center><h5 class="card-title">Pengayaan Dan Remedial</h5></center>
                                 <div class="ratio ratio-16x9">
-                                    <embed src="{{ asset('lampiran/' . $res['users_id'] .'/' . $res['id'] .'/' . 'L2.pdf ') }}"
-                                    width="800"
-                                    height="500">
+                                    <iframe
+                                        class="embed-responsive-item"
+                                        src="{{ asset('pth/L2-'.$res['mod_id'].'-'.$res['users_id'].'.html') }}"
+                                        frameborder="0"
+                                        style="resize: both"
+                                        id="Iframe">
+                                    </iframe>
                                 </div>
                             </div>
                         </div>
@@ -399,9 +405,13 @@
                             <div class="card-body">
                                 <center><h5 class="card-title">Bahan Bacaan Peserta Didik dan Pendidik</h5></center>
                                 <div class="ratio ratio-16x9">
-                                    <embed src="{{ asset('lampiran/' . $res['users_id'] .'/' . $res['id'] .'/' . 'L3.pdf ') }}"
-                                    width="800"
-                                    height="500">
+                                    <iframe
+                                        class="embed-responsive-item"
+                                        src="{{ asset('pth/L3-'.$res['mod_id'].'-'.$res['users_id'].'.html') }}"
+                                        frameborder="0"
+                                        style="resize: both"
+                                        id="Iframe">
+                                    </iframe>
                                 </div>
                             </div>
                         </div>
@@ -435,6 +445,14 @@
 
             </div>
         </div>
+
+        <script>
+            var div = document.getElementById("Iframe");
+            div.onload = function() {
+              //div.style.height = div.contentWindow.document.body.scrollHeight + 'px';
+              div.style.width = 100%;
+            }
+          </script>
 
 @endsection
 

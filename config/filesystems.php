@@ -72,6 +72,8 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
         public_path('lampiran') => storage_path('app/lampiran'),
+        public_path('output') => storage_path('app/output'),
+        public_path('pth') => storage_path('app/pdf-to-html'),
     ],
 
 ];

@@ -32,6 +32,8 @@
                                 </div>
                             </div>
 
+                            <h6 class="bi bi-info-circle mt-4 mb-3" align="center"> Password minimal 8 Karakter</h6>
+
                             <!-- Password field -->
                             <div class="row g-2 align-items-center ms-5 mb-2">
                                 <div class="col-3">

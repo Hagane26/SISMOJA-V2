@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function(){
 
     // modul
     Route::get('/modul/buat',[dashboard_ctrl::class,'modul_buat']);
+    Route::post('/modul/hapus',[dashboard_ctrl::class,'modul_hapus']);
     Route::post('/modul/buat-aksi',[dashboard_ctrl::class,'modul_buat_aksi']);
 
     Route::get('/modul/buat/informasiUmum',function(){
@@ -86,6 +87,10 @@ Route::middleware('auth')->group(function(){
 
     route::get('/profil',[profil_ctrl::class,'index']);
     route::post('/profil/update',[profil_ctrl::class,'update']);
+    route::get('/profil/ubahPassword',function(){
+        return view('users.ubahpass');
+    });
+    route::post('/profil/ubahPassword-aksi',[profil_ctrl::class,'ubahPassword']);
 
     Route::get('/keluar',[login_ctrl::class,'aksi_logout']);
 });
