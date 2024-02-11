@@ -12,13 +12,17 @@ use Illuminate\Queue\SerializesModels;
 class sendMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $data;
+    public $email;
+    public $token;
+    public $url;
     /**
      * Create a new message instance.
      */
-    public function __construct($data)
+    public function __construct($email,$token,$url)
     {
-        $this->data = $data;
+        $this->email = $email;
+        $this->token = $token;
+        $this->url = $url;
     }
 
     /**
@@ -27,7 +31,7 @@ class sendMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Send Mail',
+            subject: 'Atur Ulang Password SISMOJA.',
         );
     }
 

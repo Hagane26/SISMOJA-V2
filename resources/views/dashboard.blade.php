@@ -12,4 +12,5 @@
     <p class="fs-1">
         Selamat Datang di {{ config('app.name') }}
     </p>
+    card
 @endsection

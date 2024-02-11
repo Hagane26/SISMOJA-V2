@@ -18,6 +18,8 @@ use App\Models\ki_penutup;
 
 use App\Models\lampiran;
 
+use Barryvdh\DomPDF\Facade\Pdf;
+
 use Illuminate\Support\Facades\Auth;
 
 class dashboard_ctrl extends Controller
@@ -144,6 +146,13 @@ class dashboard_ctrl extends Controller
             $penutup = $msg_default;
         }
 
+        // Lampiran
+        $lam = lampiran::where('id',$mod->lampiran_id)->get();
+        if(count($lam) == 0){
+            $lam = $msg_default;
+        }
+
+        $mod['lampiran'] = $lam;
         $info['identitas'] = $identitas;
         $info['model'] = $model;
         $mod['ki_pembukaan'] = $pembukaan;
@@ -152,8 +161,93 @@ class dashboard_ctrl extends Controller
         $mod['data_informasi'] = $info;
         $mod['data_ppp'] = $ppp;
         $mod['data_komponen_inti'] = $ki;
-
+        $mod['mod_id'] = $req->mod_id;
         //echo json_encode($mod);
         return view('modul.modulLihat',['res'=>$mod]);
     }
+
+    public function print_modul(Request $req){
+        $mod = dataModul::where('id',$req->mod_id)->get()->first();
+        $msg_default = "Data Belum Dibuat";
+        $info = "";
+        $identitas = "";
+        $model = "";
+
+        $ppp = "";
+        $ki = "";
+        $lam = "";
+
+        // informasi umum
+        if($mod->informasi_id == ''){
+            $info = $msg_default;
+        }else{
+            $info = infoUmum::where('id',$mod->informasi_id)->get()->first();
+        }
+            // identitas
+        if($info->identitas_id == ''){
+            $identitas = $msg_default;
+        }else{
+            $identitas = i_identitas::where('id',$info->identitas_id)->get()->first();
+        }
+
+            // model
+        $model = i_modelp::where('informasi_id',$info->id)->get();
+        if(count($model) == 0){
+            $ppp = $msg_default;
+        }
+
+        // profil pelajar pancasila
+        $ppp = i_ppp::where('informasi_id',$info->id)->get();
+        if(count($ppp) == 0){
+            $ppp = $msg_default;
+        }
+
+        // komponen inti
+        if($mod->komponen_id == ''){
+            $ki = $msg_default;
+        }else{
+            $ki = komponen_inti::where('id',$mod->komponen_id)->get()->first();
+        }
+
+        // pembukaan
+        $pembukaan = ki_pembuka::where('ki_id',$ki->id)->get();
+        if(count($pembukaan) == 0){
+            $pembukaan = $msg_default;
+        }
+
+        // kegiatan
+        $kegiatan = ki_kegiatan::where('ki_id',$ki->id)->get();
+        if(count($kegiatan) == 0){
+            $kegiatan = $msg_default;
+        }
+
+        // penutup
+        $penutup = ki_penutup::where('ki_id',$ki->id)->get();
+        if(count($penutup) == 0){
+            $penutup = $msg_default;
+        }
+
+        // Lampiran
+        $lam = lampiran::where('id',$mod->lampiran_id)->get();
+        if(count($lam) == 0){
+            $lam = $msg_default;
+        }
+
+        $mod['lampiran'] = $lam;
+        $info['identitas'] = $identitas;
+        $info['model'] = $model;
+        $mod['ki_pembukaan'] = $pembukaan;
+        $mod['ki_kegiatan'] = $kegiatan;
+        $mod['ki_penutup'] = $penutup;
+        $mod['data_informasi'] = $info;
+        $mod['data_ppp'] = $ppp;
+        $mod['data_komponen_inti'] = $ki;
+        $mod['mod_id'] = $req->mod_id;
+
+        $nama = $mod['mod_id'] . " - " . $identitas['nama'] . ".pdf";
+
+        $pdf = Pdf::loadView('support.print', ['res'=>$mod]);
+        return $pdf->stream($nama);
+    }
+
 }

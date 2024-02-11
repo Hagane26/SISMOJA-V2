@@ -9,6 +9,7 @@ use App\Http\Controllers\dashboard_ctrl;
 use App\Http\Controllers\modul_informasiUmum_ctrl;
 use App\Http\Controllers\modul_komponenInti_ctrl;
 use App\Http\Controllers\modul_Lampiran_ctrl;
+use App\Http\Controllers\profil_ctrl;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +30,12 @@ Route::post('/loginAction',[login_ctrl::class,'aksi_login']);
 Route::get('/daftar',[register_ctrl::class,'register']);
 Route::post('/registerAction',[register_ctrl::class,'aksi_register']);
 
-Route::get('/resetPassword',[login_ctrl::class,'reset']);
-
+Route::get('/lupaPassword',function(){
+    return view('auth.resetPWD');
+});
+Route::post('/resetAction',[login_ctrl::class,'aksi_reset']);
+Route::get('/resetPassword/{token}',[login_ctrl::class,'reset_view']);
+Route::post('/resetPasswordAksi',[login_ctrl::class,'reset_view_aksi']);
 
 // grup fungsi
 Route::middleware('auth')->group(function(){
@@ -77,6 +82,10 @@ Route::middleware('auth')->group(function(){
 
     route::get('/modul',[dashboard_ctrl::class,'daftar_modul']);
     route::post('/modul/lihat',[dashboard_ctrl::class,'lihat_modul']);
+    route::post('/modul/print',[dashboard_ctrl::class,'print_modul']);
+
+    route::get('/profil',[profil_ctrl::class,'index']);
+    route::post('/profil/update',[profil_ctrl::class,'update']);
 
     Route::get('/keluar',[login_ctrl::class,'aksi_logout']);
 });

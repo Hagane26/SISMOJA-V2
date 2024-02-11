@@ -348,7 +348,16 @@
                         <div class="card mb-2 border-2 border-primary">
                             <div class="card-body">
                                 <center><h5 class="card-title">Penutup</h5></center>
-                                {{json_encode($res->ki_penutup) }}
+                                @foreach ($res->ki_penutup as $pp)
+                                <label class="form-label fw-bold">{{ $pp->langkah }}</label>
+                                <div class="mb-3 row mx-lg-5">
+                                    <div class="form-control">
+                                        @php
+                                            echo $pp->isi
+                                        @endphp
+                                    </div>
+                                </div>
+                                @endforeach
 
                             </div>
                         </div>
@@ -406,8 +415,9 @@
                         L. Glossarium
                     </div>
                     <div class="card-body">
-
-
+                        @php
+                            echo $res['lampiran'][0]['glossarium'];
+                        @endphp
                     </div>
                 </div>
 
@@ -417,12 +427,17 @@
                         M. Daftar Pustaka
                     </div>
                     <div class="card-body">
-
-
+                        @php
+                            echo $res['lampiran'][0]['dapus'];
+                        @endphp
                     </div>
                 </div>
 
             </div>
         </div>
 
+@endsection
+
+@section('sidemenu')
+        @include('users.modulMenu')
 @endsection

@@ -52,6 +52,7 @@ class modul_komponenInti_ctrl extends Controller
             case 7:
                 $s_a = "border-2 border-primary";
                 $go = "penutup";
+                break;
             case 8:
                 $s_a = "border-2 border-primary";
                 $go = "refleksi";
@@ -261,7 +262,7 @@ class modul_komponenInti_ctrl extends Controller
                     'waktu' => $req[$s.'b'],
                     'ki_id' => $modul['k1']['id']
                 ]);
-                $d = ki_pembuka::where('id',$parcel->id)->get()->first();
+                $d = ki_penutup::where('id',$parcel->id)->get()->first();
                 array_push($data,$d);
             }
         }else{

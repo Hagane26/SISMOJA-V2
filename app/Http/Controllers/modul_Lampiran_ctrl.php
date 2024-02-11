@@ -56,6 +56,7 @@ class modul_Lampiran_ctrl extends Controller
     }
 
     public function lampiran1(Request $req){
+        $modul = session()->get('modul');
         $req->validate([
             'LKPD' => 'required|mimes:pdf|max:5048',
             'BB' => 'required|mimes:pdf|max:5048',
@@ -67,7 +68,7 @@ class modul_Lampiran_ctrl extends Controller
         ]);
 
 
-        $loc = 'lampiran/' . Auth::user()->id . '/' . session()->get('mod_id');
+        $loc = 'lampiran/' . Auth::user()->id . '/' . $modul['mod_id'];
 
         $file1 = $req->file("LKPD");
         $fname1 = "L1.".$file1->getClientOriginalExtension();

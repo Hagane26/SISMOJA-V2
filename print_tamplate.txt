@@ -1,0 +1,197 @@
+<p style="text-align: center;"><span style="font-size: 18px;"><strong>MODUL AJAR {{Mapel}}</strong></span></p>
+<ol>
+    <li style="font-weight: bold; font-size: 14px;"><strong>INFORMASI UMUM</strong>
+        <ol style="list-style-type: upper-alpha; font-weight: initial; font-size: initial;">
+            <li style="font-size: 14px;"><strong>IDENTITAS MODUL</strong><br>
+                <table style="width: 100%;margin-bottom: 3%; margin-top:3%;">
+                    <tbody>
+                        <tr>
+                            <td style="width: 33.7329%;"><span style="font-size: 12px;">Nama Penyusun</span></td>
+                            <td style="width: 5.137%;"><span style="font-size: 12px;">:</span></td>
+                            <td style="width: 61.0044%;"><span style="font-size: 12px;">{{nama}}</span></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 33.7329%;"><span style="font-size: 12px;">Institusi</span></td>
+                            <td style="width: 5.137%;"><span style="font-size: 12px;">:</span></td>
+                            <td style="width: 61.0044%;"><span style="font-size: 12px;">{{institusi}}</span></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 33.7329%;"><span style="font-size: 12px;">Tahun Ajaran</span></td>
+                            <td style="width: 5.137%;"><span style="font-size: 12px;">:</span></td>
+                            <td style="width: 61.0044%;"><span style="font-size: 12px;">{{ta}}</span></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 33.7329%;"><span style="font-size: 12px;">Mata Pelajaran</span></td>
+                            <td style="width: 5.137%;"><span style="font-size: 12px;">:</span></td>
+                            <td style="width: 61.0044%;"><span style="font-size: 12px;">{{mapel}}</span></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 33.7329%;"><span style="font-size: 12px;">Kelas / Fase</span></td>
+                            <td style="width: 5.137%;"><span style="font-size: 12px;">:</span></td>
+                            <td style="width: 61.0044%;"><span style="font-size: 12px;">{{kelas}}</span></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 33.7329%;"><span style="font-size: 12px;">Alokasi Waktu</span></td>
+                            <td style="width: 5.137%;"><span style="font-size: 12px;">:</span></td>
+                            <td style="width: 61.0044%;">{{waktu}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+            <li style="font-size: 14px;"><strong>KOMPONEN AWAL</strong>
+                <ul style="font-size: initial;">
+                    <li style="font-size: 14px;"><strong>Beriman, Bertakwa kepada Tuhan Yang Maha Esa dan Berakhlak Mulia</strong><br>
+                        <p><span style="font-size: 12px;">{{ka1}}</span></p>
+                    </li>
+                    <li style="font-size: 14px;"><strong>Berkebhinekaan Global</strong><br>
+                        <p><span style="font-size: 12px;">t{{ka2}}</span></p>
+                    </li>
+                    <li style="font-size: 14px;"><strong>Bergotong Royong</strong><br>
+                        <p><span style="font-size: 12px;">{{ka3}}</span></p>
+                    </li>
+                    <li style="font-size: 14px;"><strong>Mandiri</strong><br>
+                        <p><span style="font-size: 12px;">{{ka4}}</span></p>
+                    </li>
+                    <li style="font-size: 14px;"><strong>Bernalar Kritis</strong><br>
+                        <p><span style="font-size: 12px;">{{ka5}}</span></p>
+                    </li>
+                    <li style="font-size: 14px;"><strong>Kreatif</strong><br>
+                        <p><span style="font-size: 12px;">{{ka6}}</span></p>
+                    </li>
+                </ul>
+            </li>
+            <li style=" font-size: 14px;"><strong>PROFIL PELAJAR PANCASILA</strong><br>
+                <p><span style="font-size: 12px;">{{ppp}}</span></p>
+            </li>
+            <li style="font-size: 14px;"><strong>SARANA DAN PRASARANA</strong>
+                <ol>
+                    <li style="font-size: 14px;"><strong>SARANA</strong><br>
+                        <p><span style="font-size: 12px;">{{sa}}</span></p>
+                    </li>
+                    <li style="font-size: 14px;"><strong>PRASARANA</strong><br>
+                        <p><span style="font-size: 12px;">{{pa}}</span></p>
+                    </li>
+                </ol>
+            </li>
+            <li style="font-size: 14px;"><strong>TARGET PESERTA DIDIK</strong><br>
+                <p><span style="font-size: 12px;">{{tp}}</span></p>
+            </li>
+            <li style="font-size: 14px;"><strong>PENDEKATAN, MODEL, METODE, DAN TEKNIK PEMBELAJARAN</strong>
+                <ol>
+                    <li><strong>PENDEKATAN</strong>
+                        <ul>
+                            <li style="font-size: 12px;">{{a1}}</li>
+                            <li style="font-size: 12px;">{{a2}}</li>
+                        </ul>
+                    </li>
+                    <li><strong>MODEL</strong>
+                        <ul>
+                            <li style="font-size: 12px;">{{b1}}</li>
+                            <li style="font-size: 12px;">{{b2}}</li>
+                        </ul>
+                    </li>
+                    <li><strong>METODE</strong>
+                        <ul>
+                            <li style="font-size: 12px;">{{c1}}</li>
+                            <li style="font-size: 12px;">{{c2}}</li>
+                        </ul>
+                    </li>
+                    <li><strong>TEKNIK</strong>
+                        <ul>
+                            <li style="font-size: 12px;">{{d1}}</li>
+                            <li style="font-size: 12px;">{{d2}}</li>
+                        </ul>
+                    </li>
+                </ol>
+            </li>
+        </ol>
+    </li>
+    <li style="font-size: 14px;"><strong>KOMPONEN INTI</strong>
+        <ol style="list-style-type: upper-alpha; font-weight: initial; font-size: initial;">
+            <li style="font-size: 14px;"><strong>TUJUAN PEMBELAJARAN</strong><br>
+                <p><span style="font-size: 12px;">{{tu}}</span></p>
+            </li>
+            <li style="font-size: 14px;"><strong>ASESMEN</strong>
+                <ul>
+                    <li style="font-size: 14px;"><strong>ASESMEN DIAGNOSTIK</strong><br>
+                        <p><span style="font-size: 12px;">{{as1}}</span></p>
+                    </li>
+                    <li style="font-size: 14px;"><strong>ASESMEN FORMATIF</strong><br>
+                        <p><span style="font-size: 12px;">{{as2}}</span></p>
+                    </li>
+                    <li style="font-size: 14px;"><strong>ASESMEN SUMATIF</strong><br>
+                        <p><span style="font-size: 12px;">{{as3}}</span></p>
+                    </li>
+                </ul>
+            </li>
+            <li style="font-size: 14px;"><strong>PEMAHAMAN BERMAKNA</strong><br>
+                <p><span style="font-size: 12px;">{{pb}}</span></p>
+            </li>
+            <li style="font-size: 14px;"><strong>PERTANYAAN PEMANTIK</strong><br>
+                <p><span style="font-size: 12px;">{{pp}}</span></p>
+            </li>
+            <li style="font-weight: bold; font-size: 14px;"><strong>KEGIATAN PEMBELAJARAN</strong>
+                <ul style="font-weight: initial; font-size: initial;">
+                    <li style="font-size: 14px;"><strong>PEMBUKAAN</strong><br>
+                        <p><span style="font-size: 12px;">{{buka}}</span></p>
+                    </li>
+                    <li style="font-size: 14px;"><strong>KEGIATAN INTI</strong><br>
+                        <p><span style="font-size: 12px;">{{ki}}</span></p>
+                    </li>
+                    <li style="font-size: 14px;"><strong>PENUTUP</strong><br>
+                        <p><span style="font-size: 12px;">{{penutup}}</span></p>
+                    </li>
+                </ul>
+            </li>
+            <li style="font-size: 14px;"><strong>REFLEKSI PESERTA DIDIK DAN PENDIDIK</strong><br>
+                <p><span style="font-size: 12px;">{{refleksi}}</span></p>
+            </li>
+        </ol>
+    </li>
+    <li style="font-weight: bold; font-size: 14px;"><strong>LAMPIRAN</strong>
+        <ol style="list-style-type: upper-alpha; font-weight: initial; font-size: initial;">
+            <li style="font-size: 14px;"><strong>GLOSSARIUM</strong>
+                <table style="width: 100%;">
+                    <tbody>
+                        <tr>
+                            <td style="width: 31.3182%;"><span style="font-size: 12px;">test</span></td>
+                            <td style="width: 6.3337%;"><span style="font-size: 12px;">:</span><br></td>
+                            <td style="width: 62.1187%;"><span style="font-size: 12px;">isi</span><br></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 31.3182%;"><span style="font-size: 12px;">test</span><br></td>
+                            <td style="width: 6.3337%;"><span style="font-size: 12px;">:</span><br></td>
+                            <td style="width: 62.1187%;"><span style="font-size: 12px;">isi</span><br></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 31.3182%;"><span style="font-size: 12px;">test</span><br></td>
+                            <td style="width: 6.3337%;"><span style="font-size: 12px;">:</span><br></td>
+                            <td style="width: 62.1187%;"><span style="font-size: 12px;">isi</span><br></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+            <li style="font-size: 14px;"><strong>DAFTAR PUSTAKA</strong>
+                <table style="width: 100%;">
+                    <tbody>
+                        <tr>
+                            <td style="width: 31.3182%;"><span style="font-size: 12px;">test</span></td>
+                            <td style="width: 6.3337%;"><span style="font-size: 12px;">:</span><br></td>
+                            <td style="width: 62.1187%;"><span style="font-size: 12px;">isi</span><br></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 31.3182%;"><span style="font-size: 12px;">test</span><br></td>
+                            <td style="width: 6.3337%;"><span style="font-size: 12px;">:</span><br></td>
+                            <td style="width: 62.1187%;"><span style="font-size: 12px;">isi</span><br></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 31.3182%;"><span style="font-size: 12px;">test</span><br></td>
+                            <td style="width: 6.3337%;"><span style="font-size: 12px;">:</span><br></td>
+                            <td style="width: 62.1187%;"><span style="font-size: 12px;">isi</span><br></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+        </ol>
+    </li>
+</ol>

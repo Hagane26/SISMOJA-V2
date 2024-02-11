@@ -4,11 +4,13 @@
     Profil {{ Auth::user()->nama }}
 @endsection
 
-@section('isi')
-@include('users.navbarUser')
+@section('nav')
+    @include('users.navbarUser')
+@endsection
 
-<div class="position-absolute top-0 start-50 translate-middle-x ms-5">
-    <div class="card mt-5" style="width: 60rem">
+@section('isi')
+
+    <div class="card" style="width: 60rem">
         <div class="card-header">
             <h5 class="card-title">Detail Profil</h5>
         </div>
@@ -66,12 +68,20 @@
                         <div class="col-auto me-5">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="gender" id="gender"
-                                    value="pria">
+                                    value="pria"
+                                    @if (Auth::user()->gender == "pria")
+                                        {{ "checked" }}
+                                    @endif
+                                    >
                                 <label class="form-check-label" for="inlineRadio1">Pria</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="gender" id="gender"
-                                    value="wanita">
+                                    value="wanita"
+                                    @if (Auth::user()->gender == "wanita")
+                                        {{ "checked" }}
+                                    @endif
+                                    >
                                 <label class="form-check-label" for="inlineRadio2">Wanita</label>
                             </div>
                         </div>
@@ -136,5 +146,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection
