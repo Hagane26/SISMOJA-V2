@@ -1,0 +1,4 @@
+composer require nesbot/carbon
+composer require barryvdh/laravel-dompdf
+composer require webklex/laravel-pdfmerger
+composer require ibnuhalimm/laravel-pdf-to-html
