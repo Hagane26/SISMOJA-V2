@@ -46,7 +46,7 @@
                             <label for="inputNik" class="col-form-label">NIK</label>
                         </div>
                         <div class="col-auto">
-                            <input type="number" id="nik" name="nik" class="form-control" value="{{ Auth::user()->nik }}">
+                            <input type="number" id="nik" name="nik" class="form-control" maxlength="17" value="{{ Auth::user()->nik }}">
                         </div>
 
                     <!-- Tanggal Lahir field -->

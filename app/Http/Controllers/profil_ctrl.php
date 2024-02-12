@@ -19,7 +19,7 @@ class profil_ctrl extends Controller
         $request->validate([
             'nama' => 'required',
             'nik' => 'required|size:16',
-            'tanggal_lahir' => 'required',
+            'tglLahir' => 'required',
             'gender' => 'required',
             'alamat' => 'required',
             'email' => 'required',
