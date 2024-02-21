@@ -4,7 +4,7 @@
 
 @section('isi')
         <center>
-            <div class="card border-primary" style="width:55rem">
+            <div class="card border-primary" style="width:50rem">
                 <div class="card-body">
 
                     <h4 class="card-title">Informasi Umum Selesai Dibuat</h4>

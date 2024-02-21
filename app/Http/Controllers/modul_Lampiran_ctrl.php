@@ -43,7 +43,7 @@ class modul_Lampiran_ctrl extends Controller
             'judul' => $modul['judul'],
             'aksi' => 'lampiran/' . $go . '-aksi',
             'pos' => $step - 1,
-            'progress' => $step * 20,
+            'progress' => $step * 3,
             'view' => 'modul.3'.$go,
             's_upload' => $su,
 
@@ -58,30 +58,38 @@ class modul_Lampiran_ctrl extends Controller
     public function lampiran1(Request $req){
         $modul = session()->get('modul');
         $req->validate([
-            'LKPD' => 'required|mimes:pdf|max:5048',
-            'BB' => 'required|mimes:pdf|max:5048',
-            'PR' => 'required|mimes:pdf|max:5048',
+            'LKPD' => 'mimes:pdf|max:5048',
+            'BB' => 'mimes:pdf|max:5048',
+            'PR' => 'mimes:pdf|max:5048',
         ],[
             'LKPD.mimes' => "File Bukan Berformat PDF",
             'LKPD.max' => "Ukuran Melebihi 5MB",
             'BB.max' => "Ukuran Melebihi 5MB",
         ]);
 
-
         $loc = 'lampiran/' . Auth::user()->id . '/' . $modul['mod_id'];
 
-        $file1 = $req->file("LKPD");
-        $fname1 = "L1-".$modul['mod_id']."-".Auth::user()->id.".".$file1->getClientOriginalExtension();
+        if($req->LKPD != '' ){            
 
-        $file2 = $req->file("BB");
-        $fname2 = "L2-".$modul['mod_id']."-".Auth::user()->id.".".$file2->getClientOriginalExtension();
+            $file1 = $req->file("LKPD");
+            $fname1 = "L1-".$modul['mod_id']."-".Auth::user()->id.".".$file1->getClientOriginalExtension();
 
-        $file3 = $req->file("PR");
-        $fname3 = "L3-".$modul['mod_id']."-".Auth::user()->id.".".$file1->getClientOriginalExtension();
+            Storage::putFileAs($loc,$file1,$fname1);
+        }
 
-        Storage::putFileAs($loc,$file1,$fname1);
-        Storage::putFileAs($loc,$file2,$fname2);
-        Storage::putFileAs($loc,$file3,$fname3);
+        if($req->BB != ''){
+            $file2 = $req->file("BB");
+            $fname2 = "L2-".$modul['mod_id']."-".Auth::user()->id.".".$file2->getClientOriginalExtension();
+
+            Storage::putFileAs($loc,$file2,$fname2);
+        }
+
+        if( $req->PR != ''){
+            $file3 = $req->file("PR");
+            $fname3 = "L3-".$modul['mod_id']."-".Auth::user()->id.".".$file3->getClientOriginalExtension();
+            
+            Storage::putFileAs($loc,$file3,$fname3);
+        }
 
         return redirect('/modul/buat/lampiran/2');
     }

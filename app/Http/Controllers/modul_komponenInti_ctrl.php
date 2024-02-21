@@ -67,7 +67,7 @@ class modul_komponenInti_ctrl extends Controller
             'judul' => $modul['judul'],
             'aksi' => 'komponenInti/' . $go . '-aksi',
             'pos' => $step - 1,
-            'progress' => $step * 11,
+            'progress' => $step * 8,
             'view' => 'modul.2'.$go,
 
             'step1' => 'bg-success text-white',

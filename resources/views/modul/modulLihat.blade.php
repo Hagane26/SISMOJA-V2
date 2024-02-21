@@ -7,7 +7,7 @@
 @endsection
 
 @section('isi')
-        <div class="card mb-5" style="width: 55rem">
+        <div class="card mb-5" style="width: 50rem">
             <h3 class="card-header">MODUL AJAR : <b>{{ $res->judul }}</b></h3>
             <div class="card-body">
 
@@ -376,43 +376,59 @@
                         <div class="card mb-4 border-2 border-primary">
                             <div class="card-body">
                                 <center><h5 class="card-title">Lampiran LKPD</h5></center>
-                                <iframe
-                                        class="embed-responsive-item"
-                                        src="{{ asset('pth/L1-'.$res['mod_id'].'-'.$res['users_id'].'.html') }}"
-                                        frameborder="0"
-                                        style="resize: both"
-                                        id="Iframe">
-                                    </iframe>
+                                    @if(file_exists('lampiran/'.$res['users_id'].'/'.$res['id'].'/'.'L1-'.$res['id'].'-'.$res['users_id'].'.pdf'))
+                                    <div class="ratio ratio-16x9">
+                                        <embed 
+                                            src="{{asset('lampiran/'.$res['users_id']).'/'.$res['id'].'/'.'L1-'.$res['id'].'-'.$res['users_id'].'.pdf#toolbar=0'}}"
+                                            type="application/pdf"
+                                            width="700"
+                                            height="500">
+                                    </div>
+                                    @else
+                                        <Center>
+                                            <p>Tidak Ada Lampiran</p>
+                                        </Center>
+                                    @endif
                             </div>
                         </div>
 
                         <div class="card mb-4 border-2 border-primary">
                             <div class="card-body">
                                 <center><h5 class="card-title">Pengayaan Dan Remedial</h5></center>
-                                <div class="ratio ratio-16x9">
-                                    <iframe
-                                        class="embed-responsive-item"
-                                        src="{{ asset('pth/L2-'.$res['mod_id'].'-'.$res['users_id'].'.html') }}"
-                                        frameborder="0"
-                                        style="resize: both"
-                                        id="Iframe">
-                                    </iframe>
-                                </div>
+                                     
+                                    @if(file_exists('lampiran/'.$res['users_id'].'/'.$res['id'].'/'.'L2-'.$res['id'].'-'.$res['users_id'].'.pdf'))
+                                    <div class="ratio ratio-16x9">
+                                        <embed 
+                                            src="{{asset('lampiran/'.$res['users_id']).'/'.$res['id'].'/'.'L2-'.$res['id'].'-'.$res['users_id'].'.pdf#toolbar=0'}}"
+                                            type="application/pdf"
+                                            width="700"
+                                            height="500">
+                                    </div>
+                                    @else
+                                        <Center>
+                                            <p>Tidak Ada Lampiran</p>
+                                        </Center>
+                                    @endif
+                                
                             </div>
                         </div>
 
                         <div class="card mb-4 border-2 border-primary">
                             <div class="card-body">
                                 <center><h5 class="card-title">Bahan Bacaan Peserta Didik dan Pendidik</h5></center>
+                                @if(file_exists('lampiran/'.$res['users_id'].'/'.$res['id'].'/'.'L3-'.$res['id'].'-'.$res['users_id'].'.pdf'))
                                 <div class="ratio ratio-16x9">
-                                    <iframe
-                                        class="embed-responsive-item"
-                                        src="{{ asset('pth/L3-'.$res['mod_id'].'-'.$res['users_id'].'.html') }}"
-                                        frameborder="0"
-                                        style="resize: both"
-                                        id="Iframe">
-                                    </iframe>
+                                    <embed 
+                                        src="{{asset('lampiran/'.$res['users_id']).'/'.$res['id'].'/'.'L3-'.$res['id'].'-'.$res['users_id'].'.pdf#toolbar=0'}}"
+                                        type="application/pdf"
+                                        width="700"
+                                        height="500">
                                 </div>
+                                @else
+                                    <Center>
+                                        <p>Tidak Ada Lampiran</p>
+                                    </Center>
+                                @endif
                             </div>
                         </div>
 

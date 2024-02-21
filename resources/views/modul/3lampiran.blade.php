@@ -7,8 +7,6 @@
 @endsection
 
 @section('isi')
-    <div class="position-absolute top-0 start-50 translate-middle-x mt-5 ms-2">
-
         <div class="position-relative mt-4 mb-5">
             <div class="progress" style="height: 5px;">
                 <div class="progress-bar bg-success" role="progressbar" aria-label="Progress" style="width: {{ $res['progress'] }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -38,8 +36,6 @@
                 </form>
             </div>
         </div>
-
-    </div>
 @endsection
 
 @section('sidemenu')

@@ -39,7 +39,7 @@
                                         Lihat
                                     </button>
 
-                                    <button type="submit" formaction="/modul/lihat" class="btn btn-primary bi-printer">
+                                    <button type="submit" formaction="/modul/print" class="btn btn-primary bi-printer">
                                         Print
                                     </button>
 

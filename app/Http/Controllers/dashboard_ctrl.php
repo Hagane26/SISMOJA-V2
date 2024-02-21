@@ -232,19 +232,6 @@ class dashboard_ctrl extends Controller
         $sf = 'lampiran/'.$mod['users_id'].'/'.$mod['mod_id'] . '/';
         $bn = $mod['mod_id']. '-'. $mod['users_id']. '.pdf';
         $fname = $sf.'L1-'. $bn;
-        if(!file_exists($fname)){
-            PdfToHtml::setFile($fname)->result();
-        }
-
-        $fname = $sf.'L2-'. $bn;
-        if(!file_exists($fname)){
-            PdfToHtml::setFile($fname)->result();
-        }
-
-        $fname = $sf.'L3-'. $bn;
-        if(!file_exists($fname)){
-            PdfToHtml::setFile($fname)->result();
-        }
 
         return view('modul.modulLihat',['res'=>$mod]);
     }
@@ -336,9 +323,19 @@ class dashboard_ctrl extends Controller
         $merge = PDFMerger::init();
         $merge->addPDF($nfile,'all');
 
-        $merge->addPDF($folout . 'L1.pdf','all');
-        $merge->addPDF($folout . 'L2.pdf','all');
-        $merge->addPDF($folout . 'L3.pdf','all');
+        $bn = $mod['mod_id']. '-'. $mod['users_id']. '.pdf';
+
+        if(file_exists($folout . 'L1-'.$bn)){
+            $merge->addPDF($folout . 'L1-'.$bn,'all');
+        }
+
+        if(file_exists($folout . 'L2-'.$bn)){
+            $merge->addPDF($folout . 'L2-'.$bn,'all');
+        }
+
+        if(file_exists($folout . 'L3-'.$bn)){
+            $merge->addPDF($folout . 'L3-'.$bn,'all');
+        }
 
         $merge->merge();
 
