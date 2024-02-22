@@ -22,7 +22,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <script src="{{ asset('jquery/jquery-3-5-1.js') }}"></script>
+    <script src="{{ asset('js/jquery-3-5-1.js') }}"></script>
 
 </head>
 
