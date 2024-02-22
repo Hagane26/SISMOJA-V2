@@ -1,10 +1,13 @@
+@php
+    $modul = session()->get('modul');
+@endphp
 <div class="card mt-3">
     <div class="card-body">
         <h4 class="card-title">Komponen Awal</h4>
 
         <div class="row g-2 align-items-center ms-5 mb-2">
             <label class="col-form-label">Kegiatan Pembelajaran</label>
-            <textarea name="komponen" id="editor"></textarea>
+            <textarea name="komponen" id="editor">{{ $modul['i1']['komponenAwal'] }}</textarea>
         </div>
 
         <div class="position-relative bottom-0 start-50 translate-middle-x mt-3" style="width:50%">

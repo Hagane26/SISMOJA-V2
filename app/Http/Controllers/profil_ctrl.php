@@ -23,7 +23,9 @@ class profil_ctrl extends Controller
             'gender' => 'required',
             'alamat' => 'required',
             'email' => 'required',
-            'telepon' => 'required',
+            'telepon' => 'required|min:11|max:15',
+        ],[
+            'nama.required' => 'Kotak Nama Masih Kosong.'
         ]);
 
         $data = User::where('id',$request->id)->get()->first();

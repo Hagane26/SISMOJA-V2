@@ -3,70 +3,46 @@
         <h4 class="card-title">Profil Pelajar Pancasila </h4>
         <h6 class="card-subtitle bi-info-circle-fill ms-3"> Pilih Minimal 1, Maksimal 6</h6>
 
-        <div class="row g-2 align-items-center ms-5 mb-2 mt-3">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" onclick="ck(1)">
-                <label class="form-check-label">
-                    Beriman, Bertakwa kepada Tuhan Yang Maha Esa dan Berakhlak Mulia
-                </label>
+        <div class="col g-2 align-items-center ms-5 mb-2 mt-3">
+            <div class="row">
+                Beriman, Bertakwa kepada Tuhan Yang Maha Esa dan Berakhlak Mulia
             </div>
-
             <textarea name="in_1" id="editor1"></textarea>
         </div>
 
-        <div class="row g-2 align-items-center ms-5 mb-2 mt-3">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox">
-                <label class="form-check-label">
-                    Berkebhinekaan Global
-                </label>
+        <div class="col g-2 align-items-center ms-5 mb-2 mt-3">
+            <div class="row">
+                Berkebhinekaan Global
             </div>
-
-            <textarea name="in_2" id="editor2"></textarea>
+            <textarea class="row" name="in_2" id="editor2"></textarea>
         </div>
 
-        <div class="row g-2 align-items-center ms-5 mb-2 mt-3">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox">
-                <label class="form-check-label">
-                    Bergotong Royong
-                </label>
+        <div class="col g-2 align-items-center ms-5 mb-2 mt-3">
+            <div class="row">
+                Bergotong Royong
             </div>
-
-            <textarea name="in_3" id="editor3"></textarea>
+            <textarea class="row" name="in_3" id="editor3"></textarea>
         </div>
 
-        <div class="row g-2 align-items-center ms-5 mb-2 mt-3">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox">
-                <label class="form-check-label">
-                    Mandiri
-                </label>
+        <div class="col g-2 align-items-center ms-5 mb-2 mt-3">
+            <div class="row">
+                Mandiri
             </div>
-
-            <textarea name="in_4" id="editor4"></textarea>
+            <textarea class="row" name="in_4" id="editor4"></textarea>
         </div>
 
-        <div class="row g-2 align-items-center ms-5 mb-2 mt-3">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox">
-                <label class="form-check-label">
-                    Bernalar Kritis
-                </label>
+        <div class="col g-2 align-items-center ms-5 mb-2 mt-3">
+            <div class="row">
+                Bernalar Kritis
             </div>
-
-            <textarea name="in_5" id="editor5"></textarea>
+            <textarea class="row" name="in_5" id="editor5"></textarea>
         </div>
 
-        <div class="row g-2 align-items-center ms-5 mb-2 mt-3">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox">
-                <label class="form-check-label">
-                    Kreatif
-                </label>
+        <div class="col g-2 align-items-center ms-5 mb-2 mt-3">
+            <div class="row">
+                Kreatif
             </div>
-
-            <textarea name="in_6" id="editor6"></textarea>
+            <textarea class="row" name="in_6" id="editor6"></textarea>
         </div>
 
         <div class="position-relative bottom-0 start-50 translate-middle-x mt-3" style="width:50%">

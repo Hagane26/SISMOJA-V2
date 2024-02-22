@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('alamat')->nullable();
 
             $table->string('email')->unique();
-            $table->integer('telepon')->nullable();
+            $table->bigInteger('telepon')->nullable();
             $table->boolean('status_info');
             $table->string('password');
             $table->rememberToken();

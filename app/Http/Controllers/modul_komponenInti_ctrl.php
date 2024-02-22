@@ -67,7 +67,7 @@ class modul_komponenInti_ctrl extends Controller
             'judul' => $modul['judul'],
             'aksi' => 'komponenInti/' . $go . '-aksi',
             'pos' => $step - 1,
-            'progress' => $step * 8,
+            'progress' => ($step-1) * (100 / 7),
             'view' => 'modul.2'.$go,
 
             'step1' => 'bg-success text-white',
@@ -181,13 +181,22 @@ class modul_komponenInti_ctrl extends Controller
                     'waktu' => $req['waktu'],
                     'ki_id' => $modul['k1']['id']
                 ]);
-                $d = ki_pembuka::where('id',$parcel->id)->get()->first();
-                array_push($data,$d);
+            }
+        }else{
+            for($i = 1;$i <= 7 ;$i++){
+                $s = "p-". $i;
+                $parcel = ki_pembuka::where('id',$modul['k2'][$i-1]['id'])->update([
+                    'langkah' => 'kegiatan '. $i,
+                    'isi' => $req[$s],
+                    'waktu' => $req['waktu'],
+                ]);
             }
         }
 
         if($parcel){
+            $data = ki_pembuka::where('ki_id',$modul['k1']['id'])->get()->all();
             $modul['k2'] = $data;
+            $modul['wpembuka'] = $req['waktu'];
             session(['modul'=>$modul]);
             return redirect('/modul/buat/komponenInti/6');
         }else{
@@ -201,9 +210,12 @@ class modul_komponenInti_ctrl extends Controller
 
         $data = array();
 
-        for($i = 0; $i < $len; $i++){
+        for($i = 0; $i < $len - 1; $i++){
             if($req['i_'.$i] == ""){
-                return back()->withErrors($req['metode_'.$i] . " masih kosong, Silahkan Di isi terlebih dahulu!");
+                return back()->withErrors($req['metode_'.$i] . $i . " masih kosong, Silahkan Di isi terlebih dahulu!");
+            }
+            if($req['w_'.$i] == "" or $req['w_'.$i] == 0){
+                return back()->withErrors("Waktu " . $req['metode_'.$i] . " masih kosong atau nol, Silahkan Di isi terlebih dahulu!");
             }
         }
 
@@ -215,15 +227,21 @@ class modul_komponenInti_ctrl extends Controller
                     'waktu' => $req['w_'.$i],
                     'ki_id' => $modul['k1']['id']
                 ]);
-                $d = ki_kegiatan::where('id',$parcel->id)->get()->first();
-                array_push($data,$d);
             }
         }else{
-
+            for($i = 0; $i < $len; $i++){
+                $parcel = ki_kegiatan::where('id',$modul['k3'][$i]['id'])->update([
+                    'metode' => $req['metode_'.$i],
+                    'isi' => $req['i_'.$i],
+                    'waktu' => $req['w_'.$i],
+                ]);
+            }
         }
 
         if($parcel){
+            $data = ki_kegiatan::where('ki_id',$modul['k1']['id'])->get()->all();
             $modul['k3'] = $data;
+            $modul['winti'] = $req->total_waktu;
             session(['modul'=>$modul]);
             return redirect('/modul/buat/komponenInti/7');
         }else{
@@ -248,7 +266,6 @@ class modul_komponenInti_ctrl extends Controller
             'p-4b' => 'required',
             'p-5b' => 'required',
 
-            'waktu' => 'required'
         ]);
 
         $data = array();
@@ -262,15 +279,22 @@ class modul_komponenInti_ctrl extends Controller
                     'waktu' => $req[$s.'b'],
                     'ki_id' => $modul['k1']['id']
                 ]);
-                $d = ki_penutup::where('id',$parcel->id)->get()->first();
-                array_push($data,$d);
             }
         }else{
-
+            for($i = 1;$i <= 5 ;$i++){
+                $s = "p-". $i;
+                $parcel = ki_penutup::where('id',$modul['k4'][$i]['id'])->update([
+                    'langkah' => $req[$s .'c'],
+                    'isi' => $req[$s.'a'],
+                    'waktu' => $req[$s.'b'],
+                ]);
+            }
         }
 
         if($parcel){
+            $data = ki_penutup::where('ki_id',$modul['k1']['id'])->get()->all();
             $modul['k4'] = $data;
+            $modul['wpenutup'] = $req->total_waktu;
             session(['modul'=>$modul]);
             return redirect('/modul/buat/komponenInti/8');
         }else{

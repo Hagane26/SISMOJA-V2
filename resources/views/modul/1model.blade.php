@@ -26,6 +26,14 @@
                         Saintifik
                     </label>
                 </div>
+
+                <div class="form-check col-3 mb-3">
+                    <input class="form-check-input" type="checkbox" value="Saintifik" id="pe-4" name="pe-4">
+                    <label class="form-check-label">
+                        Lainnya
+                        <input type="text" class="form-control" name="pe-4i">
+                    </label>
+                </div>
             </div>
         </div>
 
@@ -50,6 +58,14 @@
                     <input class="form-check-input" type="checkbox" value="Inquiry" id="mo-3" name="mo-3">
                     <label class="form-check-label">
                         Inquiry
+                    </label>
+                </div>
+
+                <div class="form-check col-3 mb-3">
+                    <input class="form-check-input" type="checkbox" value="Lainnya" id="mo-4" name="mo-4">
+                    <label class="form-check-label">
+                        Lainnya
+                        <input type="text" class="form-control" name="mo-4i">
                     </label>
                 </div>
             </div>
@@ -99,6 +115,14 @@
                         Tutor sebaya
                     </label>
                 </div>
+
+                <div class="form-check col-3 mb-3">
+                    <input class="form-check-input" type="checkbox" value="Lainnya" id="me-7" name="me-7">
+                    <label class="form-check-label">
+                        Lainnya
+                        <input type="text" class="form-control" name="me-7i">
+                    </label>
+                </div>
             </div>
         </div>
 
@@ -144,6 +168,14 @@
                     <input class="form-check-input" type="checkbox" value="Penugasan Kelompok kecil" id="te-6" name="te-6">
                     <label class="form-check-label">
                         Penugasan Kelompok kecil
+                    </label>
+                </div>
+
+                <div class="form-check col-3 mb-3">
+                    <input class="form-check-input" type="checkbox" value="Lainnya" id="te-7" name="te-7">
+                    <label class="form-check-label">
+                        Lainnya
+                        <input type="text" class="form-control" name="te-7i">
                     </label>
                 </div>
             </div>

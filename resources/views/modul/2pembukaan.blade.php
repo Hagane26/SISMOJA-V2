@@ -10,11 +10,11 @@
             <div class="card mb-2">
                 <div class="card-body">
                     <div class="row">
-                        <label class="col-5 form-label">Total Waktu : {{ $modul['waktu'] }} Menit</label>
+                        <label class="col-5 form-label" id="boxwaktu">Total Waktu : {{ $modul['waktu'] }} Menit</label>
                         <div class="col">
                             <label for="basic-url" class="form-label">Waktu Untuk Pembukaan</label>
                             <div class="input-group mb-3">
-                                <input type="number" class="form-control" value="10" name="waktu">
+                                <input type="number" class="form-control" value="10" name="waktu" onkeydown="waktuubah(this)" onkeyup="waktuubah(this)">
                                 <span class="input-group-text">Menit dari total waktu ({{ $modul['waktu'] }} menit).</span>
                             </div>
                         </div>
@@ -104,4 +104,9 @@
     </div>
 </div>
 
+<script>
+    function waktuubah(e){
+        var boxwaktu = document.getElementById('boxwaktu').innerHTML = "Total Waktu : " + ({{ $modul['waktu'] }} - e.value) + " Menit";
+    }
+</script>
 

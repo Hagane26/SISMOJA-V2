@@ -60,7 +60,7 @@ class modul_informasiUmum_ctrl extends Controller
             'judul' => $modul['judul'],
             'aksi' => 'informasiUmum/' . $go . '-aksi',
             'pos' => $step - 1,
-            'progress' => $step * 13,
+            'progress' => ($step-1) * (100 / 5),
             'view' => 'modul.1'.$go,
 
             'step1' => "$s_a",
@@ -165,7 +165,12 @@ class modul_informasiUmum_ctrl extends Controller
                 ]);
             }
         }else{
-
+            for($i = 0;$i < count($req->all()) - 1;$i++){
+                $s = "in_" . ($i + 1);
+                $parcel = i_ppp::where('id',$modul['i3'][$i]['id'])->update([
+                    'isi' => $req[$s],
+                ]);
+            }
         }
 
         if($parcel){
@@ -224,10 +229,10 @@ class modul_informasiUmum_ctrl extends Controller
 
     public function model(Request $req){
         $modul = session()->get('modul');
-        $pec = 3;
-        $moc = 3;
-        $mec = 6;
-        $tec = 6;
+        $pec = 4;
+        $moc = 4;
+        $mec = 7;
+        $tec = 7;
 
         $data = array();
         $btn = array();
@@ -238,28 +243,44 @@ class modul_informasiUmum_ctrl extends Controller
 
         for($i = 0; $i < $pec;$i++){
             $s = "pe-" . $i + 1;
-            array_push($data,$req[$s]);
+            if($i+1 == $pec){
+                array_push($data,$req[$s.'i']);
+            }else{
+                array_push($data,$req[$s]);
+            }
             array_push($btn,$s);
             array_push($kat,'Pendekatan');
         }
 
         for($i = 0; $i < $moc;$i++){
             $s = "mo-" . $i + 1;
-            array_push($data,$req[$s]);
+            if($i+1 == $moc){
+                array_push($data,$req[$s.'i']);
+            }else{
+                array_push($data,$req[$s]);
+            }
             array_push($btn,$s);
             array_push($kat,'Model');
         }
 
         for($i = 0; $i < $mec;$i++){
             $s = "me-" . $i + 1;
-            array_push($data,$req[$s]);
+            if($i+1 == $mec){
+                array_push($data,$req[$s.'i']);
+            }else{
+                array_push($data,$req[$s]);
+            }
             array_push($btn,$s);
             array_push($kat,'Metode');
         }
 
         for($i = 0; $i < $tec;$i++){
             $s = "te-" . $i + 1;
-            array_push($data,$req[$s]);
+            if($i+1 == $tec){
+                array_push($data,$req[$s.'i']);
+            }else{
+                array_push($data,$req[$s]);
+            }
             array_push($btn,$s);
             array_push($kat,'Teknik');
         }

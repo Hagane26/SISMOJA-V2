@@ -1,10 +1,15 @@
+@php
+    $modul = session()->get('modul');
+@endphp
 <div class="card mt-3">
     <div class="card-body">
         <h4 class="card-title">Identitas</h4>
 
         <div class="input-group flex-nowrap mt-3">
             <span class="input-group-text me-1 bg-secondary text-white" style="width: 18%">Nama Penyusun</span>
-            <input type="text" class="form-control" id="penyusun" name="penyusun">
+            <input type="text" class="form-control" id="penyusun" name="penyusun"
+            value=""
+            >
         </div>
 
         <div class="input-group flex-nowrap mt-3">

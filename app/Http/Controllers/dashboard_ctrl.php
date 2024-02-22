@@ -89,7 +89,7 @@ class dashboard_ctrl extends Controller
         }
 
         komponen_inti::where('id',$mod->komponen_id)->delete();
-        $info = infoUmum::where('id',$mod->informasi_id)->delete;
+        $info = infoUmum::where('id',$mod->informasi_id)->delete();
 
         // Lampiran
         $lam = lampiran::where('id',$mod->lampiran_id)->delete();

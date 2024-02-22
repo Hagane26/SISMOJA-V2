@@ -43,7 +43,7 @@ class modul_Lampiran_ctrl extends Controller
             'judul' => $modul['judul'],
             'aksi' => 'lampiran/' . $go . '-aksi',
             'pos' => $step - 1,
-            'progress' => $step * 3,
+            'progress' => ($step-1) * (100 / 2),
             'view' => 'modul.3'.$go,
             's_upload' => $su,
 
@@ -69,7 +69,7 @@ class modul_Lampiran_ctrl extends Controller
 
         $loc = 'lampiran/' . Auth::user()->id . '/' . $modul['mod_id'];
 
-        if($req->LKPD != '' ){            
+        if($req->LKPD != '' ){
 
             $file1 = $req->file("LKPD");
             $fname1 = "L1-".$modul['mod_id']."-".Auth::user()->id.".".$file1->getClientOriginalExtension();
@@ -87,7 +87,7 @@ class modul_Lampiran_ctrl extends Controller
         if( $req->PR != ''){
             $file3 = $req->file("PR");
             $fname3 = "L3-".$modul['mod_id']."-".Auth::user()->id.".".$file3->getClientOriginalExtension();
-            
+
             Storage::putFileAs($loc,$file3,$fname3);
         }
 
