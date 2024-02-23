@@ -4,12 +4,12 @@
 
         <div class="row g-2 align-items-center ms-5 mb-2">
             <label class="col-form-label">Sarana</label>
-            <textarea name="sarana" id="editor"></textarea>
+            <textarea name="sarana" id="editor">{{ $modul['i1']['sarana'] }}</textarea>
         </div>
 
         <div class="row g-2 align-items-center ms-5 mb-2">
             <label class="col-form-label">Prasarana</label>
-            <textarea name="prasarana" id="editor1"></textarea>
+            <textarea name="prasarana" id="editor1">{{ $modul['i1']['prasarana'] }}</textarea>
         </div>
 
         <div class="position-relative bottom-0 start-50 translate-middle-x mt-3" style="width:50%">

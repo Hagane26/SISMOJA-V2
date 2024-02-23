@@ -81,6 +81,8 @@ Route::middleware('auth')->group(function(){
     Route::post('/modul/buat/lampiran/lampiran3-aksi',[modul_Lampiran_ctrl::class,'lampiran3']);
     Route::get('/modul/buat/Lampiran/selesai',[modul_Lampiran_ctrl::class,'selesai']);
 
+    Route::get('/get-kbbi/{teks}',[modul_Lampiran_ctrl::class,'get_kbbi']);
+
     route::get('/modul',[dashboard_ctrl::class,'daftar_modul']);
     route::post('/modul/lihat',[dashboard_ctrl::class,'lihat_modul']);
     route::post('/modul/print',[dashboard_ctrl::class,'print_modul']);

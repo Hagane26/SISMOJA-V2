@@ -24,15 +24,19 @@
             console.error( error );
         } );
     function cek(e){
-        $.getJSON("http://kateglo.lostfocus.org/api.php?format=json&phrase="+e.value, function(data) {
+        if(e.value == ""){
             $("#res").empty();
-
-            $.each(data.kateglo.definition, function() {
+        }else{
+            $.getJSON("http://127.0.0.1:8000/get-kbbi/"+e.value, function(data) {
+            $("#res").empty();
+            var results = data.result;
+            $.each(results, function(index,value) {
                 $("#res").append(
-                    "<li class='list-group-item'>" + "a" + "</li>"
+                    "<li class='list-group-item'>" + value + "</li>"
                 );
             });
         });
+        }
     }
 </script>
 

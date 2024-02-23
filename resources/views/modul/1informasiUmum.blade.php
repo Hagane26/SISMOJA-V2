@@ -21,6 +21,14 @@
             <a href="/modul/buat/informasiUmum/6" type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-{{ $res['pos'] == 5 ? 'primary' : ($res['pos'] > 5 ? 'success' : 'secondary') }} rounded-pill" style="width: 2rem; height:2rem; margin-left:100%">6</a>
         </div>
 
+        @if (session()->has('modul') == 0)
+            {{ route('/') }}
+        @endif
+
+        @php
+            $modul = session()->get('modul');
+        @endphp
+
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>

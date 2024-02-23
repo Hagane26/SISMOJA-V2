@@ -14,7 +14,7 @@
                         <div class="col">
                             <label for="basic-url" class="form-label">Waktu Untuk Pembukaan</label>
                             <div class="input-group mb-3">
-                                <input type="number" class="form-control" value="10" name="waktu" onkeydown="waktuubah(this)" onkeyup="waktuubah(this)">
+                                <input type="number" class="form-control" value="0" name="waktu" onkeydown="waktuubah(this)" onkeyup="waktuubah(this)">
                                 <span class="input-group-text">Menit dari total waktu ({{ $modul['waktu'] }} menit).</span>
                             </div>
                         </div>

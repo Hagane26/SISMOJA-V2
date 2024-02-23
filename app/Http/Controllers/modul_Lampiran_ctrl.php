@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -134,5 +136,21 @@ class modul_Lampiran_ctrl extends Controller
         //dd($modul);
         //echo $modul['l1']['dapus'];
         return view('modul.3selesai');
+    }
+
+    public function get_kbbi($teks){
+        $client = new Client();
+        $url = 'http://kateglo.lostfocus.org/api.php?format=json&phrase=' . $teks;
+        $response = $client->request('GET',$url);
+        $data = $response->getBody()->getContents();
+        $data = json_decode($data);
+        $definitions = $data->kateglo->definition;
+        $arr = [];
+        $i = 0;
+
+        foreach ($definitions as $definition) {
+            array_push($arr,$definition->def_text);
+        }
+        return json_encode(array('result'=>$arr));
     }
 }
