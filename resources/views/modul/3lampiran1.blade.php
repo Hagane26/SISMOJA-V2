@@ -1,6 +1,7 @@
 <div class="card mt-3">
     <div class="card-body">
         <h4 class="card-title">Upload File Lampiran</h4>
+        <h6 class="bi bi-info">Ukuran File Minimal 5MB </h6>
 
         <div class="g-2 align-items-center mb-3 ms-5">
             <label for="formFile" class="form-label">Upload LKPD (Lembar Kerja Peserta Didik)</label>
