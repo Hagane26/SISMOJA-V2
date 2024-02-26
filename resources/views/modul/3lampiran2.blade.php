@@ -27,7 +27,7 @@
         if(e.value == ""){
             $("#res").empty();
         }else{
-            $.getJSON("http://127.0.0.1:8000/get-kbbi/"+e.value, function(data) {
+            $.getJSON("http://localhost:8000/get-kbbi/"+e.value, function(data) {
             $("#res").empty();
             var results = data.result;
             $.each(results, function(index,value) {
