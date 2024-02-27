@@ -82,17 +82,16 @@
                         </div>
                         @else
                             @foreach ($res->data_ppp as $dp)
-                                <div class="mb-4 mx-lg-5">
-                                    <label class="form-label fw-bold">{{ $dp->subjudul }}</label>
-                                    <!--
-                                    <input type="text" class="form-control" value="{{ $res->data_informasi->identitas->nama }}">
-                                    -->
-                                    <div class="form-control">
-                                        @php
-                                            echo $dp->isi;
-                                        @endphp
+                                @if($dp->isi != "")
+                                    <div class="mb-4 mx-lg-5">
+                                        <label class="form-label fw-bold">{{ $dp->subjudul }}</label>
+                                        <div class="form-control">
+                                            @php
+                                                echo $dp->isi;
+                                            @endphp
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                             @endforeach
                         @endif
 
@@ -154,7 +153,7 @@
                             <label class="form-label fw-bold">Pendekatan</label>
                             <ol class="list-group list-group-numbered">
                                 @foreach ($res->data_informasi->model as $del)
-                                    @if ($del->kategori == "pe" )
+                                    @if ($del->kategori == "Pendekatan" && $del->metode != "")
                                         <li class="list-group-item">{{ $del->metode }}</li>
                                     @endif
                                 @endforeach
@@ -165,7 +164,7 @@
                             <label class="form-label fw-bold">Model</label>
                             <ol class="list-group list-group-numbered">
                                 @foreach ($res->data_informasi->model as $del)
-                                    @if ($del->kategori == "mo" )
+                                    @if ($del->kategori == "Model"  && $del->metode != "")
                                         <li class="list-group-item">{{ $del->metode }}</li>
                                     @endif
                                 @endforeach
@@ -176,7 +175,7 @@
                             <label class="form-label fw-bold">Metode</label>
                             <ol class="list-group list-group-numbered">
                                 @foreach ($res->data_informasi->model as $del)
-                                    @if ($del->kategori == "me" )
+                                    @if ($del->kategori == "Metode" && $del->metode != "")
                                         <li class="list-group-item">{{ $del->metode }}</li>
                                     @endif
                                 @endforeach
@@ -187,7 +186,7 @@
                             <label class="form-label fw-bold">Teknik</label>
                             <ol class="list-group list-group-numbered">
                                 @foreach ($res->data_informasi->model as $del)
-                                    @if ($del->kategori == "te" )
+                                    @if ($del->kategori == "Teknik" && $del->metode != "")
                                         <li class="list-group-item">{{ $del->metode }}</li>
                                     @endif
                                 @endforeach
@@ -292,12 +291,12 @@
                     </div>
                     <div class="card-body">
 
-                        @if ($res->data_komponen_inti->pemahaman_pemantik != '')
+                        @if ($res->data_komponen_inti->pemantik != '')
                         <div class="mb-3 row mx-lg-5">
 
                             <div class="form-control">
                                 @php
-                                    echo $res->data_komponen_inti->pemahaman_pemantik;
+                                    echo $res->data_komponen_inti->pemantik;
                                 @endphp
                             </div>
                         </div>
@@ -315,7 +314,10 @@
 
                         <div class="card mb-2 border-2 border-primary">
                             <div class="card-body">
-                                <center><h5 class="card-title">Pembukaan</h5></center>
+                                <center>
+                                    <h5 class="card-title">Pembukaan</h5>
+                                    <p class="card-subtitle">Dilaksanakan Selama : {{ $res->ki_pembukaan[0]->waktu }} Menit</p>
+                                </center>
                                 @foreach ($res->ki_pembukaan as $buka)
                                 <label class="form-label fw-bold">{{ $buka->langkah }}</label>
                                 <div class="mb-3 row mx-lg-5">
@@ -334,10 +336,14 @@
                                 @foreach ($res->ki_kegiatan as $k)
                                 <label class="form-label fw-bold">{{ $k->metode }}</label>
                                 <div class="mb-3 row mx-lg-5">
-                                    <div class="form-control">
+                                    <div class="form-control col-4">
                                         @php
                                             echo $k->isi
                                         @endphp
+                                    </div>
+
+                                    <div class="form-control col-1 mt-2 ms-5">
+                                        Waktu : {{ $k->waktu }} Menit
                                     </div>
                                 </div>
                                 @endforeach
@@ -355,6 +361,10 @@
                                         @php
                                             echo $pp->isi
                                         @endphp
+                                    </div>
+
+                                    <div class="form-control col-1 mt-2 ms-5">
+                                        Waktu : {{ $pp->waktu }} Menit
                                     </div>
                                 </div>
                                 @endforeach
@@ -378,7 +388,7 @@
                                 <center><h5 class="card-title">Lampiran LKPD</h5></center>
                                     @if(file_exists('lampiran/'.$res['users_id'].'/'.$res['id'].'/'.'L1-'.$res['id'].'-'.$res['users_id'].'.pdf'))
                                     <div class="ratio ratio-16x9">
-                                        <embed 
+                                        <embed
                                             src="{{asset('lampiran/'.$res['users_id']).'/'.$res['id'].'/'.'L1-'.$res['id'].'-'.$res['users_id'].'.pdf#toolbar=0'}}"
                                             type="application/pdf"
                                             width="700"
@@ -395,10 +405,10 @@
                         <div class="card mb-4 border-2 border-primary">
                             <div class="card-body">
                                 <center><h5 class="card-title">Pengayaan Dan Remedial</h5></center>
-                                     
+
                                     @if(file_exists('lampiran/'.$res['users_id'].'/'.$res['id'].'/'.'L2-'.$res['id'].'-'.$res['users_id'].'.pdf'))
                                     <div class="ratio ratio-16x9">
-                                        <embed 
+                                        <embed
                                             src="{{asset('lampiran/'.$res['users_id']).'/'.$res['id'].'/'.'L2-'.$res['id'].'-'.$res['users_id'].'.pdf#toolbar=0'}}"
                                             type="application/pdf"
                                             width="700"
@@ -409,7 +419,7 @@
                                             <p>Tidak Ada Lampiran</p>
                                         </Center>
                                     @endif
-                                
+
                             </div>
                         </div>
 
@@ -418,7 +428,7 @@
                                 <center><h5 class="card-title">Bahan Bacaan Peserta Didik dan Pendidik</h5></center>
                                 @if(file_exists('lampiran/'.$res['users_id'].'/'.$res['id'].'/'.'L3-'.$res['id'].'-'.$res['users_id'].'.pdf'))
                                 <div class="ratio ratio-16x9">
-                                    <embed 
+                                    <embed
                                         src="{{asset('lampiran/'.$res['users_id']).'/'.$res['id'].'/'.'L3-'.$res['id'].'-'.$res['users_id'].'.pdf#toolbar=0'}}"
                                         type="application/pdf"
                                         width="700"

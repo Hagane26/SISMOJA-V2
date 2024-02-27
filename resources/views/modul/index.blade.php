@@ -15,10 +15,10 @@
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col" style="width: 25%">Materi</th>
+                        <th scope="col" style="width: 20%">Materi</th>
                         <th scope="col" style="width: 20%">Nama Penyusun</th>
                         <th scope="col">Terakhir Diperbaharui</th>
-                        <th scope="col" style="width: 25%">Aksi</th>
+                        <th scope="col" style="width: 30%">Aksi</th>
                       </tr>
                     </thead>
                     <tbody>

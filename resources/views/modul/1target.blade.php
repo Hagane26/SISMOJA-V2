@@ -3,7 +3,7 @@
         <h4 class="card-title">Target Peserta Didik</h4>
 
         <div class="row g-2 align-items-center ms-5 mb-2 mt-3">
-            <textarea name="target" id="editor"></textarea>
+            <textarea name="target" id="editor">{{ $modul['i1']['target'] }}</textarea>
         </div>
 
         <div class="position-relative bottom-0 start-50 translate-middle-x mt-3" style="width:50%">

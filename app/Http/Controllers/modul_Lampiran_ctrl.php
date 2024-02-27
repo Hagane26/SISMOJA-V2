@@ -79,15 +79,15 @@ class modul_Lampiran_ctrl extends Controller
             Storage::putFileAs($loc,$file1,$fname1);
         }
 
-        if($req->BB != ''){
-            $file2 = $req->file("BB");
+        if($req->PR != ''){
+            $file2 = $req->file("PR");
             $fname2 = "L2-".$modul['mod_id']."-".Auth::user()->id.".".$file2->getClientOriginalExtension();
 
             Storage::putFileAs($loc,$file2,$fname2);
         }
 
-        if( $req->PR != ''){
-            $file3 = $req->file("PR");
+        if( $req->BB != ''){
+            $file3 = $req->file("BB");
             $fname3 = "L3-".$modul['mod_id']."-".Auth::user()->id.".".$file3->getClientOriginalExtension();
 
             Storage::putFileAs($loc,$file3,$fname3);
