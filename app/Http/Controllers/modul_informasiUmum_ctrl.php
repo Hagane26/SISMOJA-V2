@@ -105,7 +105,7 @@ class modul_informasiUmum_ctrl extends Controller
 
         $waktu = $req->waktu * $req->kali;
 
-        if($modul['i2'] == 0){
+        if($modul['i2'] == ""){
             $parcel = i_identitas::create($data);
         }else{
             $parcel = i_identitas::where('id',$modul['i1']['id'])->update($data);
@@ -155,7 +155,7 @@ class modul_informasiUmum_ctrl extends Controller
             'Kreatif',
         ];
 
-        if($modul['i3'] == 0){
+        if($modul['i3'] == ""){
             for($i = 0;$i < count($req->all()) - 1;$i++){
                 $s = "in_" . ($i + 1);
                 $parcel = i_ppp::create([
@@ -165,8 +165,8 @@ class modul_informasiUmum_ctrl extends Controller
                 ]);
             }
         }else{
-            for($i = 0;$i < count($req->all()) - 1;$i++){
-                $s = "in_" . ($i + 1);
+            for($i = 0;$i < count($subjudul);$i++){
+                $s = "in_" . ($i);
                 $parcel = i_ppp::where('id',$modul['i3'][$i]['id'])->update([
                     'isi' => $req[$s],
                 ]);
@@ -285,7 +285,7 @@ class modul_informasiUmum_ctrl extends Controller
             array_push($kat,'Teknik');
         }
 
-        if($modul['i4'] == 0){
+        if($modul['i4'] == ""){
             for( $i = 0;$i < $total;$i++){
                 $parcel = i_modelp::create([
                     'metode' => $data[$i],
@@ -324,7 +324,7 @@ class modul_informasiUmum_ctrl extends Controller
     public function selesai(){
         $modul = session()->get('modul');
 
-        if($modul['k1'] == 0){
+        if($modul['k1'] == ""){
             $ki = komponen_inti::create();
             dataModul::where('id',$modul['mod_id'])->update(['komponen_id'=>$ki->id]);
             $modul['k1'] = komponen_inti::where('id',$ki->id)->get()->first();
@@ -334,4 +334,202 @@ class modul_informasiUmum_ctrl extends Controller
             return redirect('/modul/buat/komponenInti/1');
         }
     }
+
+    //1
+    public function identitas_edit(Request $req){
+        $mod = dataModul::where('id',$req->mod_id)->get()->first();
+        $infoumum = infoUmum::where('id',$mod->informasi_id)->get()->first();
+        $i2 = i_identitas::where('id',$infoumum->identitas_id)->get()->first();
+
+        $data = [
+            'judul' => $mod->judul,
+            'aksi' => 'edit/informasiumum/identitas-aksi',
+            'view' => 'modul.1identitas',
+        ];
+
+        $modul = ['id'=>$req->mod_id];
+        $modul['i2'] = $i2;
+
+        session(['modul'=> $modul]);
+
+        return view('modul.1edit_informasiUmum',['res'=>$data]);
+    }
+
+    public function identitas_edit_aksi(Request $req){
+        $s = session()->get('modul');
+        $mod = dataModul::where('id',$s['id'])->get()->first();
+        $infoumum = infoUmum::where('id',$mod->informasi_id)->get()->first();
+
+        $req->validate([
+            'penyusun'=>'required',
+            'institusi'=>'required',
+            'mapel'=>'required',
+            'fase'=>'required',
+            'kelas'=>'required',
+            'TA_awal'=>'required',
+            'TA_akhir'=>'required',
+            'kali'=>'required',
+            'waktu'=>'required'
+        ],[
+            //untuk custom pesan gagal nya
+            'penyusun.required' => "Nama Penyusun Kosong",
+            'institusi.required' => "Institusi Kosong",
+        ]);
+
+        $data = [
+            'nama' => $req->penyusun,
+            'institusi' => $req->institusi,
+            'mapel' => $req->mapel,
+            'fase' => $req->fase,
+            'kelas' => $req->kelas,
+            'TAwal' => $req->TA_awal,
+            'TAkhir' => $req->TA_akhir,
+            'kali' => $req->kali,
+            'waktu' => $req->waktu,
+        ];
+
+        $parcel = i_identitas::where('id',$infoumum->identitas_id)->update($data);
+
+        if($parcel){
+            return redirect('/modul');
+        }
+
+        session()->forget('modul');
+    }
+
+    //2
+    public function ppp_edit(Request $req){
+        $mod = dataModul::where('id',$req->mod_id)->get()->first();
+        $infoumum = infoUmum::where('id',$mod->informasi_id)->get()->first();
+        $i3 = i_ppp::where('informasi_id',$infoumum->id)->get();
+
+        $data = [
+            'judul' => $mod->judul,
+            'aksi' => 'edit/informasiumum/ppp-aksi',
+            'view' => 'modul.1ppp',
+        ];
+
+        $modul = ['id'=>$req->mod_id];
+        $modul['i3'] = $i3;
+
+        session(['modul'=> $modul]);
+
+        return view('modul.1edit_informasiUmum',['res'=>$data]);
+    }
+
+    public function ppp_edit_aksi(Request $req){
+        $s = session()->get('modul');
+
+        $subjudul = [
+            'Beriman, Bertakwa kepada Tuhan Yang Maha Esa dan Berakhlak Mulia',
+            'Berkebhinekaan Global',
+            'Bergotong Royong',
+            'Mandiri',
+            'Bernalar Kritis',
+            'Kreatif',
+        ];
+
+        for($i = 0;$i < count($subjudul);$i++){
+            $s = "in_" . ($i);
+            $parcel = i_ppp::where('id',$s['i3'][$i]['id'])->update([
+                'isi' => $req[$s],
+            ]);
+        }
+
+        if($parcel){
+            return redirect('/modul');
+        }
+
+        session()->forget('modul');
+    }
+
+    //3
+    public function sarana_edit(Request $req){
+        $mod = dataModul::where('id',$req->mod_id)->get()->first();
+        $infoumum = infoUmum::where('id',$mod->informasi_id)->get()->first();
+
+        $data = [
+            'judul' => $mod->judul,
+            'aksi' => 'edit/informasiumum/sarana-aksi',
+            'view' => 'modul.1sarana',
+        ];
+
+        $modul = ['id'=>$req->mod_id];
+        $modul['i1'] = $infoumum;
+
+        session(['modul'=> $modul]);
+
+        return view('modul.1edit_informasiUmum',['res'=>$data]);
+    }
+
+    public function sarana_edit_aksi(Request $req){
+        $s = session()->get('modul');
+        $mod = dataModul::where('id',$s['id'])->get()->first();
+
+        $req->validate([
+            'sarana'=>'required',
+            'prasarana'=>'required',
+        ],[
+            //untuk custom pesan gagal nya
+            'penyusun.required' => "Nama Penyusun Kosong",
+            'institusi.required' => "Institusi Kosong",
+        ]);
+
+        $data = [
+            'sarana' => $req->sarana,
+            'prasarana' => $req->prasarana,
+        ];
+
+        $parcel = infoUmum::where('id',$mod->informasi_id)->update($data);
+
+        if($parcel){
+            return redirect('/modul');
+        }
+
+        session()->forget('modul');
+    }
+
+    //4
+    public function target_edit(Request $req){
+        $mod = dataModul::where('id',$req->mod_id)->get()->first();
+        $infoumum = infoUmum::where('id',$mod->informasi_id)->get()->first();
+
+        $data = [
+            'judul' => $mod->judul,
+            'aksi' => 'edit/informasiumum/target-aksi',
+            'view' => 'modul.1target',
+        ];
+
+        $modul = ['id'=>$req->mod_id];
+        $modul['i1'] = $infoumum;
+
+        session(['modul'=> $modul]);
+
+        return view('modul.1edit_informasiUmum',['res'=>$data]);
+    }
+
+    public function target_edit_aksi(Request $req){
+        $s = session()->get('modul');
+        $mod = dataModul::where('id',$s['id'])->get()->first();
+
+        $req->validate([
+            'target'=>'required',
+        ],[
+            //untuk custom pesan gagal nya
+            'target.required' => "Nama Penyusun Kosong",
+        ]);
+
+        $data = [
+            'target' => $req->target
+        ];
+
+        $parcel = infoUmum::where('id',$mod->informasi_id)->update($data);
+
+        if($parcel){
+            return redirect('/modul');
+        }
+
+        session()->forget('modul');
+    }
+
 }

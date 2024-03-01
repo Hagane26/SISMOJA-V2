@@ -29,7 +29,7 @@
                         <tr>
                             <th scope="row">{{ $i++ }}</th>
                             <td>{{ $m->judul }}</td>
-                            <td>{{ $m->identitas->nama }}</td>
+                            <td>{{ $m->identitas != "" ? $m->identitas->nama : "" }}</td>
                             <td>{{ $m->updated_at->format('d F Y') }}</td>
                             <td>
                                 <form action="{{ config('app.url') }}" method="post">

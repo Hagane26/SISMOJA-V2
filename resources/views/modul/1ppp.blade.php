@@ -1,3 +1,7 @@
+@php
+    $modul = session()->get('modul');
+@endphp
+
 <div class="card mt-3">
     <div class="card-body">
         <h4 class="card-title">Profil Pelajar Pancasila </h4>
@@ -7,42 +11,42 @@
             <div class="row">
                 Beriman, Bertakwa kepada Tuhan Yang Maha Esa dan Berakhlak Mulia
             </div>
-            <textarea name="in_1" id="editor1"></textarea>
+            <textarea name="in_1" id="editor1">{{ $modul['i3'] != "" ? $modul['i3'][0]['isi'] : "" }}</textarea>
         </div>
 
         <div class="col g-2 align-items-center ms-5 mb-2 mt-3">
             <div class="row">
                 Berkebhinekaan Global
             </div>
-            <textarea class="row" name="in_2" id="editor2"></textarea>
+            <textarea class="row" name="in_2" id="editor2">{{ $modul['i3'] != "" ? $modul['i3'][1]['isi'] : "" }}</textarea>
         </div>
 
         <div class="col g-2 align-items-center ms-5 mb-2 mt-3">
             <div class="row">
                 Bergotong Royong
             </div>
-            <textarea class="row" name="in_3" id="editor3"></textarea>
+            <textarea class="row" name="in_3" id="editor3">{{ $modul['i3'] != "" ? $modul['i3'][2]['isi'] : "" }}</textarea>
         </div>
 
         <div class="col g-2 align-items-center ms-5 mb-2 mt-3">
             <div class="row">
                 Mandiri
             </div>
-            <textarea class="row" name="in_4" id="editor4"></textarea>
+            <textarea class="row" name="in_4" id="editor4">{{ $modul['i3'] != "" ? $modul['i3'][3]['isi'] : "" }}</textarea>
         </div>
 
         <div class="col g-2 align-items-center ms-5 mb-2 mt-3">
             <div class="row">
                 Bernalar Kritis
             </div>
-            <textarea class="row" name="in_5" id="editor5"></textarea>
+            <textarea class="row" name="in_5" id="editor5">{{ $modul['i3'] != "" ? $modul['i3'][4]['isi'] : "" }}</textarea>
         </div>
 
         <div class="col g-2 align-items-center ms-5 mb-2 mt-3">
             <div class="row">
                 Kreatif
             </div>
-            <textarea class="row" name="in_6" id="editor6"></textarea>
+            <textarea class="row" name="in_6" id="editor6">{{ $modul['i3'] != "" ? $modul['i3'][5]['isi'] : "" }}</textarea>
         </div>
 
         <div class="position-relative bottom-0 start-50 translate-middle-x mt-3" style="width:50%">

@@ -172,7 +172,7 @@ class modul_komponenInti_ctrl extends Controller
 
         $data = array();
 
-        if($modul['k2']==0){
+        if($modul['k2']==""){
             for($i = 1;$i <= 7 ;$i++){
                 $s = "p-". $i;
                 $parcel = ki_pembuka::create([
@@ -219,7 +219,7 @@ class modul_komponenInti_ctrl extends Controller
             }
         }
 
-        if($modul['k3'] == 0){
+        if($modul['k3'] == ""){
             for($i = 0; $i < $len; $i++){
                 $parcel = ki_kegiatan::create([
                     'metode' => $req['metode_'.$i],
@@ -270,7 +270,7 @@ class modul_komponenInti_ctrl extends Controller
 
         $data = array();
 
-        if($modul['k4']==0){
+        if($modul['k4']==""){
             for($i = 1;$i <= 5 ;$i++){
                 $s = "p-". $i;
                 $parcel = ki_penutup::create([
@@ -325,7 +325,7 @@ class modul_komponenInti_ctrl extends Controller
     public function selesai(){
         $modul = session()->get('modul');
 
-        if($modul['l1'] == 0){
+        if($modul['l1'] == ""){
             $l = lampiran::create();
             dataModul::where('id',$modul['mod_id'])->update(['lampiran_id'=>$l->id]);
             $modul['l1'] = lampiran::where('id',$l->id)->get()->first();
@@ -334,5 +334,166 @@ class modul_komponenInti_ctrl extends Controller
         }else{
             return redirect('/modul/buat/lampiran/1');
         }
+    }
+
+    //1
+    public function tujuan_edit(Request $req){
+        $mod = dataModul::where('id',$req->mod_id)->get()->first();
+        $ki = komponen_inti::where('id',$mod->komponen_id)->get()->first();
+
+        $data = [
+            'judul' => $mod->judul,
+            'aksi' => 'edit/komponeninti/tujuan-aksi',
+            'view' => 'modul.2tujuan',
+        ];
+
+        $modul = ['id'=>$req->mod_id];
+        $modul['k1'] = $ki;
+
+        session(['modul'=> $modul]);
+
+        return view('modul.1edit_informasiUmum',['res'=>$data]);
+    }
+
+    public function tujuan_edit_aksi(Request $req){
+        $s = session()->get('modul');
+        $mod = dataModul::where('id',$s['id'])->get()->first();
+
+        $req->validate([
+            'tujuan'=>'required',
+        ],[
+            //untuk custom pesan gagal nya
+            'tujuan.required' => "Nama Penyusun Kosong",
+        ]);
+
+        $data = [
+            'tujuan' => $req->tujuan
+        ];
+
+        $parcel = komponen_inti::where('id',$mod->komponen_id)->update($data);
+
+        if($parcel){
+            return redirect('/modul');
+        }
+
+        session()->forget('modul');
+    }
+
+    //2
+    public function asasmen_edit(Request $req){
+        $mod = dataModul::where('id',$req->mod_id)->get()->first();
+        $ki = komponen_inti::where('id',$mod->komponen_id)->get()->first();
+
+        $data = [
+            'judul' => $mod->judul,
+            'aksi' => 'edit/komponeninti/asasmen-aksi',
+            'view' => 'modul.2asasmen',
+        ];
+
+        $modul = ['id'=>$req->mod_id];
+        $modul['k1'] = $ki;
+
+        session(['modul'=> $modul]);
+
+        return view('modul.1edit_informasiUmum',['res'=>$data]);
+    }
+
+    public function asasmen_edit_aksi(Request $req){
+        $s = session()->get('modul');
+        $mod = dataModul::where('id',$s['id'])->get()->first();
+
+        $data = [
+            'asasmen_diagnostik' => $req->ad,
+            'asasmen_formatif' => $req->af,
+            'asasmen_sumatif' => $req->as,
+        ];
+
+        $parcel = komponen_inti::where('id',$mod->komponen_id)->update($data);
+
+        if($parcel){
+            return redirect('/modul');
+        }
+
+        session()->forget('modul');
+    }
+
+    //3
+    public function pemahaman_edit(Request $req){
+        $mod = dataModul::where('id',$req->mod_id)->get()->first();
+        $ki = komponen_inti::where('id',$mod->komponen_id)->get()->first();
+
+        $data = [
+            'judul' => $mod->judul,
+            'aksi' => 'edit/komponeninti/pemahaman-aksi',
+            'view' => 'modul.2pemahaman',
+        ];
+
+        $modul = ['id'=>$req->mod_id];
+        $modul['k1'] = $ki;
+
+        session(['modul'=> $modul]);
+
+        return view('modul.1edit_informasiUmum',['res'=>$data]);
+    }
+
+    public function pemahaman_edit_aksi(Request $req){
+        $s = session()->get('modul');
+        $mod = dataModul::where('id',$s['id'])->get()->first();
+
+        $req->validate([
+            'pemahaman' => 'required',
+        ]);
+
+        $data = [
+            'pemahaman_bermakna' => $req->pemahaman
+        ];
+
+        $parcel = komponen_inti::where('id',$mod->komponen_id)->update($data);
+
+        if($parcel){
+            return redirect('/modul');
+        }
+
+        session()->forget('modul');
+    }
+
+    //3
+    public function pemantik_edit(Request $req){
+        $mod = dataModul::where('id',$req->mod_id)->get()->first();
+        $ki = komponen_inti::where('id',$mod->komponen_id)->get()->first();
+
+        $data = [
+            'judul' => $mod->judul,
+            'aksi' => 'edit/komponeninti/pemantik-aksi',
+            'view' => 'modul.2pemantik',
+        ];
+
+        $modul = ['id'=>$req->mod_id];
+        $modul['k1'] = $ki;
+
+        session(['modul'=> $modul]);
+
+        return view('modul.1edit_informasiUmum',['res'=>$data]);
+    }
+
+    public function pemantik_edit_aksi(Request $req){
+        $s = session()->get('modul');
+        $mod = dataModul::where('id',$s['id'])->get()->first();
+
+        $req->validate([
+            'pemantik' => 'required',
+        ]);
+
+        $data = [
+            'pemantik' => $req->pemantik
+        ];
+
+        $parcel = komponen_inti::where('id',$mod->komponen_id)->update($data);
+
+        if($parcel){
+            return redirect('/modul');
+        }
+
+        session()->forget('modul');
     }
 }

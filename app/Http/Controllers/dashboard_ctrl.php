@@ -113,16 +113,16 @@ class dashboard_ctrl extends Controller
                 'mod_id'=>$parcel->id,
                 'judul' => $parcel->judul,
                 'i1' => $data_iu,
-                'i2' => 0,
-                'i3' => 0,
-                'i4' => 0,
-                'k1' => 0,
-                'k2' => 0,
-                'k3' => 0,
-                'k4' => 0,
-                'l1' => 0,
-                'l2' => 0,
-                'l3' => 0,
+                'i2' => "",
+                'i3' => "",
+                'i4' => "",
+                'k1' => "",
+                'k2' => "",
+                'k3' => "",
+                'k4' => "",
+                'l1' => "",
+                'l2' => "",
+                'l3' => "",
                 'waktu' => 0,
                 'waktu_n' => 0,
                 'wpembuka' => 0,
@@ -140,13 +140,16 @@ class dashboard_ctrl extends Controller
     public function daftar_modul(){
         $identitas = "";
         $data_modul = dataModul::where('users_id',Auth::user()->id)->get()->all();
-        for($i=0;$i<(count($data_modul));$i++){
-            $identitas = i_identitas::where('id',$data_modul[$i]->id)->get()->first();
+        for($i=0;$i<count($data_modul);$i++){
+            $info = infoUmum::where('id',$data_modul[$i]->informasi_id)->get()->first();
+            $identitas = i_identitas::where('id',$info->identitas_id)->get()->first();
             $data_modul[$i]['identitas'] = $identitas;
+            //echo $info->identitas_id . "<br>";
         }
         //echo json_encode($data_modul[0]);
         //echo $data_modul[0]->identitas->nama;
         return view('modul.index',['modul'=>$data_modul]);
+        //echo json_encode($data_modul);
     }
 
     public function lihat_modul(Request $req){

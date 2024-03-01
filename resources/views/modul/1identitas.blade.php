@@ -7,17 +7,17 @@
 
         <div class="input-group flex-nowrap mt-3">
             <span class="input-group-text me-1 bg-secondary text-white" style="width: 25%">Nama Penyusun</span>
-            <input type="text" class="form-control" id="penyusun" name="penyusun">
+            <input type="text" class="form-control" id="penyusun" name="penyusun" value="{{ $modul['i2'] != "" ? $modul['i2']['nama'] : "" }}">
         </div>
 
         <div class="input-group flex-nowrap mt-3">
             <span class="input-group-text me-1 bg-secondary text-white" style="width: 25%">Institusi</span>
-            <input type="text" class="form-control" id="institusi" name="institusi">
+            <input type="text" class="form-control" id="institusi" name="institusi" value="{{ $modul['i2'] != "" ? $modul['i2']['institusi'] : "" }}">
         </div>
 
         <div class="input-group flex-nowrap mt-3">
             <span class="input-group-text me-1 bg-secondary text-white" style="width: 25%">Mata Pelajaran</span>
-            <input type="text" class="form-control" id="mapel" name="mapel">
+            <input type="text" class="form-control" id="mapel" name="mapel" value="{{ $modul['i2'] != "" ? $modul['i2']['mapel'] : "" }}">
         </div>
 
         <div class="input-group flex-nowrap mt-3">
@@ -34,25 +34,25 @@
                     <option value="F">Fase F : Kelas 11 dan 12 (SMA)</option>
                 </select>
 
-                <input type="text" placeholder="Nama Kelas, Contoh : 1A" class="form-control" id="kelas" name="kelas">
+                <input type="text" placeholder="Nama Kelas, Contoh : 1A" class="form-control" id="kelas" name="kelas" value="{{ $modul['i2'] != "" ? $modul['i2']['kelas'] : "" }}">
             </div>
         </div>
 
         <div class="input-group flex-nowrap mt-3">
             <span class="input-group-text me-1 bg-secondary text-white" style="width: 25%">Tahun Ajaran</span>
-            <input type="number" placeholder="{{ date('Y') - 1 }}" class="form-control" id="TA_awal" name="TA_awal">
+            <input type="number" placeholder="{{ date('Y') - 1 }}" class="form-control" id="TA_awal" name="TA_awal" value="{{ $modul['i2'] != "" ? $modul['i2']['TAwal'] : "" }}">
 
                 <span class="input-group-text">/</span>
-                <input type="number" placeholder="{{ date('Y') }}" class="form-control" id="TA_akhir" name="TA_akhir">
+                <input type="number" placeholder="{{ date('Y') }}" class="form-control" id="TA_akhir" name="TA_akhir" value="{{ $modul['i2'] != "" ? $modul['i2']['TAkhir'] : "" }}">
         </div>
 
         <div class="input-group flex-nowrap mt-3">
             <span class="input-group-text me-1 bg-secondary text-white" style="width: 25%">Alokasi Waktu</span>
 
-            <input type="number" placeholder="contoh : 2" class="form-control" id="kali" name="kali">
+            <input type="number" placeholder="contoh : 2" class="form-control" id="kali" name="kali" value="{{ $modul['i2'] != "" ? $modul['i2']['kali'] : "" }}">
             <span class="input-group-text"> X </span>
 
-            <input type="number" placeholder="contoh : 45" class="form-control" id="waktu" name="waktu">
+            <input type="number" placeholder="contoh : 45" class="form-control" id="waktu" name="waktu" value="{{ $modul['i2'] != "" ? $modul['i2']['waktu'] : "" }}">
             <span class="input-group-text">Menit</span>
         </div>
 

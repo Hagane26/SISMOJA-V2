@@ -77,7 +77,7 @@
                         <tr>
                             <td style="width: 33.7329%;"><span style="font-size: 14px;">Kelas / Fase</span></td>
                             <td style="width: 5.137%;"><span style="font-size: 14px;">:</span></td>
-                            <td style="width: 61.0044%;"><span style="font-size: 14px;">{{ $res->data_informasi->identitas->kelas }}</span></td>
+                            <td style="width: 61.0044%;"><span style="font-size: 14px;">{{ $res->data_informasi->identitas->kelas }} / Fase {{ $res->data_informasi->identitas->fase }}</span></td>
                         </tr>
                         <tr>
                             <td style="width: 33.7329%;"><span style="font-size: 14px;">Alokasi Waktu</span></td>

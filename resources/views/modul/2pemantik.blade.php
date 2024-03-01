@@ -1,9 +1,12 @@
+@php
+    $modul = session()->get('modul');
+@endphp
 <div class="card mt-3">
     <div class="card-body">
         <h4 class="card-title">Pertanyaan Pemantik</h4>
 
         <div class="row g-2 align-items-center ms-5 mb-2">
-            <textarea name="pemantik" id="editor"></textarea>
+            <textarea name="pemantik" id="editor">{{ $modul['k1']['pemantik'] }}</textarea>
         </div>
 
         <div class="position-relative bottom-0 start-50 translate-middle-x mt-3" style="width:50%">

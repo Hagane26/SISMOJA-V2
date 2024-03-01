@@ -54,7 +54,7 @@
                             <label class="col-sm-4 col-form-label">Kelas/Fase</label>
                             <label class="col-sm-1 col-form-label">:</label>
                             <div class="col">
-                                <input type="text" class="form-control" readonly value="{{ $res->data_informasi->identitas->kelas }} / {{ $res->data_informasi->identitas->fase }}">
+                                <input type="text" class="form-control" readonly value="{{ $res->data_informasi->identitas->kelas }} / Fase {{ $res->data_informasi->identitas->fase }}">
                             </div>
                         </div>
 
@@ -65,8 +65,18 @@
                                 <input type="text" class="form-control" readonly value="{{ $res->data_informasi->identitas->waktu *  $res->data_informasi->identitas->kali . " Menit ( " . $res->data_informasi->identitas->kali . " x " . $res->data_informasi->identitas->waktu . " Menit )"}}">
                             </div>
                         </div>
-
                     </div>
+
+                    <center>
+                        <form action="{{ config('app.url') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="mod_id" value="{{ $res['mod_id'] }}">
+                            <button type="submit" formaction="/modul/edit/informasiumum/identitas" class="form-control btn btn-success mb-3 bi-pencil" style="width: 50%">
+                                Edit Identitas
+                            </button>
+                        </form>
+                    </center>
+
                 </div>
 
                 <!-- -->
@@ -96,6 +106,16 @@
                         @endif
 
                     </div>
+
+                    <center>
+                        <form action="{{ config('app.url') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="mod_id" value="{{ $res['mod_id'] }}">
+                            <button type="submit" formaction="/modul/edit/informasiumum/ppp" class="form-control btn btn-success mb-3 bi-pencil" style="width: 50%">
+                                Edit Profil Pelajar Pancasila
+                            </button>
+                        </form>
+                    </center>
                 </div>
 
                 <!-- -->
@@ -122,8 +142,17 @@
                                 @endphp
                             </div>
                         </div>
-
                     </div>
+                    <center>
+                        <form action="{{ config('app.url') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="mod_id" value="{{ $res['mod_id'] }}">
+                            <button type="submit" formaction="/modul/edit/informasiumum/sarana"
+                            class="form-control btn btn-success mb-3 bi-pencil" style="width: 50%">
+                                Edit Sarana Dan Prasarana
+                            </button>
+                        </form>
+                    </center>
                 </div>
 
                     <!-- -->
@@ -138,8 +167,17 @@
                                     echo $res->data_informasi->target;
                                 @endphp
                             </div>
-
                         </div>
+                        <center>
+                            <form action="{{ config('app.url') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="mod_id" value="{{ $res['mod_id'] }}">
+                                <button type="submit" formaction="/modul/edit/informasiumum/target"
+                                class="form-control btn btn-success mb-3 bi-pencil" style="width: 50%">
+                                    Edit Target Peserta DIdik
+                                </button>
+                            </form>
+                        </center>
                     </div>
 
                 <!-- -->
@@ -217,6 +255,16 @@
                         </div>
                         @endif
 
+                        <center>
+                            <form action="{{ config('app.url') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="mod_id" value="{{ $res['mod_id'] }}">
+                                <button type="submit" formaction="/modul/edit/komponeninti/tujuan"
+                                class="form-control btn btn-success mb-3 bi-pencil" style="width: 50%">
+                                    Edit Tujuan
+                                </button>
+                            </form>
+                        </center>
                     </div>
                 </div>
 
@@ -260,6 +308,16 @@
                         </div>
                         @endif
 
+                        <center>
+                            <form action="{{ config('app.url') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="mod_id" value="{{ $res['mod_id'] }}">
+                                <button type="submit" formaction="/modul/edit/komponeninti/asasmen"
+                                class="form-control btn btn-success mb-3 bi-pencil" style="width: 50%">
+                                    Edit Asasmen
+                                </button>
+                            </form>
+                        </center>
                     </div>
                 </div>
 
@@ -281,6 +339,16 @@
                         </div>
                         @endif
 
+                        <center>
+                            <form action="{{ config('app.url') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="mod_id" value="{{ $res['mod_id'] }}">
+                                <button type="submit" formaction="/modul/edit/komponeninti/pemahaman"
+                                class="form-control btn btn-success mb-3 bi-pencil" style="width: 50%">
+                                    Edit Pehaman Bermakna
+                                </button>
+                            </form>
+                        </center>
                     </div>
                 </div>
 
@@ -301,6 +369,17 @@
                             </div>
                         </div>
                         @endif
+
+                        <center>
+                            <form action="{{ config('app.url') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="mod_id" value="{{ $res['mod_id'] }}">
+                                <button type="submit" formaction="/modul/edit/komponeninti/pemantik"
+                                class="form-control btn btn-success mb-3 bi-pencil" style="width: 50%">
+                                    Edit Pertanyaan Pemantik
+                                </button>
+                            </form>
+                        </center>
 
                     </div>
                 </div>

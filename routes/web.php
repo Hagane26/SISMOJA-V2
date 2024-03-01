@@ -83,8 +83,35 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/get-kbbi/{teks}',[modul_Lampiran_ctrl::class,'get_kbbi']);
 
+
+    //iumum
+    Route::post('/modul/edit/informasiumum/identitas',[modul_informasiUmum_ctrl::class,'identitas_edit']);
+    Route::post('/modul/edit/informasiumum/identitas-aksi',[modul_informasiUmum_ctrl::class,'identitas_edit_aksi']);
+
+    Route::post('/modul/edit/informasiumum/ppp',[modul_informasiUmum_ctrl::class,'ppp_edit']);
+    Route::post('/modul/edit/informasiumum/ppp-aksi',[modul_informasiUmum_ctrl::class,'ppp_edit_aksi']);
+
+    Route::post('/modul/edit/informasiumum/sarana',[modul_informasiUmum_ctrl::class,'sarana_edit']);
+    Route::post('/modul/edit/informasiumum/sarana-aksi',[modul_informasiUmum_ctrl::class,'sarana_edit_aksi']);
+
+    Route::post('/modul/edit/informasiumum/target',[modul_informasiUmum_ctrl::class,'target_edit']);
+    Route::post('/modul/edit/informasiumum/target-aksi',[modul_informasiUmum_ctrl::class,'target_edit_aksi']);
+
+    //ki
+    Route::post('/modul/edit/komponeninti/tujuan',[modul_komponenInti_ctrl::class,'tujuan_edit']);
+    Route::post('/modul/edit/komponeninti/tujuan-aksi',[modul_komponenInti_ctrl::class,'tujuan_edit_aksi']);
+
+    Route::post('/modul/edit/komponeninti/asasmen',[modul_komponenInti_ctrl::class,'asasmen_edit']);
+    Route::post('/modul/edit/komponeninti/asasmen-aksi',[modul_komponenInti_ctrl::class,'asasmen_edit_aksi']);
+
+    Route::post('/modul/edit/komponeninti/pemahaman',[modul_komponenInti_ctrl::class,'pemahaman_edit']);
+    Route::post('/modul/edit/komponeninti/pemahaman-aksi',[modul_komponenInti_ctrl::class,'pemahaman_edit_aksi']);
+
+    Route::post('/modul/edit/komponeninti/pemantik',[modul_komponenInti_ctrl::class,'pemantik_edit']);
+    Route::post('/modul/edit/komponeninti/pemantik-aksi',[modul_komponenInti_ctrl::class,'pemantik_edit_aksi']);
+
     route::get('/modul',[dashboard_ctrl::class,'daftar_modul']);
-    route::post('/modul/lihat',[dashboard_ctrl::class,'lihat_modul']);
+    route::post('/modul/lihat',[dashboard_ctrl::class,'lihat_modul'])->name('Mlihat');
     route::post('/modul/print',[dashboard_ctrl::class,'print_modul']);
 
     route::get('/profil',[profil_ctrl::class,'index']);

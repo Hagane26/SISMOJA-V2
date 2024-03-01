@@ -147,7 +147,7 @@ class modul_Lampiran_ctrl extends Controller
         $definitions = $data->kateglo->definition;
         $arr = [];
         $i = 0;
- 
+
         foreach ($definitions as $definition) {
             array_push($arr,$definition->def_text);
         }

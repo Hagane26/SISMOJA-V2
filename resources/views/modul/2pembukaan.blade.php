@@ -1,3 +1,6 @@
+@php
+    $modul = session()->get('modul');
+@endphp
 <div class="card mt-3">
     <div class="card-body">
         <h4 class="card-title">Pembuka Kegiatan</h4>
@@ -29,7 +32,7 @@
                 <div class="row g-2 align-items-center ms-5 mb-4">
                     <h5 class="form-label">Kegiatan 1 : Salam Pembuka</h5>
 
-                    <textarea name="p-1" class="form-control"></textarea>
+                    <textarea name="p-1" class="form-control">{{ $modul['k2'] == "" ? "" : $modul['k2'][0]['isi'] }}</textarea>
                 </div>
             </div>
         </div>
@@ -39,7 +42,7 @@
                 <div class="row g-2 align-items-center ms-5 mb-4">
                     <h5 class="form-label">Kegiatan 2 : Pengkondisian Kelas</h5>
 
-                    <textarea name="p-2" class="form-control"></textarea>
+                    <textarea name="p-2" class="form-control">{{ $modul['k2'] == "" ? "" : $modul['k2'][1]['isi'] }}</textarea>
                 </div>
             </div>
         </div>
@@ -49,7 +52,7 @@
                 <div class="row g-2 align-items-center ms-5 mb-4">
                     <h5 class="form-label">Kegiatan 3 : Do'a</h5>
 
-                    <textarea name="p-3" class="form-control"></textarea>
+                    <textarea name="p-3" class="form-control">{{ $modul['k2'] == "" ? "" : $modul['k2'][2]['isi'] }}</textarea>
                 </div>
             </div>
         </div>
@@ -59,7 +62,7 @@
                 <div class="row g-2 align-items-center ms-5 mb-4">
                     <h5 class="form-label">Kegiatan 4 : Presensi</h5>
 
-                    <textarea name="p-4" class="form-control"></textarea>
+                    <textarea name="p-4" class="form-control">{{ $modul['k2'] == "" ? "" : $modul['k2'][3]['isi'] }}</textarea>
                 </div>
             </div>
         </div>
@@ -69,7 +72,7 @@
                 <div class="row g-2 align-items-center ms-5 mb-4">
                     <h5 class="form-label">Kegiatan 5 : Apersepsi</h5>
 
-                    <textarea name="p-5" class="form-control"></textarea>
+                    <textarea name="p-5" class="form-control">{{ $modul['k2'] == "" ? "" : $modul['k2'][4]['isi'] }}</textarea>
                 </div>
             </div>
         </div>
@@ -79,7 +82,7 @@
                 <div class="row g-2 align-items-center ms-5 mb-4">
                     <h5 class="form-label">Kegiatan 6 : Motivasi</h5>
 
-                    <textarea name="p-6" class="form-control"></textarea>
+                    <textarea name="p-6" class="form-control">{{ $modul['k2'] == "" ? "" : $modul['k2'][5]['isi'] }}</textarea>
                 </div>
             </div>
         </div>
@@ -89,7 +92,7 @@
                 <div class="row g-2 align-items-center ms-5 mb-4">
                     <h5 class="form-label">Kegiatan 7 : Penyampaian Tujuan Pembelajaran</h5>
 
-                    <textarea name="p-7" class="form-control"></textarea>
+                    <textarea name="p-7" class="form-control">{{ $modul['k2'] == "" ? "" : $modul['k2'][6]['isi'] }}</textarea>
                 </div>
             </div>
         </div>
