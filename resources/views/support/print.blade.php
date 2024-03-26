@@ -2,11 +2,12 @@
 <html>
     <head>
         <style>
+
             #tbi, #tdi {
                 border: 1px solid black;
                 border-collapse: collapse;
             }
-            table, tr, td{
+            figure ,table, tr, td{
                 border: 2px solid black;
                 width: 90%;
                 border-collapse: collapse;
@@ -17,26 +18,26 @@
     <body>
 
         <p style="text-align: center;"><span style="font-size: 22pt;"><strong>MODUL AJAR</strong></span></p>
-        <p style="text-align: center;margin-top:15%;margin-bottom:15%"><img src="https://myfiles.space/user_files/196320_5f9b8dd96cdd3e75/196320_custom_files/img1707682668.png" style="width: 338px; height: 338px;" width="338" height="338"><br></p>
+        <p style="text-align: center;margin-top:15%;margin-bottom:15%"><img src="https://disdikbud.banyuasinkab.go.id/wp-content/uploads/sites/269/2022/11/Logo-Tut-Wuri-Handayani-PNG-Warna-1.png" style="width: 338px; height: 338px;" width="338" height="338"><br></p>
 
         <center>
-            <table style="width: 54%; text-align: center;font-size:18pt; margin-left:33%;margin-right:30%" >
+            <table style="width: 54%; text-align: center;font-size:18pt; margin-left:24%;margin-right:30%;border:none;" >
                 <tbody>
                     <tr>
-                        <td style="width: 15%;">
+                        <td style="width: 15%; border:0px">
                             <div style="text-align: left;">MATERI</div>
                         </td>
-                        <td style="width: 9.7669%;">:</td>
-                        <td style="width: 58.4871%;">
+                        <td style="width: 9.7669%; border:0px">:</td>
+                        <td style="width: 58.4871%; border:0px">
                             <div style="text-align: left;">{{ $res->judul }}</div>
                         </td>
                     </tr>
                     <tr>
-                        <td style="width: 15%;">
+                        <td style="width: 15%;border:0px">
                             <div style="text-align: left;">Nama</div>
                         </td>
-                        <td style="width: 9.7669%;">:</td>
-                        <td style="width: 58.4871%;">
+                        <td style="width: 9.7669%;border:0px">:</td>
+                        <td style="width: 58.4871%;border:0px">
                             <div style="text-align: left;">{{ $res->data_informasi->identitas->nama }}</div>
                         </td>
                     </tr>
