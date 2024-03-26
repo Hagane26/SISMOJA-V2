@@ -507,7 +507,7 @@ class modul_informasiUmum_ctrl extends Controller
 
         return view('modul.1edit_informasiUmum',['res'=>$data]);
     }
-
+ 
     public function target_edit_aksi(Request $req){
         $s = session()->get('modul');
         $mod = dataModul::where('id',$s['id'])->get()->first();

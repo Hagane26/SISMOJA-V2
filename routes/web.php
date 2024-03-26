@@ -110,6 +110,13 @@ Route::middleware('auth')->group(function(){
     Route::post('/modul/edit/komponeninti/pemantik',[modul_komponenInti_ctrl::class,'pemantik_edit']);
     Route::post('/modul/edit/komponeninti/pemantik-aksi',[modul_komponenInti_ctrl::class,'pemantik_edit_aksi']);
 
+    // lampiran
+    Route::post('/modul/edit/lampiran/lampiran2',[modul_lampiran_ctrl::class,'lampiran2_edit']);
+    Route::post('/modul/edit/lampiran/lampiran2-aksi',[modul_lampiran_ctrl::class,'lampiran2_edit_aksi']);
+
+    Route::post('/modul/edit/lampiran/lampiran3',[modul_lampiran_ctrl::class,'lampiran3_edit']);
+    Route::post('/modul/edit/lampiran/lampiran3-aksi',[modul_lampiran_ctrl::class,'lampiran3_edit_aksi']);
+
     route::get('/modul',[dashboard_ctrl::class,'daftar_modul']);
     route::post('/modul/lihat',[dashboard_ctrl::class,'lihat_modul'])->name('Mlihat');
     route::post('/modul/print',[dashboard_ctrl::class,'print_modul']);

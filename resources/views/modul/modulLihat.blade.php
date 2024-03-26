@@ -14,7 +14,7 @@
                 <!-- -->
                 <div class="card">
                     <div class="card-header fw-bold">
-                      A. IDENTITAS MODUL
+                        A. IDENTITAS MODUL
                     </div>
                     <div class="card-body">
 
@@ -77,6 +77,45 @@
                         </form>
                     </center>
 
+                </div>
+
+                <!-- -->
+                <div class="card mt-2">
+                    <div class="card-header fw-bold">
+                        Tujuan Pembelajaran
+                    </div>
+                    <div class="card-body">
+
+                        @if ($res->data_ppp == 'Data Belum Dibuat')
+                        <div class="mb-1 mx-lg-5">
+                            <label class="form-label fw-bold">{{ $res->data_ppp }}</label>
+                        </div>
+                        @else
+                            @foreach ($res->data_ppp as $dp)
+                                @if($dp->isi != "")
+                                    <div class="mb-4 mx-lg-5">
+                                        <label class="form-label fw-bold">{{ $dp->subjudul }}</label>
+                                        <div class="form-control">
+                                            @php
+                                                echo $dp->isi;
+                                            @endphp
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        @endif
+
+                    </div>
+
+                    <center>
+                        <form action="{{ config('app.url') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="mod_id" value="{{ $res['mod_id'] }}">
+                            <button type="submit" formaction="/modul/edit/informasiumum/ppp" class="form-control btn btn-success mb-3 bi-pencil" style="width: 50%">
+                                Tambah Tujuan Pembelajaran
+                            </button>
+                        </form>
+                    </center>
                 </div>
 
                 <!-- -->
@@ -534,6 +573,16 @@
                             echo $res['lampiran'][0]['glossarium'];
                         @endphp
                     </div>
+                    <!-- Belum -->
+                    <center>
+                        <form action="{{ config('app.url') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="mod_id" value="{{ $res['mod_id'] }}">
+                            <button type="submit" formaction="/modul/edit/lampiran/lampiran2" class="form-control btn btn-success mb-3 bi-pencil" style="width: 50%">
+                                Edit Glossarium
+                            </button>
+                        </form>
+                    </center>
                 </div>
 
                 <!-- -->
@@ -543,11 +592,24 @@
                     </div>
                     <div class="card-body">
                         @php
-                            echo $res['lampiran'][0]['dapus'];
+                            if($res['lampiran'][0]['dapus'] == ""){
+                                echo "<center>Dapus Masih Kosong</center>";
+                            }else{
+                                echo $res['lampiran'][0]['dapus'];
+                            }
                         @endphp
                     </div>
+                    <!-- Belum -->
+                    <center>
+                        <form action="{{ config('app.url') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="mod_id" value="{{ $res['mod_id'] }}">
+                            <button type="submit" formaction="/modul/edit/lampiran/lampiran3" class="form-control btn btn-success mb-3 bi-pencil" style="width: 50%">
+                                Edit Daftar Pustaka
+                            </button>
+                        </form>
+                    </center>
                 </div>
-
             </div>
         </div>
 

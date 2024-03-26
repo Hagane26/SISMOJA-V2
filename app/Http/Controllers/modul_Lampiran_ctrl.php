@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\lampiran;
+use App\Models\dataModul;
 
 class modul_Lampiran_ctrl extends Controller
 {
@@ -152,5 +153,95 @@ class modul_Lampiran_ctrl extends Controller
             array_push($arr,$definition->def_text);
         }
         return json_encode(array('result'=>$arr));
+    }
+
+    public function lampiran2_edit(Request $req){
+        $mod = dataModul::where('id',$req->mod_id)->get()->first();
+        $lam = lampiran::where('id',$mod->lampiran_id)->get()->first();
+
+        $su = "";
+
+        $data = [
+            'judul' => $mod->judul,
+            'aksi' => 'edit/lampiran/lampiran2-aksi',
+            'view' => 'modul.3lampiran2',
+            's_upload' => $su,
+        ];
+
+        $modul = ['id'=>$req->mod_id];
+        $modul['lampiran'] = $lam;
+
+        session(['modul'=> $modul]);
+
+        return view('modul.3edit_lampiran',['res'=>$data]);
+    }
+
+    public function lampiran2_edit_aksi(Request $req){
+        $s = session()->get('modul');
+        $mod = dataModul::where('id',$s['id'])->get()->first();
+
+        $req->validate([
+            'glossarium'=>'required',
+        ],[
+            //untuk custom pesan gagal nya
+            'glossarium.required' => "Dapus Masih Kosong.",
+        ]);
+
+        $data = [
+            'glossarium' => $req->glossarium
+        ];
+
+        $parcel = lampiran::where('id',$mod->lampiran_id)->update($data);
+
+        if($parcel){
+            return redirect('/modul');
+        }
+
+        session()->forget('modul');
+    }
+
+    public function lampiran3_edit(Request $req){
+        $mod = dataModul::where('id',$req->mod_id)->get()->first();
+        $lam = lampiran::where('id',$mod->lampiran_id)->get()->first();
+
+        $su = "";
+
+        $data = [
+            'judul' => $mod->judul,
+            'aksi' => 'edit/lampiran/lampiran3-aksi',
+            'view' => 'modul.3lampiran3',
+            's_upload' => $su,
+        ];
+
+        $modul = ['id'=>$req->mod_id];
+        $modul['lampiran'] = $lam;
+
+        session(['modul'=> $modul]);
+
+        return view('modul.3edit_lampiran',['res'=>$data]);
+    }
+
+    public function lampiran3_edit_aksi(Request $req){
+        $s = session()->get('modul');
+        $mod = dataModul::where('id',$s['id'])->get()->first();
+
+        $req->validate([
+            'dapus'=>'required',
+        ],[
+            //untuk custom pesan gagal nya
+            'dapus.required' => "Dapus Masih Kosong.",
+        ]);
+
+        $data = [
+            'dapus' => $req->dapus
+        ];
+
+        $parcel = lampiran::where('id',$mod->lampiran_id)->update($data);
+
+        if($parcel){
+            return redirect('/modul');
+        }
+
+        session()->forget('modul');
     }
 }

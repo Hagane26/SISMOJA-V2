@@ -2,7 +2,23 @@
     <div class="card-body">
         <h4 class="card-title">Glossarium</h4>
 
+        <div class="row g-2 align-items-center mb-2 ms-5 me-5">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">Masukkan Kata Dibawah Untuk Menemukan Artinya :</p>
+                    <input type="text" class="form-control" id="ck" onkeyup="cek(this)">
+
+                    <div class="card mt-2">
+                        <ul id="res" class="list-group list-group-flush mt-3" style="height: 150px;overflow-y: scroll;">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row g-2 align-items-center ms-5 mb-2">
+            <h4>Isi Glossarium</h4>
             <textarea name="glossarium" id="editor"></textarea>
         </div>
 
@@ -32,27 +48,16 @@
             var results = data.result;
             $.each(results, function(index,value) {
                 $("#res").append(
-                    "<li class='list-group-item'>" + value + "</li>"
+                    "<li class='list-group-item'>" +
+                        "<div class='card'>" +
+                            "<div class='card-body'>" +
+                                value +
+                            "</div>" +
+                        "</div>" +
+                    "</li>"
                 );
             });
         });
         }
     }
 </script>
-
-@section('sidemenu')
-    @include('users.stepbar')
-
-    <div class="card position-fixed" style="margin-top:16%;width:15%">
-        <div class="card-body">
-            <p class="card-text">Cari Kata:</p>
-            <input type="text" class="form-control" id="ck" onkeyup="cek(this)">
-
-            <ul id="res" class="list-group list-group-flush mt-3" style="height: 230px;overflow-y: scroll;">
-
-            </ul>
-
-        </div>
-    </div>
-
-@endsection

@@ -13,11 +13,11 @@
             <div class="card mb-2">
                 <div class="card-body">
                     <div class="row">
-                        <label class="col-5 form-label" id="boxwaktu">Total Waktu : {{ $modul['waktu'] }} Menit</label>
+                        <label class="col-5 form-label" id="boxwaktu">Total Waktu : {{ $modul['wpembuka'] == "" ? $modul['waktu'] : $modul['waktu'] - $modul['wpembuka'] }} Menit</label>
                         <div class="col">
                             <label for="basic-url" class="form-label">Waktu Untuk Pembukaan</label>
                             <div class="input-group mb-3">
-                                <input type="number" class="form-control" value="0" name="waktu" onkeydown="waktuubah(this)" onkeyup="waktuubah(this)">
+                                <input type="number" class="form-control" value="{{ $modul['wpembuka'] == "" ? "0" : $modul['wpembuka'] }}" name="waktu" onkeydown="waktuubah(this)" onkeyup="waktuubah(this)">
                                 <span class="input-group-text">Menit dari total waktu ({{ $modul['waktu'] }} menit).</span>
                             </div>
                         </div>

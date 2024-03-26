@@ -7,7 +7,8 @@
 @endsection
 
 @section('isi')
-    <div class="position-absolute top-0 start-50 translate-middle-x mt-3 ms-2">
+    <div class="position-absolute top-0 start-50 translate-middle-x mt-3">
+
         <div class="position-relative mt-4 mb-5">
             <div class="progress" style="height: 5px;">
                 <div class="progress-bar bg-success" role="progressbar" aria-label="Progress" style="width: {{ $res['progress'] }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -27,7 +28,7 @@
             </div>
         @endif
 
-        <div class="card border-primary" style="width:55rem">
+        <div class="card border-primary" style="width:50rem">
             <div class="card-body">
                 <h4 class="card-title" style="font-weight:bold">Judul Modul : {{ $res['judul'] }}</h4>
                 <h6 class="card-subtitle"> Lampiran </h6>

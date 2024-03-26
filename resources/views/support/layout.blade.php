@@ -24,6 +24,34 @@
 
     <script src="{{ asset('js/jquery-3-5-1.js') }}"></script>
 
+    <style>
+
+        input[type="checkbox"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: #fff;
+            margin: 0;
+            font: inherit;
+            color: currentColor;
+            width: 1.15em;
+            height: 1.15em;
+            border: 0.15em solid currentColor;
+            border-radius: 0.15em;
+            transform: translateY(-0.075em);
+            display: grid;
+            place-content: center;
+        }
+
+        .form-control + .form-control {
+            margin-top: 1em;
+        }
+
+        input[type="checkbox"]:checked::before {
+            transform: scale(1);
+        }
+
+    </style>
+
 </head>
 
 <body>

@@ -206,42 +206,36 @@ class modul_komponenInti_ctrl extends Controller
 
     public function kegiatanInti(Request $req){
         $modul = session()->get('modul');
-        $len = (count($req->all()) - 1)/3;
 
         $data = array();
 
-        for($i = 0; $i < $len - 1; $i++){
-            if($req['i_'.$i] == ""){
-                return back()->withErrors($req['metode_'.$i] . $i . " masih kosong, Silahkan Di isi terlebih dahulu!");
-            }
-            if($req['w_'.$i] == "" or $req['w_'.$i] == 0){
-                return back()->withErrors("Waktu " . $req['metode_'.$i] . " masih kosong atau nol, Silahkan Di isi terlebih dahulu!");
-            }
+        $req->validate([
+            'kegiataninti' => 'required',
+        ]);
+
+        if($req['waktu'] <= 0 || $req['waktu'] == ""){
+            return back()->withErrors("Waktu Tidak Valid");
         }
 
         if($modul['k3'] == ""){
-            for($i = 0; $i < $len; $i++){
-                $parcel = ki_kegiatan::create([
-                    'metode' => $req['metode_'.$i],
-                    'isi' => $req['i_'.$i],
-                    'waktu' => $req['w_'.$i],
-                    'ki_id' => $modul['k1']['id']
-                ]);
-            }
+            $parcel = ki_kegiatan::create([
+                'metode' => "",
+                'isi' => $req['kegiataninti'],
+                'waktu' => $req['waktu'],
+                'ki_id' => $modul['k1']['id']
+            ]);
         }else{
-            for($i = 0; $i < $len; $i++){
-                $parcel = ki_kegiatan::where('id',$modul['k3'][$i]['id'])->update([
-                    'metode' => $req['metode_'.$i],
-                    'isi' => $req['i_'.$i],
-                    'waktu' => $req['w_'.$i],
-                ]);
-            }
+            $parcel = ki_kegiatan::where('id',$modul['k3']['id'])->update([
+                'metode' => "",
+                'isi' => $req['kegiataninti'],
+                'waktu' => $req['waktu'],
+            ]);
         }
 
         if($parcel){
-            $data = ki_kegiatan::where('ki_id',$modul['k1']['id'])->get()->all();
+            $data = ki_kegiatan::where('ki_id',$modul['k1']['id'])->get()->first();
             $modul['k3'] = $data;
-            $modul['winti'] = $req->total_waktu;
+            $modul['winti'] = $req->waktu;
             session(['modul'=>$modul]);
             return redirect('/modul/buat/komponenInti/7');
         }else{

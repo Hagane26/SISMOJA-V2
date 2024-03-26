@@ -25,13 +25,13 @@
             <div class="input-group">
                 <select class="form-select" id="fase" name="fase">
                     <option value = 0 selected>------ Pilih Fase ------</option>
-                    <option value="1">Fase 0 : Kelas TK</option>
-                    <option value="A">Fase A : Kelas 1 dan 2 (SD)</option>
-                    <option value="B">Fase B : Kelas 3 dan 4 (SD)</option>
-                    <option value="C">Fase C : Kelas 5 dan 6 (SD)</option>
-                    <option value="D">Fase D : Kelas 7, 8, 9 (SMP)</option>
-                    <option value="E">Fase E : Kelas 10 (SMA)</option>
-                    <option value="F">Fase F : Kelas 11 dan 12 (SMA)</option>
+                    <option value="1" {{ $modul['i2'] != "" ? ($modul['i2']['fase'] == "1" ? "selected" : "") : "" }}>Fase 0 : Kelas TK</option>
+                    <option value="A" {{ $modul['i2'] != "" ? ($modul['i2']['fase'] == "A" ? "selected" : "") : "" }}>Fase A : Kelas 1 dan 2 (SD)</option>
+                    <option value="B" {{ $modul['i2'] != "" ? ($modul['i2']['fase'] == "B" ? "selected" : "") : "" }}>Fase B : Kelas 3 dan 4 (SD)</option>
+                    <option value="C" {{ $modul['i2'] != "" ? ($modul['i2']['fase'] == "C" ? "selected" : "") : "" }}>Fase C : Kelas 5 dan 6 (SD)</option>
+                    <option value="D" {{ $modul['i2'] != "" ? ($modul['i2']['fase'] == "D" ? "selected" : "") : "" }}>Fase D : Kelas 7, 8, 9 (SMP)</option>
+                    <option value="E" {{ $modul['i2'] != "" ? ($modul['i2']['fase'] == "E" ? "selected" : "") : "" }}>Fase E : Kelas 10 (SMA)</option>
+                    <option value="F" {{ $modul['i2'] != "" ? ($modul['i2']['fase'] == "F" ? "selected" : "") : "" }}>Fase F : Kelas 11 dan 12 (SMA)</option>
                 </select>
 
                 <input type="text" placeholder="Nama Kelas, Contoh : 1A" class="form-control" id="kelas" name="kelas" value="{{ $modul['i2'] != "" ? $modul['i2']['kelas'] : "" }}">

@@ -58,18 +58,20 @@ class dashboard_ctrl extends Controller
         // komponen inti
         if($mod->komponen_id != ''){
             $ki = komponen_inti::where('id',$mod->komponen_id)->get()->first();
+
+
+            // pembukaan
+            ki_pembuka::where('ki_id',$ki->id)->delete();
+
+
+            // kegiatan
+            ki_kegiatan::where('ki_id',$ki->id)->delete();
+
+
+            // penutup
+            ki_penutup::where('ki_id',$ki->id)->delete();
+
         }
-
-        // pembukaan
-        ki_pembuka::where('ki_id',$ki->id)->delete();
-
-
-        // kegiatan
-        ki_kegiatan::where('ki_id',$ki->id)->delete();
-
-
-        // penutup
-        ki_penutup::where('ki_id',$ki->id)->delete();
 
         $sf = 'lampiran/'.$mod['users_id'].'/'.$mod['mod_id'] . '/';
         $bn = $mod['mod_id']. '-'. $mod['users_id']. '.pdf';
@@ -92,8 +94,10 @@ class dashboard_ctrl extends Controller
         $info = infoUmum::where('id',$mod->informasi_id)->delete();
 
         // Lampiran
-        $lam = lampiran::where('id',$mod->lampiran_id)->delete();
+        lampiran::where('id',$mod->lampiran_id)->delete();
         $mod = dataModul::where('id',$req->mod_id)->delete();
+
+        return redirect()->back();
     }
 
     public function modul_buat_aksi(Request $req){

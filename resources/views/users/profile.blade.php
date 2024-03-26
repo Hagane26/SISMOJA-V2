@@ -107,7 +107,7 @@
 
                         <center>
                             <input type="submit" class="btn btn-success ms-0" style="width: 15rem"
-                                    value="Simpan Data Profile">
+                                    value="Simpan Data Profil">
                             <a href="/profil/ubahPassword" class="btn btn-primary text-white">Ubah Password</a>
                             @if ($errors->any())
                             <div class="alert alert-danger text-center mt-2" role="alert">

@@ -1,0 +1,45 @@
+public function kegiatanInti(Request $req){
+    $modul = session()->get('modul');
+    $len = (count($req->all()) - 1)/3;
+
+    $data = array();
+
+    for($i = 0; $i < $len - 1; $i++){
+        if($req['i_'.$i] == ""){
+            return back()->withErrors($req['metode_'.$i] . $i . " masih kosong, Silahkan Di isi terlebih dahulu!");
+        }
+        if($req['w_'.$i] == "" or $req['w_'.$i] == 0){
+            return back()->withErrors("Waktu " . $req['metode_'.$i] . " masih kosong atau nol, Silahkan Di isi terlebih dahulu!");
+        }
+    }
+
+    if($modul['k3'] == ""){
+        for($i = 0; $i < $len; $i++){
+            $parcel = ki_kegiatan::create([
+                'metode' => $req['metode_'.$i],
+                'isi' => $req['i_'.$i],
+                'waktu' => $req['w_'.$i],
+                'ki_id' => $modul['k1']['id']
+            ]);
+        }
+    }else{
+        for($i = 0; $i < $len; $i++){
+            $parcel = ki_kegiatan::where('id',$modul['k3'][$i]['id'])->update([
+                'metode' => $req['metode_'.$i],
+                'isi' => $req['i_'.$i],
+                'waktu' => $req['w_'.$i],
+            ]);
+        }
+    }
+
+    if($parcel){
+        $data = ki_kegiatan::where('ki_id',$modul['k1']['id'])->get()->all();
+        $modul['k3'] = $data;
+        $modul['winti'] = $req->total_waktu;
+        session(['modul'=>$modul]);
+        return redirect('/modul/buat/komponenInti/7');
+    }else{
+        return back()->withErrors('Terjadi Kesalahan Input!');
+    }
+
+}
