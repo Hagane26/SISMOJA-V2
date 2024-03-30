@@ -27,7 +27,7 @@
                         @endphp
                         @foreach ($modul as $m)
                         <tr>
-                            <th scope="row">{{ $i++ }}</th>
+                            <th scope="row">{{ $i }}</th>
                             <td>{{ $m->judul }}</td>
                             <td>{{ $m->identitas != "" ? $m->identitas->nama : "" }}</td>
                             <td>{{ $m->updated_at->format('d F Y') }}</td>
@@ -43,7 +43,12 @@
                                         Print
                                     </button>
 
+                                    <!--
                                     <button type="submit" formaction="/modul/hapus" class="btn btn-danger bi-trash3">
+                                    </button>
+                                    -->
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#msg{{ $i++ }}"
+                                    class="btn btn-danger bi-trash3">
                                     </button>
                                 </form>
                             </td>
@@ -55,22 +60,30 @@
             </div>
         </div>
         @php
-            $i = 0;
+            $i = 1;
         @endphp
         @foreach ($modul as $m)
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!-- Modal -->
+            <div class="modal fade" id="msg{{ $i++ }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Hapus Modul</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    ...
+                    Apakah Anda Yakin Ingin Menghapus Modul Ajar {{ $m->judul }}, yang disusun oleh {{ $m->identitas != "" ? $m->identitas->nama : "" }}?
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                        <button button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak Jadi</button>
+                        <form action="{{ config('app.url') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="mod_id" value="{{ $m->id }}">
+                            <button type="submit" formaction="/modul/hapus"
+                            class="btn btn-danger">
+                                Tetap Hapus
+                            </button>
+                        </form>
                     </div>
                 </div>
                 </div>
