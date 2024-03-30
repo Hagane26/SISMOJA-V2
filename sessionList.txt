@@ -12,3 +12,4 @@ ki
 
 lampiran
 
+col-sm-4 col-form-label

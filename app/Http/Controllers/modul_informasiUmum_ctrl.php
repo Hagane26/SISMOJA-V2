@@ -430,9 +430,9 @@ class modul_informasiUmum_ctrl extends Controller
         ];
 
         for($i = 0;$i < count($subjudul);$i++){
-            $s = "in_" . ($i);
+            $st = "in_" . $i;
             $parcel = i_ppp::where('id',$s['i3'][$i]['id'])->update([
-                'isi' => $req[$s],
+                'isi' => $req[$st],
             ]);
         }
 
@@ -507,7 +507,7 @@ class modul_informasiUmum_ctrl extends Controller
 
         return view('modul.1edit_informasiUmum',['res'=>$data]);
     }
- 
+
     public function target_edit_aksi(Request $req){
         $s = session()->get('modul');
         $mod = dataModul::where('id',$s['id'])->get()->first();

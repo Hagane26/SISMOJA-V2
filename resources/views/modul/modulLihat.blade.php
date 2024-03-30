@@ -82,46 +82,7 @@
                 <!-- -->
                 <div class="card mt-2">
                     <div class="card-header fw-bold">
-                        Tujuan Pembelajaran
-                    </div>
-                    <div class="card-body">
-
-                        @if ($res->data_ppp == 'Data Belum Dibuat')
-                        <div class="mb-1 mx-lg-5">
-                            <label class="form-label fw-bold">{{ $res->data_ppp }}</label>
-                        </div>
-                        @else
-                            @foreach ($res->data_ppp as $dp)
-                                @if($dp->isi != "")
-                                    <div class="mb-4 mx-lg-5">
-                                        <label class="form-label fw-bold">{{ $dp->subjudul }}</label>
-                                        <div class="form-control">
-                                            @php
-                                                echo $dp->isi;
-                                            @endphp
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
-                        @endif
-
-                    </div>
-
-                    <center>
-                        <form action="{{ config('app.url') }}" method="post">
-                            @csrf
-                            <input type="hidden" name="mod_id" value="{{ $res['mod_id'] }}">
-                            <button type="submit" formaction="/modul/edit/informasiumum/ppp" class="form-control btn btn-success mb-3 bi-pencil" style="width: 50%">
-                                Tambah Tujuan Pembelajaran
-                            </button>
-                        </form>
-                    </center>
-                </div>
-
-                <!-- -->
-                <div class="card mt-2">
-                    <div class="card-header fw-bold">
-                      B. PROFIL PELAJAR PANCASILA
+                    B. PROFIL PELAJAR PANCASILA
                     </div>
                     <div class="card-body">
 
@@ -430,66 +391,88 @@
                     </div>
                     <div class="card-body">
 
-                        <div class="card mb-2 border-2 border-primary">
-                            <div class="card-body">
-                                <center>
-                                    <h5 class="card-title">Pembukaan</h5>
-                                    <p class="card-subtitle">Dilaksanakan Selama : {{ $res->ki_pembukaan[0]->waktu }} Menit</p>
-                                </center>
-                                @foreach ($res->ki_pembukaan as $buka)
-                                <label class="form-label fw-bold">{{ $buka->langkah }}</label>
-                                <div class="mb-3 row mx-lg-5">
-                                    <div class="form-control">
-                                        {{ $buka->isi }}
+                        <div class="card">
+                            <h3 class="text-center"> Pertemuan 1</h3>
+                            <div class="card mb-2 border-2 border-primary">
+                                <div class="card-body">
+                                    <center>
+                                        <h5 class="card-title">Pembukaan</h5>
+                                        <p class="card-subtitle">Dilaksanakan Selama : {{ $res->ki_pembukaan[0]->waktu }} Menit</p>
+                                    </center>
+                                    @foreach ($res->ki_pembukaan as $buka)
+                                    <label class="form-label fw-bold">{{ $buka->langkah }}</label>
+                                    <div class="mb-3 row mx-lg-5">
+                                        <div class="form-control">
+                                            {{ $buka->isi }}
+                                        </div>
                                     </div>
+                                    @endforeach
+
                                 </div>
-                                @endforeach
-
                             </div>
-                        </div>
 
-                        <div class="card mb-2 border-2 border-primary">
-                            <div class="card-body">
-                                <center><h5 class="card-title">Kegiatan Inti</h5></center>
-                                @foreach ($res->ki_kegiatan as $k)
-                                <label class="form-label fw-bold">{{ $k->metode }}</label>
-                                <div class="mb-3 row mx-lg-5">
-                                    <div class="form-control col-4">
-                                        @php
-                                            echo $k->isi
-                                        @endphp
-                                    </div>
+                            <div class="card mb-2 border-2 border-primary">
+                                <div class="card-body">
+                                    <center><h5 class="card-title">Kegiatan Inti</h5></center>
+                                    @foreach ($res->ki_kegiatan as $k)
+                                    <label class="form-label fw-bold">{{ $k->metode }}</label>
+                                    <div class="mb-3 row mx-lg-5">
+                                        <div class="form-control col-4">
+                                            @php
+                                                echo $k->isi
+                                            @endphp
+                                        </div>
 
-                                    <div class="form-control col-1 mt-2 ms-5">
-                                        Waktu : {{ $k->waktu }} Menit
+                                        <div class="form-control col-1 mt-2 ms-5">
+                                            Waktu : {{ $k->waktu }} Menit
+                                        </div>
                                     </div>
+                                    @endforeach
+
                                 </div>
-                                @endforeach
-
                             </div>
-                        </div>
 
-                        <div class="card mb-2 border-2 border-primary">
-                            <div class="card-body">
-                                <center><h5 class="card-title">Penutup</h5></center>
-                                @foreach ($res->ki_penutup as $pp)
-                                <label class="form-label fw-bold">{{ $pp->langkah }}</label>
-                                <div class="mb-3 row mx-lg-5">
-                                    <div class="form-control">
-                                        @php
-                                            echo $pp->isi
-                                        @endphp
-                                    </div>
+                            <div class="card mb-2 border-2 border-primary">
+                                <div class="card-body">
+                                    <center><h5 class="card-title">Penutup</h5></center>
+                                    @foreach ($res->ki_penutup as $pp)
+                                    <label class="form-label fw-bold">{{ $pp->langkah }}</label>
+                                    <div class="mb-3 row mx-lg-5">
 
-                                    <div class="form-control col-1 mt-2 ms-5">
-                                        Waktu : {{ $pp->waktu }} Menit
+                                            <div class="col-10 col-form-label card">
+                                                @php
+                                                    echo $pp->isi
+                                                @endphp
+                                            </div>
+
+                                            <div class="col-sm-2 col-form-label card">
+                                                {{ $pp->waktu }} Menit
+                                            </div>
+
                                     </div>
+                                    @endforeach
+
                                 </div>
-                                @endforeach
-
                             </div>
+                            <center>
+                                <form action="{{ config('app.url') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="mod_id" value="{{ $res['mod_id'] }}">
+                                    <button type="submit" formaction="/modul/edit/lampiran/lampiran2" class="form-control btn btn-success mb-3 bi-pencil" style="width: 50%">
+                                        Edit Pertemuan 1
+                                    </button>
+                                </form>
+                            </center>
                         </div>
-
+                        <center>
+                            <form action="{{ config('app.url') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="mod_id" value="{{ $res['mod_id'] }}">
+                                <button type="submit" formaction="/modul/edit/lampiran/lampiran2" class="form-control btn btn-success mb-3 mt-3 bi-pencil" style="width: 50%">
+                                    Tambah Pertemuan
+                                </button>
+                            </form>
+                        </center>
                     </div>
                 </div>
 
