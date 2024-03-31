@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('kategori')->nullable();
             $table->string('btn')->nullable();
             $table->unsignedBigInteger('informasi_id')->nullable();
+            $table->integer('pertemuan')->nullable();
             $table->timestamps();
         });
     }

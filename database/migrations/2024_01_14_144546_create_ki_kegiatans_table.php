@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('ki_kegiatans', function (Blueprint $table) {
             $table->id();
-
-            $table->string('metode')->nullable();
             $table->text('isi')->nullable();
-            $table->string('waktu')->nullable();
+            $table->integer('waktu')->nullable();
+            $table->integer('pertemuan')->nullable();
             $table->unsignedBigInteger('ki_id')->nullable();
             $table->timestamps();
 

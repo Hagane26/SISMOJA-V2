@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('asasmen_formatif')->nullable();
             $table->text('asasmen_sumatif')->nullable();
             $table->text('pemahaman_bermakna')->nullable();
+            $table->integer('pertemuan_total')->nullable();
             $table->text('pemantik')->nullable();
             $table->text('refleksi')->nullable();
             $table->timestamps();

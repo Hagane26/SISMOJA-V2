@@ -291,6 +291,7 @@ class modul_informasiUmum_ctrl extends Controller
                     'metode' => $data[$i],
                     'kategori' => $kat[$i],
                     'btn' => $btn[$i],
+                    'pertemuan' => 1,
                     'informasi_id' => $modul['i1']['id'],
                 ]);
                 if($data[$i] != ""){

@@ -42,8 +42,7 @@ class profil_ctrl extends Controller
             ]);
             $new = User::where('id',$request->id)->update($parcel[0]);
             if($new){
-                Auth::logout();
-                return Redirect::to('masuk');
+                return Redirect::back();
             }
         }
     }
