@@ -3,7 +3,7 @@
 @endphp
 <div class="card mt-3">
     <div class="card-body">
-        <h4 class="card-title">Pembuka Kegiatan</h4>
+        <h4 class="card-title">Pertemuan 1 : Kegiatan Pembuka</h4>
         <h6 class="card-subtitle bi-exclamation-triangle-fill m-3" style="color: red"> Harus di Isi 7 Kegiatan Tersebut</h6>
 
         @if (session()->has('modul'))
@@ -13,7 +13,7 @@
             <div class="card mb-2">
                 <div class="card-body">
                     <div class="row">
-                        <label class="col-5 form-label" id="boxwaktu">Total Waktu : {{ $modul['wpembuka'] == "" ? $modul['waktu'] : $modul['waktu'] - $modul['wpembuka'] }} Menit</label>
+                        <label class="col-5 form-label" id="boxwaktu">Sisa Waktu : {{ $modul['wpembuka'] == "" ? $modul['waktu'] : $modul['waktu'] - $modul['wpembuka'] }} Menit</label>
                         <div class="col">
                             <label for="basic-url" class="form-label">Waktu Untuk Pembukaan</label>
                             <div class="input-group mb-3">
@@ -109,7 +109,7 @@
 
 <script>
     function waktuubah(e){
-        var boxwaktu = document.getElementById('boxwaktu').innerHTML = "Total Waktu : " + ({{ $modul['waktu'] }} - e.value) + " Menit";
+        var boxwaktu = document.getElementById('boxwaktu').innerHTML = "Sisa Waktu : " + ({{ $modul['waktu'] }} - e.value) + " Menit";
     }
 </script>
 

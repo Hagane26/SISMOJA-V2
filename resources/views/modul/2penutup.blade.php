@@ -141,7 +141,7 @@
             pb5 = 0;
         }
         val = parseInt(pb1) + parseInt(pb2) + parseInt(pb3) + parseInt(pb4) + parseInt(pb5);
-        document.getElementById('nwaktu').innerHTML = "Total Waktu Saat Ini : " + ({{ $def }} - val) + " Menit";
+        document.getElementById('nwaktu').innerHTML = "Sisa Waktu Saat Ini : " + ({{ $def }} - val) + " Menit";
         document.getElementById('inwaktu').value = val;
     }
 </script>
@@ -150,7 +150,7 @@
     @include('users.stepbar')
     <div class="card position-fixed" style="margin-top:16%;width:15%">
         <div class="card-body">
-            <h5 class="card-text" id="nwaktu">Total Waktu Saat Ini : {{ $def }} Menit</h5>
+            <h5 class="card-text" id="nwaktu">Sisa Waktu Saat Ini : {{ $def }} Menit</h5>
         </div>
     </div>
 @endsection

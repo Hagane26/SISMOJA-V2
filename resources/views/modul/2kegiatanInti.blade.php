@@ -6,7 +6,7 @@
 
 <div class="card mt-3">
     <div class="card-body">
-        <h4 class="card-title text-center">Kegiatan Inti</h4>
+        <h4 class="card-title text-center">Pertemuan 1 : Kegiatan Inti</h4>
 
         @if (session()->has('modul'))
             @php
@@ -15,7 +15,7 @@
             <div class="card mb-2">
                 <div class="card-body">
                     <div class="row">
-                        <label class="col-5 form-label" id="boxwaktu">Total Waktu : {{ $modul['winti'] == "" ? $def : $def - $modul['winti'] }} Menit</label>
+                        <label class="col-5 form-label" id="boxwaktu">Sisa Waktu : {{ $modul['winti'] == "" ? $def : $def - $modul['winti'] }} Menit</label>
                         <div class="col">
                             <label for="basic-url" class="form-label">Waktu Untuk Kegiatan Inti</label>
                             <div class="input-group mb-3">
@@ -49,7 +49,14 @@
 <script>
 
     function waktuubah(e){
-        var boxwaktu = document.getElementById('boxwaktu').innerHTML = "Total Waktu : " + ({{ $def }} - e.value) + " Menit";
+        var tm = ({{ $def }} - e.value);
+        var warning = "";
+        if (tm < 0){
+            warning = "(Tidak Valid)";
+        }else{
+            warning = "";
+        }
+        var boxwaktu = document.getElementById('boxwaktu').innerHTML = "Sisa Waktu : " + ({{ $def }} - e.value) + " Menit " + warning;
     }
 
     ClassicEditor
