@@ -1,6 +1,6 @@
 <div class="card mt-3">
     <div class="card-body">
-        <h4 class="card-title">Refleksi</h4>
+        <h4 class="card-title">Refleksi Peserta Didik dan Pendidik</h4>
 
         <textarea name="refleksi" id="editor"></textarea>
 
