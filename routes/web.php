@@ -110,6 +110,16 @@ Route::middleware('auth')->group(function(){
     Route::post('/modul/edit/komponeninti/pemantik',[modul_komponenInti_ctrl::class,'pemantik_edit']);
     Route::post('/modul/edit/komponeninti/pemantik-aksi',[modul_komponenInti_ctrl::class,'pemantik_edit_aksi']);
 
+    // pertemuan
+    Route::get('/modul/tambah/pertemuan/{step}',[modul_komponenInti_ctrl::class,'PertemuanIndex']);
+    Route::post('/modul/tambah/pertemuan/p1',[modul_komponenInti_ctrl::class,'pertemuan1_aksi']);
+    Route::post('/modul/tambah/pertemuan/p2',[modul_komponenInti_ctrl::class,'pertemuan2_aksi']);
+    Route::post('/modul/tambah/pertemuan/p3',[modul_komponenInti_ctrl::class,'pertemuan3_aksi']);
+    Route::post('/modul/tambah/pertemuan/p4',[modul_komponenInti_ctrl::class,'pertemuan4_aksi']);
+    Route::get('/modul/pertemuan/ditambahkan',[modul_komponenInti_ctrl::class,'pertemuanditambahkan_aksi']);
+
+    Route::get('/modul/tambah/pertemuanck',[modul_komponenInti_ctrl::class,'pertemuanck']);
+
     // lampiran
     Route::post('/modul/edit/lampiran/lampiran2',[modul_lampiran_ctrl::class,'lampiran2_edit']);
     Route::post('/modul/edit/lampiran/lampiran2-aksi',[modul_lampiran_ctrl::class,'lampiran2_edit_aksi']);

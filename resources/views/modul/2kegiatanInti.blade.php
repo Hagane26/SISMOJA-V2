@@ -67,7 +67,4 @@
 
 </script>
 
-@section('sidemenu')
-    @include('users.stepbar')
-@endsection
 

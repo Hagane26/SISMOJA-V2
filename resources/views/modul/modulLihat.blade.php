@@ -465,13 +465,11 @@
                             </center>
                         </div>
                         <center>
-                            <form action="{{ config('app.url') }}" method="post">
-                                @csrf
-                                <input type="hidden" name="mod_id" value="{{ $res['mod_id'] }}">
-                                <button type="submit" formaction="/modul/edit/lampiran/lampiran2" class="form-control btn btn-success mb-3 mt-3 bi-pencil" style="width: 50%">
+                            <a href="/modul/tambah/pertemuan/1">
+                                <button class="form-control btn btn-success mb-1 mt-2 bi-plus" style="width: 50%">
                                     Tambah Pertemuan
                                 </button>
-                            </form>
+                            </a>
                         </center>
                     </div>
                 </div>

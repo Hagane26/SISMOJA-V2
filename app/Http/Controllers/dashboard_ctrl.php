@@ -239,7 +239,7 @@ class dashboard_ctrl extends Controller
         $sf = 'lampiran/'.$mod['users_id'].'/'.$mod['mod_id'] . '/';
         $bn = $mod['mod_id']. '-'. $mod['users_id']. '.pdf';
         $fname = $sf.'L1-'. $bn;
-
+        session(['modul'=>$mod]);
         return view('modul.modulLihat',['res'=>$mod]);
     }
 

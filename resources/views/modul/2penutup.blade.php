@@ -147,7 +147,7 @@
 </script>
 
 @section('sidemenu')
-    @include('users.stepbar')
+
     <div class="card position-fixed" style="margin-top:16%;width:15%">
         <div class="card-body">
             <h5 class="card-text" id="nwaktu">Sisa Waktu Saat Ini : {{ $def }} Menit</h5>
