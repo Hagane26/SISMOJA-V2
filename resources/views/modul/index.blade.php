@@ -1,6 +1,6 @@
 @extends('support.layout')
 
-@section('judul','Informasi Umum')
+@section('judul','Modul Saya')
 
 @section('nav')
     @include('users.navbarUser')
