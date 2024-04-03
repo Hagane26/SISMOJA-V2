@@ -53,6 +53,8 @@ class modul_Lampiran_ctrl extends Controller
             'step1' => 'bg-success text-white',
             'step2' => 'bg-success text-white',
             'step3' => $s_a,
+
+            'batal' => '/modul'
         ];
 
         return view('modul.3lampiran',['res'=>$data,$modul]);

@@ -8,7 +8,7 @@
     <div class="card-body">
         <h4 class="card-title">Penutup</h4>
         <h6 class="card-subtitle bi-exclamation-triangle-fill m-3" style="color: red"> Harus di Isi 5 Kegiatan Tersebut</h6>
-
+        <h5 class="card-text" id="nwaktu">Sisa Waktu Saat Ini : {{ $def }} Menit</h5>
 
         <div class="card mb-2">
             <div class="card-body">
@@ -110,7 +110,7 @@
         <div class="position-relative bottom-0 start-50 translate-middle-x mt-3" style="width:50%">
             <div class="row">
                 <button type="submit" class="btn btn-success col me-3 bi-check-square"> Simpan </button>
-                <a href="" class="btn btn-danger col bi-x-square"> Batalkan </a>
+                <a href="{{ $res['batal'] }}" class="btn btn-danger col bi-x-square"> Batalkan </a>
             </div>
         </div>
 
@@ -140,17 +140,16 @@
         if(pb5 == ""){
             pb5 = 0;
         }
+
         val = parseInt(pb1) + parseInt(pb2) + parseInt(pb3) + parseInt(pb4) + parseInt(pb5);
-        document.getElementById('nwaktu').innerHTML = "Sisa Waktu Saat Ini : " + ({{ $def }} - val) + " Menit";
+        var tm = ({{ $def }} - val);
+        if (tm < 0){
+            warning = "(Tidak Valid)";
+        }else{
+            warning = "";
+        }
+        document.getElementById('nwaktu').innerHTML = "Sisa Waktu Saat Ini : " + ({{ $def }} - val) + " Menit " + warning;
         document.getElementById('inwaktu').value = val;
     }
 </script>
 
-@section('sidemenu')
-
-    <div class="card position-fixed" style="margin-top:16%;width:15%">
-        <div class="card-body">
-            <h5 class="card-text" id="nwaktu">Sisa Waktu Saat Ini : {{ $def }} Menit</h5>
-        </div>
-    </div>
-@endsection

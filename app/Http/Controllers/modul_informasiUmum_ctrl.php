@@ -66,6 +66,8 @@ class modul_informasiUmum_ctrl extends Controller
             'step1' => "$s_a",
             'step2' => '',
             'step3' => '',
+
+            'batal' => '/modul'
         ];
 
         return view('modul.1informasiUmum',['res'=>$data,$modul]);

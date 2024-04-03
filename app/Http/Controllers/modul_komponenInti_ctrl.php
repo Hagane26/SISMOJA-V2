@@ -75,6 +75,7 @@ class modul_komponenInti_ctrl extends Controller
             'step1' => 'bg-success text-white',
             'step2' => $s_a,
             'step3' => '',
+            'batal' => '/modul'
         ];
 
         return view('modul.2komponenInti',['res'=>$data,$modul]);
@@ -310,7 +311,7 @@ class modul_komponenInti_ctrl extends Controller
 
         $parcel = komponen_inti::where('id',$modul['k1']['id'])->update([
             'refleksi' => $req->refleksi,
-            'total_pertemuan' => 1,
+            'pertemuan_total' => 1,
         ]);
 
         if($parcel){
@@ -527,6 +528,7 @@ class modul_komponenInti_ctrl extends Controller
                 'pos' => $step - 1,
                 'progress' => ($step-1) * (99 / 3),
                 'view' => $go,
+                'batal' => '/modul'
             ];
             $identitas = $modul['data_informasi']['identitas'];
             $modul['waktu'] = $identitas->waktu * $identitas->kali;
