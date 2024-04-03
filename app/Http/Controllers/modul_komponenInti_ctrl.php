@@ -75,7 +75,9 @@ class modul_komponenInti_ctrl extends Controller
             'step1' => 'bg-success text-white',
             'step2' => $s_a,
             'step3' => '',
-            'batal' => '/modul'
+
+            'batal' => '/modul',
+            'pertemuan' => 1
         ];
 
         return view('modul.2komponenInti',['res'=>$data,$modul]);

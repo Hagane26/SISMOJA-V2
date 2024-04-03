@@ -6,7 +6,7 @@
 
 <div class="card mt-3">
     <div class="card-body">
-        <h4 class="card-title">Penutup</h4>
+        <h4 class="card-title">Pertemuan {{ $res['pertemuan'] }} : Penutup</h4>
         <h6 class="card-subtitle bi-exclamation-triangle-fill m-3" style="color: red"> Harus di Isi 5 Kegiatan Tersebut</h6>
         <h5 class="card-text" id="nwaktu">Sisa Waktu Saat Ini : {{ $def }} Menit</h5>
 

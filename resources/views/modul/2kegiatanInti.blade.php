@@ -6,7 +6,7 @@
 
 <div class="card mt-3">
     <div class="card-body">
-        <h4 class="card-title text-center">Pertemuan 1 : Kegiatan Inti</h4>
+        <h4 class="card-title text-center">Pertemuan {{ $res['pertemuan'] }} : Kegiatan Inti</h4>
 
         @if (session()->has('modul'))
             @php

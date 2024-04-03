@@ -391,79 +391,87 @@
                     </div>
                     <div class="card-body">
 
-                        <div class="card">
-                            <h3 class="text-center"> Pertemuan 1</h3>
-                            <div class="card mb-2 border-2 border-primary">
-                                <div class="card-body">
-                                    <center>
-                                        <h5 class="card-title">Pembukaan</h5>
-                                        <p class="card-subtitle">Dilaksanakan Selama : {{ $res->ki_pembukaan[0]->waktu }} Menit</p>
-                                    </center>
-                                    @foreach ($res->ki_pembukaan as $buka)
-                                    <label class="form-label fw-bold">{{ $buka->langkah }}</label>
-                                    <div class="mb-3 row mx-lg-5">
-                                        <div class="form-control">
-                                            {{ $buka->isi }}
-                                        </div>
-                                    </div>
-                                    @endforeach
-
-                                </div>
-                            </div>
-
-                            <div class="card mb-2 border-2 border-primary">
-                                <div class="card-body">
-                                    <center><h5 class="card-title">Kegiatan Inti</h5></center>
-                                    @foreach ($res->ki_kegiatan as $k)
-                                    <label class="form-label fw-bold">{{ $k->metode }}</label>
-                                    <div class="mb-3 row mx-lg-5">
-                                        <div class="form-control col-4">
-                                            @php
-                                                echo $k->isi
-                                            @endphp
-                                        </div>
-
-                                        <div class="form-control col-1 mt-2 ms-5">
-                                            Waktu : {{ $k->waktu }} Menit
-                                        </div>
-                                    </div>
-                                    @endforeach
-
-                                </div>
-                            </div>
-
-                            <div class="card mb-2 border-2 border-primary">
-                                <div class="card-body">
-                                    <center><h5 class="card-title">Penutup</h5></center>
-                                    @foreach ($res->ki_penutup as $pp)
-                                    <label class="form-label fw-bold">{{ $pp->langkah }}</label>
-                                    <div class="mb-3 row mx-lg-5">
-
-                                            <div class="col-10 col-form-label card">
-                                                @php
-                                                    echo $pp->isi
-                                                @endphp
-                                            </div>
-
-                                            <div class="col-sm-2 col-form-label card">
-                                                {{ $pp->waktu }} Menit
-                                            </div>
+                        @for ($i = 1; $i <= $res->data_komponen_inti->pertemuan_total;$i++)
+                            <div class="card mb-3">
+                                <h3 class="text-center"> Pertemuan {{ $i }}</h3>
+                                <div class="card mb-2 border-2 border-primary">
+                                    <div class="card-body">
+                                        <center>
+                                            <h5 class="card-title">Pembukaan</h5>
+                                            <p class="card-subtitle">Dilaksanakan Selama : {{ $res->ki_pembukaan[0]->waktu }} Menit</p>
+                                        </center>
+                                        @foreach ($res->ki_pembukaan as $buka)
+                                            @if($buka->pertemuan == $i)
+                                                <label class="form-label fw-bold">{{ $buka->langkah }}</label>
+                                                <div class="mb-3 row mx-lg-5">
+                                                    <div class="form-control">
+                                                        {{ $buka->isi }}
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
 
                                     </div>
-                                    @endforeach
-
                                 </div>
+
+                                <div class="card mb-2 border-2 border-primary">
+                                    <div class="card-body">
+                                        <center><h5 class="card-title">Kegiatan Inti</h5></center>
+                                        @foreach ($res->ki_kegiatan as $k)
+                                            @if ($k->pertemuan == $i)
+                                                <label class="form-label fw-bold">{{ $k->metode }}</label>
+                                                <div class="mb-3 row mx-lg-5">
+                                                    <div class="form-control col-4">
+                                                        @php
+                                                            echo $k->isi
+                                                        @endphp
+                                                    </div>
+
+                                                    <div class="form-control col-1 mt-2 ms-5">
+                                                        Waktu : {{ $k->waktu }} Menit
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+
+                                    </div>
+                                </div>
+
+                                <div class="card mb-2 border-2 border-primary">
+                                    <div class="card-body">
+                                        <center><h5 class="card-title">Penutup</h5></center>
+                                        @foreach ($res->ki_penutup as $pp)
+                                            @if($pp->pertemuan == $i)
+                                                <label class="form-label fw-bold">{{ $pp->langkah }}</label>
+                                                <div class="mb-3 row mx-lg-5">
+
+                                                        <div class="col-10 col-form-label card">
+                                                            @php
+                                                                echo $pp->isi
+                                                            @endphp
+                                                        </div>
+
+                                                        <div class="col-sm-2 col-form-label card">
+                                                            {{ $pp->waktu }} Menit
+                                                        </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+
+                                    </div>
+                                </div>
+                                <center>
+                                    <form action="{{ config('app.url') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="mod_id" value="{{ $res['mod_id'] }}">
+                                        <button type="submit" formaction="/modul/edit/lampiran/lampiran2" class="form-control btn btn-success mb-3 bi-pencil" style="width: 50%">
+                                            Edit Pertemuan {{ $i }}
+                                        </button>
+                                    </form>
+                                </center>
                             </div>
-                            <center>
-                                <form action="{{ config('app.url') }}" method="post">
-                                    @csrf
-                                    <input type="hidden" name="mod_id" value="{{ $res['mod_id'] }}">
-                                    <button type="submit" formaction="/modul/edit/lampiran/lampiran2" class="form-control btn btn-success mb-3 bi-pencil" style="width: 50%">
-                                        Edit Pertemuan 1
-                                    </button>
-                                </form>
-                            </center>
-                        </div>
+                        @endfor
+
                         <center>
                             <a href="/modul/tambah/pertemuan/1">
                                 <button class="form-control btn btn-success mb-1 mt-2 bi-plus" style="width: 50%">

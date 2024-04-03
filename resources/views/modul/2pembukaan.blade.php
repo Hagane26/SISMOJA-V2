@@ -3,7 +3,7 @@
 @endphp
 <div class="card mt-3">
     <div class="card-body">
-        <h4 class="card-title">Pertemuan 1 : Kegiatan Pembuka</h4>
+        <h4 class="card-title">Pertemuan {{ $res['pertemuan'] }} : Kegiatan Pembuka</h4>
         <h6 class="card-subtitle bi-exclamation-triangle-fill m-3" style="color: red"> Harus di Isi 7 Kegiatan Tersebut</h6>
 
         @if (session()->has('modul'))
