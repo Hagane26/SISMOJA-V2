@@ -142,56 +142,60 @@
                     @endphp
                 </li>
                 <li style="font-size: 16px;"><strong>PENDEKATAN, MODEL, METODE, DAN TEKNIK PEMBELAJARAN</strong>
-                    <ol>
-                        <li>Pendekatan
-                            <ul>
-                                @php
-                                foreach ($res->data_informasi->model as $m) {
-                                    if ($m->kategori == "Pendekatan" && $m->metode != ""){
-                                        echo "<li>".$m->metode."</li>";
+                    @for ($i=1;$i <= $res->data_komponen_inti->pertemuan_total;$i++)
+                        <hr>
+                        <center><h4>Pertemuan {{ $i }}</h4></center>
+                        <ol>
+                            <li>Pendekatan
+                                <ul>
+                                    @php
+                                    foreach ($res->data_informasi->model as $m) {
+                                        if ($m->kategori == "Pendekatan" && $m->metode != "" && $m->pertemuan == $i){
+                                            echo "<li>".$m->metode."</li>";
+                                        }
                                     }
-                                }
-                                @endphp
-                            </ul>
-                        </li>
+                                    @endphp
+                                </ul>
+                            </li>
 
-                        <li>Model
-                            <ul>
-                                @php
-                                foreach ($res->data_informasi->model as $m) {
-                                    if ($m->kategori == "Model" && $m->metode != ""){
-                                        echo "<li>".$m->metode."</li>";
+                            <li>Model
+                                <ul>
+                                    @php
+                                    foreach ($res->data_informasi->model as $m) {
+                                        if ($m->kategori == "Model" && $m->metode != "" && $m->pertemuan == $i){
+                                            echo "<li>".$m->metode."</li>";
+                                        }
                                     }
-                                }
-                                @endphp
-                            </ul>
-                        </li>
+                                    @endphp
+                                </ul>
+                            </li>
 
-                        <li>Metode
-                            <ul>
-                                @php
-                                foreach ($res->data_informasi->model as $m) {
-                                    if ($m->kategori == "Metode" && $m->metode != ""){
-                                        echo "<li>".$m->metode."</li>";
+                            <li>Metode
+                                <ul>
+                                    @php
+                                    foreach ($res->data_informasi->model as $m) {
+                                        if ($m->kategori == "Metode" && $m->metode != "" && $m->pertemuan == $i){
+                                            echo "<li>".$m->metode."</li>";
+                                        }
                                     }
-                                }
-                                @endphp
-                            </ul>
-                        </li>
+                                    @endphp
+                                </ul>
+                            </li>
 
-                        <li>Teknik Pembelajaran
-                            <ul>
-                                @php
-                                foreach ($res->data_informasi->model as $m) {
-                                    if ($m->kategori == "Teknik" && $m->metode != ""){
-                                        echo "<li>".$m->metode."</li>";
+                            <li>Teknik Pembelajaran
+                                <ul>
+                                    @php
+                                    foreach ($res->data_informasi->model as $m) {
+                                        if ($m->kategori == "Teknik" && $m->metode != "" && $m->pertemuan == $i){
+                                            echo "<li>".$m->metode."</li>";
+                                        }
                                     }
-                                }
-                                @endphp
-                            </ul>
-                        </li>
+                                    @endphp
+                                </ul>
+                            </li>
 
-                    </ol>
+                        </ol>
+                    @endfor
                 </li>
             </ol>
         </li>
@@ -231,64 +235,79 @@
                         @endphp
                     </li>
                     <li style="font-size: 16px;"><strong>KEGIATAN PEMBELAJARAN</strong>
-                        <table style="width: 100%;margin-bottom:2%" id="tbi">
-                            <tbody>
-                                <tr>
-                                    <td style="width: 20%;" id="tdi">Sintaks</td>
-                                    <td style="width: 60%;" id="tdi">Deskripsi</td>
-                                    <td style="width: 20%;" id="tdi">Alokasi Waktu</td>
-                                </tr>
-                                <tr>
-                                    <td id="tdi"></td>
-                                    <td style="font-size: 16px;"><b>Pembukaan</b></td>
-                                    <td id="tdi"></td>
-                                </tr>
-                                <tr>
-                                    <td id="tdi"></td>
-                                    <td id="tdi">@php
-                                        foreach ($res->ki_pembukaan as $m) {
-                                            echo "<P><b>".$m->langkah."</b><br>".$m->isi."</p>";
-                                        }
-                                        @endphp</td>
-                                    <td id="tdi">{{ $res->ki_pembukaan[0]->waktu }} Menit</td>
-                                </tr>
+                        @for ($i = 1; $i <= $res->data_komponen_inti->pertemuan_total;$i++)
+                            <center>
+                                <h3>Pertemuan {{ $i }}</h3>
+                                <table style="width: 100%;margin-bottom:2%" id="tbi">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 20%;" id="tdi">Sintaks</td>
+                                            <td style="width: 60%;" id="tdi">Deskripsi</td>
+                                            <td style="width: 20%;" id="tdi">Alokasi Waktu</td>
+                                        </tr>
+                                        <tr>
+                                            <td id="tdi"></td>
+                                            <td style="font-size: 16px;"><b>Pembukaan</b></td>
+                                            <td id="tdi"></td>
+                                        </tr>
+                                        <tr>
+                                            <td id="tdi"></td>
+                                            <td id="tdi">@php
+                                                foreach ($res->ki_pembukaan as $m) {
+                                                    if($m->pertemuan == $i){
+                                                        echo "<P><b>".$m->langkah."</b><br>".$m->isi."</p>";
+                                                    }
+                                                }
+                                                @endphp</td>
+                                            <td id="tdi">
+                                                    @if ($res->ki_pembukaan[$i]->pertemuan == $i)
+                                                        {{ $res->ki_pembukaan[$i]->waktu }} Menit
+                                                    @endif
+                                            </td>
+                                        </tr>
 
-                                <tr>
-                                    <td id="tdi"></td>
-                                    <td id="tdi" style="font-size: 16px;"><b>Kegiatan Inti</b></td>
-                                    <td id="tdi"></td>
-                                </tr>
-                                @php
-                                    foreach ($res->ki_kegiatan as $m) {
-                                        echo "<tr>";
-                                        echo "<td id='tdi'>".$m->metode."</td>";
-                                        echo "<td id='tdi'>".$m->isi."</td>";
-                                        echo "<td id='tdi'>".$m->waktu." Menit</td>";
-                                        echo "</tr>";
-                                    }
-                                @endphp
+                                        <tr>
+                                            <td id="tdi"></td>
+                                            <td id="tdi" style="font-size: 16px;"><b>Kegiatan Inti</b></td>
+                                            <td id="tdi"></td>
+                                        </tr>
+                                        @php
+                                            foreach ($res->ki_kegiatan as $m) {
+                                                if($m->pertemuan == $i){
+                                                    echo "<tr>";
+                                                    echo "<td id='tdi'>".$m->metode."</td>";
+                                                    echo "<td id='tdi'>".$m->isi."</td>";
+                                                    echo "<td id='tdi'>".$m->waktu." Menit</td>";
+                                                    echo "</tr>";
+                                                }
+                                            }
+                                        @endphp
 
-                                <tr>
-                                    <td id='tdi'></td>
-                                    <td id='tdi' style="font-size: 16px;"><b>Penutup</b></td>
-                                    <td id='tdi'></td>
-                                </tr>
-                                @php
-                                    foreach ($res->ki_penutup as $m) {
-                                        echo "<tr>";
-                                        echo "<td></td>";
-                                        echo "<td id='tdi'>".$m->langkah." : ".$m->isi."</td>";
-                                        echo "<td id='tdi'>".$m->waktu." Menit</td>";
-                                        echo "</tr>";
-                                    }
-                                @endphp
-                                <tr>
-                                    <td id='tdi'></td>
-                                    <td id='tdi' style="font-size: 16px;"><b>Total Waktu</b></td>
-                                    <td id='tdi'>{{ $res->data_informasi->identitas->waktu *  $res->data_informasi->identitas->kali . " Menit"}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        <tr>
+                                            <td id='tdi'></td>
+                                            <td id='tdi' style="font-size: 16px;"><b>Penutup</b></td>
+                                            <td id='tdi'></td>
+                                        </tr>
+                                        @php
+                                            foreach ($res->ki_penutup as $m) {
+                                                if($m->pertemuan == $i){
+                                                    echo "<tr>";
+                                                    echo "<td></td>";
+                                                    echo "<td id='tdi'>".$m->langkah." : ".$m->isi."</td>";
+                                                    echo "<td id='tdi'>".$m->waktu." Menit</td>";
+                                                    echo "</tr>";
+                                                }
+                                            }
+                                        @endphp
+                                        <tr>
+                                            <td id='tdi'></td>
+                                            <td id='tdi' style="font-size: 16px;"><b>Total Waktu</b></td>
+                                            <td id='tdi'>{{ $res->data_informasi->identitas->waktu *  $res->data_informasi->identitas->kali . " Menit"}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </center>
+                        @endfor
 
                     </li>
                     <li style="font-size: 16px;"><strong>REFLEKSI PESERTA DIDIK DAN PENDIDIK</strong><br>

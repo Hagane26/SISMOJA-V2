@@ -187,49 +187,54 @@
                     </div>
                     <div class="card-body">
 
-                        <div class="mb-4 row mx-lg-5">
-                            <label class="form-label fw-bold">Pendekatan</label>
-                            <ol class="list-group list-group-numbered">
-                                @foreach ($res->data_informasi->model as $del)
-                                    @if ($del->kategori == "Pendekatan" && $del->metode != "")
-                                        <li class="list-group-item">{{ $del->metode }}</li>
-                                    @endif
-                                @endforeach
-                            </ol>
-                        </div>
+                        @for ($i = 1; $i <= $res->data_komponen_inti->pertemuan_total;$i++)
+                            <div class="card mb-3">
+                                <center><h5>Pertemuan {{ $i }}</h4></center>
+                                <div class="mb-4 row mx-lg-5">
+                                    <label class="form-label fw-bold">Pendekatan</label>
+                                    <ol class="list-group list-group-numbered">
+                                        @foreach ($res->data_informasi->model as $del)
+                                            @if ($del->kategori == "Pendekatan" && $del->metode != "" && $del->pertemuan == $i)
+                                                <li class="list-group-item">{{ $del->metode }}</li>
+                                            @endif
+                                        @endforeach
+                                    </ol>
+                                </div>
 
-                        <div class="mb-4 row mx-lg-5">
-                            <label class="form-label fw-bold">Model</label>
-                            <ol class="list-group list-group-numbered">
-                                @foreach ($res->data_informasi->model as $del)
-                                    @if ($del->kategori == "Model"  && $del->metode != "")
-                                        <li class="list-group-item">{{ $del->metode }}</li>
-                                    @endif
-                                @endforeach
-                            </ol>
-                        </div>
+                                <div class="mb-4 row mx-lg-5">
+                                    <label class="form-label fw-bold">Model</label>
+                                    <ol class="list-group list-group-numbered">
+                                        @foreach ($res->data_informasi->model as $del)
+                                            @if ($del->kategori == "Model"  && $del->metode != "" && $del->pertemuan == $i)
+                                                <li class="list-group-item">{{ $del->metode }}</li>
+                                            @endif
+                                        @endforeach
+                                    </ol>
+                                </div>
 
-                        <div class="mb-4 row mx-lg-5">
-                            <label class="form-label fw-bold">Metode</label>
-                            <ol class="list-group list-group-numbered">
-                                @foreach ($res->data_informasi->model as $del)
-                                    @if ($del->kategori == "Metode" && $del->metode != "")
-                                        <li class="list-group-item">{{ $del->metode }}</li>
-                                    @endif
-                                @endforeach
-                            </ol>
-                        </div>
+                                <div class="mb-4 row mx-lg-5">
+                                    <label class="form-label fw-bold">Metode</label>
+                                    <ol class="list-group list-group-numbered">
+                                        @foreach ($res->data_informasi->model as $del)
+                                            @if ($del->kategori == "Metode" && $del->metode != "" && $del->pertemuan == $i)
+                                                <li class="list-group-item">{{ $del->metode }}</li>
+                                            @endif
+                                        @endforeach
+                                    </ol>
+                                </div>
 
-                        <div class="mb-4 row mx-lg-5">
-                            <label class="form-label fw-bold">Teknik</label>
-                            <ol class="list-group list-group-numbered">
-                                @foreach ($res->data_informasi->model as $del)
-                                    @if ($del->kategori == "Teknik" && $del->metode != "")
-                                        <li class="list-group-item">{{ $del->metode }}</li>
-                                    @endif
-                                @endforeach
-                            </ol>
-                        </div>
+                                <div class="mb-4 row mx-lg-5">
+                                    <label class="form-label fw-bold">Teknik</label>
+                                    <ol class="list-group list-group-numbered">
+                                        @foreach ($res->data_informasi->model as $del)
+                                            @if ($del->kategori == "Teknik" && $del->metode != "" && $del->pertemuan == $i)
+                                                <li class="list-group-item">{{ $del->metode }}</li>
+                                            @endif
+                                        @endforeach
+                                    </ol>
+                                </div>
+                            </div>
+                        @endfor
 
                     </div>
                 </div>
