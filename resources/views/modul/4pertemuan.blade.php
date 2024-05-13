@@ -13,10 +13,10 @@
             <div class="progress" style="height: 5px;">
                 <div class="progress-bar bg-success" role="progressbar" aria-label="Progress" style="width: {{ $res['progress'] }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-            <a href="/modul/tambah/pertemuan/1" type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-{{ $res['pos'] == 0 ? 'primary' : ($res['pos'] > 0 ? 'success' : 'secondary') }} rounded-pill" style="width: 2rem; height:2rem; margin-left:0%;">1</a>
-            <a href="/modul/tambah/pertemuan/2" type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-{{ $res['pos'] == 1 ? 'primary' : ($res['pos'] > 1 ? 'success' : 'secondary') }} rounded-pill" style="width: 2rem; height:2rem; margin-left:33%;">2</a>
-            <a href="/modul/tambah/pertemuan/3" type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-{{ $res['pos'] == 2 ? 'primary' : ($res['pos'] > 2 ? 'success' : 'secondary') }} rounded-pill" style="width: 2rem; height:2rem; margin-left:66%;">3</a>
-            <a href="/modul/tambah/pertemuan/4" type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-{{ $res['pos'] == 3 ? 'primary' : ($res['pos'] > 3 ? 'success' : 'secondary') }} rounded-pill" style="width: 2rem; height:2rem; margin-left:99%;">4</a>
+            <a href="{{$res['nav']}}1" type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-{{ $res['pos'] == 0 ? 'primary' : ($res['pos'] > 0 ? 'success' : 'secondary') }} rounded-pill" style="width: 2rem; height:2rem; margin-left:0%;">1</a>
+            <a href="{{$res['nav']}}2" type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-{{ $res['pos'] == 1 ? 'primary' : ($res['pos'] > 1 ? 'success' : 'secondary') }} rounded-pill" style="width: 2rem; height:2rem; margin-left:33%;">2</a>
+            <a href="{{$res['nav']}}3" type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-{{ $res['pos'] == 2 ? 'primary' : ($res['pos'] > 2 ? 'success' : 'secondary') }} rounded-pill" style="width: 2rem; height:2rem; margin-left:66%;">3</a>
+            <a href="{{$res['nav']}}4" type="button" class="position-absolute top-0 translate-middle btn btn-sm btn-{{ $res['pos'] == 3 ? 'primary' : ($res['pos'] > 3 ? 'success' : 'secondary') }} rounded-pill" style="width: 2rem; height:2rem; margin-left:99%;">4</a>
         </div>
 
         @if (session()->has('modul') == 0)
@@ -40,8 +40,8 @@
         <div class="card border-primary" style="width:50rem">
             <div class="card-body">
                 <h4 class="card-title" style="font-weight:bold">Judul Modul : {{ $res['judul'] }}</h4>
-                <h6 class="card-subtitle"> Pertemuan {{ $res['pertemuan'] }} </h6>
-                <form action="/modul/tambah/pertemuan/{{ $res['aksi'] }}" method="post">
+                <h6 class="card-subtitle"> {{ $res['status'] }} Pertemuan {{ $res['pertemuan'] }} </h6>
+                <form action="{{$res['nav']}}{{ $res['aksi'] }}" method="post">
                     @csrf
                     @include($res['view'])
                 </form>

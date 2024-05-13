@@ -168,6 +168,7 @@ class modul_Lampiran_ctrl extends Controller
             'aksi' => 'edit/lampiran/lampiran2-aksi',
             'view' => 'modul.3lampiran2',
             's_upload' => $su,
+            'batal' => '/modul',
         ];
 
         $modul = ['id'=>$req->mod_id];
@@ -213,6 +214,7 @@ class modul_Lampiran_ctrl extends Controller
             'aksi' => 'edit/lampiran/lampiran3-aksi',
             'view' => 'modul.3lampiran3',
             's_upload' => $su,
+            'batal' => '/modul',
         ];
 
         $modul = ['id'=>$req->mod_id];

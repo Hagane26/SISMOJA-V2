@@ -2,6 +2,17 @@
     $modul = session()->get('modul');
     $waktu = $modul['waktu'];
     $def = $waktu - $modul['wpembuka'] - $modul['winti'];
+
+    if($res['status']=="Edit"){
+        $tw = 0;
+        for ($i=0; $i < count($modul['ki_penutup']); $i++) { 
+            if($modul['ki_penutup'][$i]->pertemuan == $res['pid'] ){
+                $tw = $tw + $modul['ki_penutup'][$i]->waktu;
+            }
+        }
+        $def = $def - $tw;
+    }
+
 @endphp
 
 <div class="card mt-3">
@@ -15,12 +26,21 @@
                 <div class="row g-2 align-items-center ms-5 mb-4">
                     <label class="form-label">Kegiatan 1 : Kesimpulan</label>
 
-                    <textarea name="p-1a" class="form-control"></textarea>
+                    <textarea name="p-1a" class="form-control">@php
+                        if($res['status']=="Edit"){
+                            for ($i=0; $i < count($modul['ki_penutup']); $i++) { 
+                                if($modul['ki_penutup'][$i]->pertemuan == $res['pid'] && $modul['ki_penutup'][$i]->langkah == "Kesimpulan"){
+                                    echo $modul['ki_penutup'][$i]->isi;
+                                    $w = $modul['ki_penutup'][$i]->waktu;
+                                }
+                            }
+                        }
+                    @endphp</textarea>
 
                     <div class="mb-3 row mt-2">
                         <label class="col-sm-3 col-form-label">Alokasi Waktu</label>
                         <div class="col-sm-7">
-                            <input type="number" class="form-control" name="p-1b" id="p-1b" value="0" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
+                            <input type="number" class="form-control" name="p-1b" id="p-1b" value="{{$res['status'] == 'Edit' ? $w : "0"}}" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
                         </div>
                         <label class="col-sm-2 col-form-label">Menit</label>
                     </div>
@@ -34,12 +54,20 @@
                 <div class="row g-2 align-items-center ms-5 mb-4">
                     <label class="form-label">Kegiatan 2 : Evaluasi</label>
 
-                    <textarea name="p-2a" class="form-control"></textarea>
+                    <textarea name="p-2a" class="form-control">@php 
+                    if($res['status']=="Edit"){
+                        for ($i=0; $i < count($modul['ki_penutup']); $i++) { 
+                            if($modul['ki_penutup'][$i]->pertemuan == $res['pid'] && $modul['ki_penutup'][$i]->langkah == "Evaluasi"){
+                                echo $modul['ki_penutup'][$i]->isi;
+                                $w = $modul['ki_penutup'][$i]->waktu;
+                            }
+                        }
+                    } @endphp</textarea>
 
                     <div class="mb-3 row mt-2">
                         <label class="col-sm-3 col-form-label">Alokasi Waktu</label>
                         <div class="col-sm-7">
-                            <input type="number" class="form-control" name="p-2b" id="p-2b" value="0" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
+                            <input type="number" class="form-control" name="p-2b" id="p-2b" value="{{$res['status'] == 'Edit' ? $w : "0"}}" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
                         </div>
                         <label class="col-sm-2 col-form-label">Menit</label>
                     </div>
@@ -53,12 +81,20 @@
                 <div class="row g-2 align-items-center ms-5 mb-4">
                     <label class="form-label">Kegiatan 3 : Refleksi</label>
 
-                    <textarea name="p-3a" class="form-control"></textarea>
+                    <textarea name="p-3a" class="form-control">@php 
+                    if($res['status']=="Edit"){
+                            for ($i=0; $i < count($modul['ki_penutup']); $i++) { 
+                                if($modul['ki_penutup'][$i]->pertemuan == $res['pid'] && $modul['ki_penutup'][$i]->langkah == "Refleksi"){
+                                    echo $modul['ki_penutup'][$i]->isi;
+                                    $w = $modul['ki_penutup'][$i]->waktu;
+                                }
+                            }
+                        } @endphp</textarea>
 
                     <div class="mb-3 row mt-2">
                         <label class="col-sm-3 col-form-label">Alokasi Waktu</label>
                         <div class="col-sm-7">
-                        <input type="number" class="form-control" name="p-3b" id="p-3b" value="0" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
+                        <input type="number" class="form-control" name="p-3b" id="p-3b" value="{{$res['status'] == 'Edit' ? $w : "0"}}" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
                         </div>
                         <label class="col-sm-2 col-form-label">Menit</label>
                     </div>
@@ -72,12 +108,21 @@
                 <div class="row g-2 align-items-center ms-5 mb-4">
                     <label class="form-label">Kegiatan 4 : Penyampaian Tujuan Pembelajaran Pertemuan Selanjutnya</label>
 
-                    <textarea name="p-4a" class="form-control"></textarea>
+                    <textarea name="p-4a" class="form-control">@php
+                    if($res['status']=="Edit"){
+                        for ($i=0; $i < count($modul['ki_penutup']); $i++) { 
+                            if($modul['ki_penutup'][$i]->pertemuan == $res['pid'] && $modul['ki_penutup'][$i]->langkah == "Penyampaian Tujuan Pembelajaran Pertemuan Selanjutnya"){
+                                echo $modul['ki_penutup'][$i]->isi;
+                                $w = $modul['ki_penutup'][$i]->waktu;
+                            }
+                        }
+                    }
+                    @endphp</textarea>
 
                     <div class="mb-3 row mt-2">
                         <label class="col-sm-3 col-form-label">Alokasi Waktu</label>
                         <div class="col-sm-7">
-                            <input type="number" class="form-control" name="p-4b" id="p-4b" value="0" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
+                            <input type="number" class="form-control" name="p-4b" id="p-4b" value="{{$res['status'] == 'Edit' ? $w : "0"}}" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
                         </div>
                         <label class="col-sm-2 col-form-label">Menit</label>
                     </div>
@@ -91,12 +136,21 @@
                 <div class="row g-2 align-items-center ms-5 mb-4">
                     <label class="form-label">Kegiatan 5 : Salam Penutup</label>
 
-                    <textarea name="p-5a" class="form-control"></textarea>
+                    <textarea name="p-5a" class="form-control">@php
+                        if($res['status']=="Edit"){
+                            for ($i=0; $i < count($modul['ki_penutup']); $i++) { 
+                                if($modul['ki_penutup'][$i]->pertemuan == $res['pid'] && $modul['ki_penutup'][$i]->langkah == "Salam Penutup"){
+                                    echo $modul['ki_penutup'][$i]->isi;
+                                    $w = $modul['ki_penutup'][$i]->waktu;
+                                }
+                            }
+                        }
+                        @endphp</textarea>
 
                     <div class="mb-3 row mt-2">
                         <label class="col-sm-3 col-form-label">Alokasi Waktu</label>
                         <div class="col-sm-7">
-                            <input type="number" class="form-control" name="p-5b" id="p-5b" value="0" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
+                            <input type="number" class="form-control" name="p-5b" id="p-5b" value="{{$res['status'] == 'Edit' ? $w : "0"}}" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
                         </div>
                         <label class="col-sm-2 col-form-label">Menit</label>
                     </div>

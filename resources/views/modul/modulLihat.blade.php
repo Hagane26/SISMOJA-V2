@@ -398,7 +398,7 @@
 
                         @for ($i = 1; $i <= $res->data_komponen_inti->pertemuan_total;$i++)
                             <div class="card mb-3">
-                                <h3 class="text-center"> Pertemuan {{ $i }}</h3>
+                                <h3 class="text-center"> Pertemuan {{ $res->ki_kegiatan[$i-1]->pertemuan }}</h3>
                                 <div class="card mb-2 border-2 border-primary">
                                     <div class="card-body">
                                         <center>
@@ -466,13 +466,11 @@
                                     </div>
                                 </div>
                                 <center>
-                                    <form action="{{ config('app.url') }}" method="post">
-                                        @csrf
-                                        <input type="hidden" name="mod_id" value="{{ $res['mod_id'] }}">
-                                        <button type="submit" formaction="/modul/edit/lampiran/lampiran2" class="form-control btn btn-success mb-3 bi-pencil" style="width: 50%">
+                                    <a href="/modul/edit/pertemuan/{{ $res->ki_kegiatan[$i-1]->pertemuan }}/1">
+                                        <button class="form-control btn btn-success mb-1 mt-2 bi-pencil" style="width: 50%">
                                             Edit Pertemuan {{ $i }}
                                         </button>
-                                    </form>
+                                    </a>
                                 </center>
                             </div>
                         @endfor
@@ -611,7 +609,7 @@
             var div = document.getElementById("Iframe");
             div.onload = function() {
               //div.style.height = div.contentWindow.document.body.scrollHeight + 'px';
-              div.style.width = 100%;
+              div.style.width = 100% ;
             }
           </script>
 

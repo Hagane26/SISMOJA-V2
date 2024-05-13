@@ -30,7 +30,19 @@
         @endif
 
         <div class="row g-2 align-items-center ms-5 mb-2 mt-3">
-            <textarea name="kegiataninti" id="editor"></textarea>
+            @php
+            if($res['status']=="Edit"){
+                echo "<input type='hidden' name='pertemuan' value='$res[pid]'>";
+            }
+            @endphp
+            <textarea name="kegiataninti" id="editor">@php 
+            if($res['status']=="Edit"){
+                for ($i=0; $i < count($modul['ki_kegiatan']); $i++) { 
+                    if($modul['ki_kegiatan'][$i]->pertemuan == $res['pid']){
+                        echo $modul['ki_kegiatan'][$i]->isi;
+                    }
+                }
+             } @endphp</textarea>
         </div>
 
         <input type="hidden" name="total_waktu" id="inwaktu">
