@@ -850,14 +850,13 @@ class modul_komponenInti_ctrl extends Controller
             array_push($btn,$s);
             array_push($kat,'Teknik');
         }
-
+        
         for( $i = 0;$i < $total;$i++){
-            $parcel = i_modelp::create([
+            $k = "k-".$i;
+            $parcel = i_modelp::where('id',$req[$k])->update([
                 'metode' => $data[$i],
                 'kategori' => $kat[$i],
                 'btn' => $btn[$i],
-                'pertemuan' => $modul['pertemuan'],
-                'informasi_id' => $modul['informasi_id'],
             ]);
             if($data[$i] != ""){
                 $wt +=1;
@@ -923,12 +922,9 @@ class modul_komponenInti_ctrl extends Controller
             return back()->withErrors("Waktu Tidak Valid");
         }
 
-        $parcel = ki_kegiatan::create([
-            'metode' => "",
+        $parcel = ki_kegiatan::where('id',$req['k-kid'])->update([
             'isi' => $req['kegiataninti'],
             'waktu' => $req['waktu'],
-            'pertemuan' => $modul['pertemuan'],
-            'ki_id' => $modul['data_komponen_inti']->id
         ]);
 
         if($parcel){
@@ -964,12 +960,10 @@ class modul_komponenInti_ctrl extends Controller
 
         for($i = 1;$i <= 5 ;$i++){
             $s = "p-". $i;
-            $parcel = ki_penutup::create([
-                'langkah' => $req[$s .'c'],
+            $k = "k-".$i-1;
+            $parcel = ki_penutup::where('id',$req[$k])->update([
                 'isi' => $req[$s.'a'],
                 'waktu' => $req[$s.'b'],
-                'pertemuan' => $modul['pertemuan'],
-                'ki_id' => $modul['data_komponen_inti']->id
             ]);
         }
 

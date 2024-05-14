@@ -2,9 +2,21 @@
     <div class="card-body">
         <h4 class="card-title">Model Pembelajaran </h4>
 
+        @php
+            if($res['status']=="Edit"){
+                $model = session()->get('modul');
+                echo "<input type='hidden' name='pertemuan' value='$res[pid]'>";
+                $i = 0;
+                foreach ($model['data_informasi']['model'] as $m) {
+                    if($m->pertemuan == $res['pid']){
+                        echo "<input type='hidden' name='k-".$i++."' value='$m->id''>";
+                    }
+                };
+            }
+        @endphp
+
         <div class="row g-2 align-items-center ms-5 mb-2 mt-3">
             <label class="form-label fw-bold">Pendekatan : </label>
-
             <div class="row">
                 <div class="form-check col-3 mb-3">
                     <label class="form-check-label" class="btn btn-outline-secondary">

@@ -32,7 +32,14 @@
         <div class="row g-2 align-items-center ms-5 mb-2 mt-3">
             @php
             if($res['status']=="Edit"){
+                foreach ($modul['ki_kegiatan'] as $d) {
+                    if($d->pertemuan == $res['pid']){
+                        $kid = $d->id;
+                        break;
+                    }
+                }
                 echo "<input type='hidden' name='pertemuan' value='$res[pid]'>";
+                echo "<input type='hidden' name='k-kid' value='$kid''>";
             }
             @endphp
             <textarea name="kegiataninti" id="editor">@php 

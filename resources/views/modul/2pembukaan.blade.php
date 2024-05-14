@@ -10,6 +10,7 @@
             @php
                 $modul = session()->get('modul');
                 $dn = array();
+                $wp = 0;
                 if($res['status']=="Edit"){
                     for ($i=0; $i < count($modul['ki_pembukaan']); $i++) { 
                         if($modul['ki_pembukaan'][$i]->pertemuan == $res['pid']){

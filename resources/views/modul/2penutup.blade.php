@@ -4,13 +4,12 @@
     $def = $waktu - $modul['wpembuka'] - $modul['winti'];
 
     if($res['status']=="Edit"){
-        $tw = 0;
+        $dn = array();
         for ($i=0; $i < count($modul['ki_penutup']); $i++) { 
             if($modul['ki_penutup'][$i]->pertemuan == $res['pid'] ){
-                $tw = $tw + $modul['ki_penutup'][$i]->waktu;
+                array_push($dn,$modul['ki_penutup'][$i]->id);
             }
         }
-        $def = $def - $tw;
     }
 
 @endphp
@@ -20,6 +19,15 @@
         <h4 class="card-title">Pertemuan {{ $res['pertemuan'] }} : Penutup</h4>
         <h6 class="card-subtitle bi-exclamation-triangle-fill m-3" style="color: red"> Harus di Isi 5 Kegiatan Tersebut</h6>
         <h5 class="card-text" id="nwaktu">Sisa Waktu Saat Ini : {{ $def }} Menit</h5>
+
+        @php
+            if($res['status']=="Edit"){
+                echo "<input type='hidden' name='pertemuan' value='$res[pid]'>";
+                for ($i=0; $i < count($dn); $i++) { 
+                    echo "<input type='hidden' name='k-$i' value='$dn[$i]'>";
+                }
+            }
+        @endphp
 
         <div class="card mb-2">
             <div class="card-body">
@@ -40,7 +48,8 @@
                     <div class="mb-3 row mt-2">
                         <label class="col-sm-3 col-form-label">Alokasi Waktu</label>
                         <div class="col-sm-7">
-                            <input type="number" class="form-control" name="p-1b" id="p-1b" value="{{$res['status'] == 'Edit' ? $w : "0"}}" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
+                            <input type="number" class="form-control" name="p-1b" id="p-1b" value="0" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
+                            {{$res['status'] == 'Edit' ? "Waktu Sebelumnya : " .$w." Menit" : ""}}
                         </div>
                         <label class="col-sm-2 col-form-label">Menit</label>
                     </div>
@@ -67,7 +76,8 @@
                     <div class="mb-3 row mt-2">
                         <label class="col-sm-3 col-form-label">Alokasi Waktu</label>
                         <div class="col-sm-7">
-                            <input type="number" class="form-control" name="p-2b" id="p-2b" value="{{$res['status'] == 'Edit' ? $w : "0"}}" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
+                            <input type="number" class="form-control" name="p-2b" id="p-2b" value="0" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
+                            {{$res['status'] == 'Edit' ? "Waktu Sebelumnya : " .$w." Menit" : ""}}
                         </div>
                         <label class="col-sm-2 col-form-label">Menit</label>
                     </div>
@@ -94,7 +104,8 @@
                     <div class="mb-3 row mt-2">
                         <label class="col-sm-3 col-form-label">Alokasi Waktu</label>
                         <div class="col-sm-7">
-                        <input type="number" class="form-control" name="p-3b" id="p-3b" value="{{$res['status'] == 'Edit' ? $w : "0"}}" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
+                            <input type="number" class="form-control" name="p-3b" id="p-3b" value="0" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
+                            {{$res['status'] == 'Edit' ? "Waktu Sebelumnya : " .$w." Menit" : ""}}
                         </div>
                         <label class="col-sm-2 col-form-label">Menit</label>
                     </div>
@@ -122,7 +133,8 @@
                     <div class="mb-3 row mt-2">
                         <label class="col-sm-3 col-form-label">Alokasi Waktu</label>
                         <div class="col-sm-7">
-                            <input type="number" class="form-control" name="p-4b" id="p-4b" value="{{$res['status'] == 'Edit' ? $w : "0"}}" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
+                            <input type="number" class="form-control" name="p-4b" id="p-4b" value="0" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
+                            {{$res['status'] == 'Edit' ? "Waktu Sebelumnya : " .$w." Menit" : ""}}
                         </div>
                         <label class="col-sm-2 col-form-label">Menit</label>
                     </div>
@@ -150,7 +162,8 @@
                     <div class="mb-3 row mt-2">
                         <label class="col-sm-3 col-form-label">Alokasi Waktu</label>
                         <div class="col-sm-7">
-                            <input type="number" class="form-control" name="p-5b" id="p-5b" value="{{$res['status'] == 'Edit' ? $w : "0"}}" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
+                            <input type="number" class="form-control" name="p-5b" id="p-5b" value="0" onkeydown="ubahwaktu()" onkeyup="ubahwaktu()">
+                            {{$res['status'] == 'Edit' ? "Waktu Sebelumnya : " .$w." Menit" : ""}}
                         </div>
                         <label class="col-sm-2 col-form-label">Menit</label>
                     </div>
