@@ -43,7 +43,7 @@
         if(e.value == ""){
             $("#res").empty();
         }else{
-            $.getJSON("http://localhost:8000/get-kbbi/"+e.value, function(data) {
+            $.getJSON("{{config('app.url')}}/get-kbbi/"+e.value, function(data) {
             $("#res").empty();
             var results = data.result;
             $.each(results, function(index,value) {
