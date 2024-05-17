@@ -33,13 +33,14 @@
     </div>
 </div>
 
-<script>
+<script language="JavaScript" type="text/javascript">
     ClassicEditor
         .create( document.querySelector( '#editor' ) )
         .catch( error => {
             console.error( error );
         } );
     function cek(e){
+        $ = jQuery;
         if(e.value == ""){
             $("#res").empty();
         }else{
