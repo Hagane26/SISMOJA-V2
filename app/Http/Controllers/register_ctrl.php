@@ -43,7 +43,12 @@ class register_ctrl extends Controller
                 ];
                 $send = User::create($parcel);
                 if($send){
-                    return redirect('/dashboard');
+                    $data = array(
+                        'email' => $req->email,
+                        'password' => $req->password,
+                    );
+                    Auth::attempt($data);
+                    return redirect('/');
                 }else{
                     return redirect()->back()->withErrors(['msg'=>'Register Error!!']);
                 }

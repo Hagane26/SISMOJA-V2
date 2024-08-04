@@ -49,11 +49,23 @@
         <div class="input-group flex-nowrap mt-3">
             <span class="input-group-text me-1 bg-secondary text-white" style="width: 25%">Alokasi Waktu</span>
 
-            <input type="number" placeholder="contoh : 2" class="form-control" id="kali" name="kali" value="{{ $modul['i2'] != "" ? $modul['i2']['kali'] : "" }}">
-            <span class="input-group-text"> X </span>
+            <div id='AW1' class="input-group" >
+                <select class="form-select" id="res" name="waktuDefault" disabled>
+                    <option value = 0 selected>Pilih Fase terlebih dahulu</option>
+                </select>
+                <button type="button" class="btn btn-secondary" onclick="waktuCustom()">Custom</button>
+            </div>
 
-            <input type="number" placeholder="contoh : 45" class="form-control" id="waktu" name="waktu" value="{{ $modul['i2'] != "" ? $modul['i2']['waktu'] : "" }}">
-            <span class="input-group-text">Menit</span>
+            <div id='AW2' class="input-group" hidden>
+                <input type="number" placeholder="contoh : 2" class="form-control" id="kali" name="kali" value="{{ $modul['i2'] != "" ? $modul['i2']['kali'] : "0" }}">
+                <span class="input-group-text"> X </span>
+
+                <input type="number" placeholder="contoh : 45" class="form-control" id="waktu" name="waktu" value="{{ $modul['i2'] != "" ? $modul['i2']['waktu'] : "0" }}">
+                <span class="input-group-text">Menit</span>
+                <button type="button" class="btn btn-secondary" onclick="waktuOpsi()">Default</button>
+            </div>
+
+            <input type="hidden" id="waktupilih" name="waktupilih" value="aw1">
         </div>
 
         <div class="position-relative bottom-0 start-50 translate-middle-x mt-3" style="width:50%">
@@ -62,29 +74,46 @@
                 <a href="{{ $res['batal'] }}" class="btn btn-danger col bi-x-square"> Batalkan </a>
             </div>
         </div>
-        <select id="res">
-
-        </select>
     </div>
 </div>
 
 <script>
     function take_fase(e){
         $ = jQuery;
-        if(e.value == ""){
-            $("#res").empty();
+        if(e.value == "" || e.value == 0){
+            $('#res').empty();
+            document.getElementById('res').disabled = true;
+            $('#res').append("<option value=0> Pilih Fase terlebih dahulu</option>");
         }else{
-            @Crossorigin
-            $.getJSON("{{config('app.url')}}:8000/modul/waktufase/"+e.value, function(data) {
-                $("#res").empty();
+            $.getJSON("http://localhost:8000/modul/waktufase/"+e.value, function(data) {
+                $('#res').empty();
+                document.getElementById('res').disabled = false;
                 var results = data.result;
                 $.each(results, function(index,value) {
-                    $("#res").append(
-                        "<option>" + e.value + "</option>"
+                    $('#res').append(
+                        '<option value="'+value['id'] +'" {{ $modul['i2'] != "" ? ($modul['i2']['fase'] == "1" ? "selected" : "") : "" }} >'
+                            + "Fase " + value['fase'] +" Durasi " + value['ket'] + " = " + value['kali'] + " x " + value['waktu']
+                            +' Menit </option>'
                     );
                 });
             });
         }
+    }
+
+    function waktuCustom(){
+        document.getElementById('AW2').hidden = false;
+        document.getElementById('AW1').hidden = true;
+        document.getElementById('waktupilih').value = 'aw2';
+        document.getElementById('waktu').value = '';
+        document.getElementById('kali').value = '';
+    }
+
+    function waktuOpsi(){
+        document.getElementById('AW2').hidden = true;
+        document.getElementById('AW1').hidden = false;
+        document.getElementById('waktupilih').value = 'aw1';
+        document.getElementById('waktu').value = '0';
+        document.getElementById('kali').value = '0';
     }
 </script>
 

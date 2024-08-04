@@ -35,9 +35,9 @@ class login_ctrl extends Controller
     }
 
     public function aksi_logout(){
-        Auth::logout();
         session()->flush();
-        return back();
+        Auth::logout();
+        return redirect()->route('login');
     }
 
     public function aksi_reset(Request $req){

@@ -93,8 +93,15 @@ class modul_informasiUmum_ctrl extends Controller
             'waktu'=>'required'
         ],[
             //untuk custom pesan gagal nya
-            'penyusun.required' => "Nama Penyusun Kosong",
-            'institusi.required' => "Institusi Kosong",
+            'penyusun.required' => "Nama Penyusun masih Kosong",
+            'institusi.required' => "Institusi masih Kosong",
+            'mapel.required' => "Mate Pelajaran masih Kosong",
+            'fase.required' => "Fase masih Kosong",
+            'Kelas.required' => "Kelas masih Kosong",
+            'TA_awal.required' => "Tahun Tidak Lengkap",
+            'TA_akhir.required' => "Tahun Tidak Lengkap",
+            'kali.required' => "Waktu Tidak Lengkap",
+            'waktu.required' => "Waktu Tidak Lengkap",
         ]);
 
         $data = [
@@ -107,9 +114,17 @@ class modul_informasiUmum_ctrl extends Controller
             'TAkhir' => $req->TA_akhir,
             'kali' => $req->kali,
             'waktu' => $req->waktu,
+            'waktuDefault' => $req->waktuDefault,
+            'waktupilih' => $req->waktupilih
         ];
 
-        $waktu = $req->waktu * $req->kali;
+
+        if($data['waktupilih'] == "aw1"){
+            $fawa = WaktuFase::where('id',$data['waktuDefault'])->first();
+            $waktu = $fawa['waktu'] * $fawa['kali'];
+        }else{
+            $waktu = $req->waktu * $req->kali;
+        }
 
         if($modul['i2'] == ""){
             $parcel = i_identitas::create($data);
@@ -135,11 +150,12 @@ class modul_informasiUmum_ctrl extends Controller
         }else{
             return back()->withErrors('Terjadi Kesalahan Input!');
         }
+
     }
 
     public function waktufase($fase){
         $data = WaktuFase::where('fase',$fase)->get();
-        echo json_encode($data);
+        echo json_encode(['result'=>$data]);
     }
 
     public function komponenAwal(Request $req){
@@ -147,6 +163,8 @@ class modul_informasiUmum_ctrl extends Controller
 
         $req->validate([
             'komponen' => 'required'
+        ],[
+            'komponen.required' => "Data Komponen Masih Kosong",
         ]);
 
         $parcel = infoUmum::where('id',$modul['i1']['id'])->update(['komponenAwal'=>$req->komponen]);
@@ -221,6 +239,9 @@ class modul_informasiUmum_ctrl extends Controller
         $req ->validate([
             'sarana' => 'required',
             'prasarana' => 'required'
+        ],[
+            'sarana.required' => "Sarana Masih Kosong",
+            'prasarana.required' => "Prasarana Masih Kosong",
         ]);
 
         $parcel = infoUmum::where('id',$modul['i1']['id'])->update([
@@ -250,6 +271,8 @@ class modul_informasiUmum_ctrl extends Controller
 
         $req ->validate([
             'target' => 'required',
+        ],[
+            'target.required' => "Target Masih Kosong"
         ]);
 
         $parcel = infoUmum::where('id',$modul['i1']['id'])->update([
