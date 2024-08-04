@@ -88,6 +88,8 @@ Route::middleware('auth')->group(function(){
     Route::post('/modul/edit/informasiumum/identitas',[modul_informasiUmum_ctrl::class,'identitas_edit']);
     Route::post('/modul/edit/informasiumum/identitas-aksi',[modul_informasiUmum_ctrl::class,'identitas_edit_aksi']);
 
+    Route::get('/modul/waktufase/{fase}',[modul_informasiUmum_ctrl::class,'waktufase']);
+
     Route::post('/modul/edit/informasiumum/ppp',[modul_informasiUmum_ctrl::class,'ppp_edit']);
     Route::post('/modul/edit/informasiumum/ppp-aksi',[modul_informasiUmum_ctrl::class,'ppp_edit_aksi']);
 
@@ -109,7 +111,7 @@ Route::middleware('auth')->group(function(){
 
     Route::post('/modul/edit/komponeninti/pemantik',[modul_komponenInti_ctrl::class,'pemantik_edit']);
     Route::post('/modul/edit/komponeninti/pemantik-aksi',[modul_komponenInti_ctrl::class,'pemantik_edit_aksi']);
- 
+
     // pertemuan
     Route::get('/modul/tambah/pertemuan/{step}',[modul_komponenInti_ctrl::class,'PertemuanIndex']);
     Route::post('/modul/tambah/pertemuan/p1',[modul_komponenInti_ctrl::class,'pertemuan1_aksi']);

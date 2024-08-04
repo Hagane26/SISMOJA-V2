@@ -33,7 +33,7 @@
     </div>
 </div>
 
-<script language="JavaScript" type="text/javascript">
+<script >
     ClassicEditor
         .create( document.querySelector( '#editor' ) )
         .catch( error => {
@@ -45,20 +45,20 @@
             $("#res").empty();
         }else{
             $.getJSON("{{config('app.url')}}/get-kbbi/"+e.value, function(data) {
-            $("#res").empty();
-            var results = data.result;
-            $.each(results, function(index,value) {
-                $("#res").append(
-                    "<li class='list-group-item'>" +
-                        "<div class='card'>" +
-                            "<div class='card-body'>" +
-                                value +
+                $("#res").empty();
+                var results = data.result;
+                $.each(results, function(index,value) {
+                    $("#res").append(
+                        "<li class='list-group-item'>" +
+                            "<div class='card'>" +
+                                "<div class='card-body'>" +
+                                    value +
+                                "</div>" +
                             "</div>" +
-                        "</div>" +
-                    "</li>"
-                );
+                        "</li>"
+                    );
+                });
             });
-        });
         }
     }
 </script>

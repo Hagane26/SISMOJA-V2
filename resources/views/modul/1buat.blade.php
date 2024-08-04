@@ -24,7 +24,7 @@
                         <button type="submit" class="btn btn-success bi-pencil-square"
                         @if (Auth::user()->status_info == 0)
                             {{ "disabled" }}
-                        @endif> Mulai Buat Modul</button>
+                        @endif> Mulai Buat Modul </button>
                     </div>
                 </div>
             </form>
@@ -34,6 +34,41 @@
                 <i class="bi bi-info"></i> {{ $errors->first() }}
             </div>
             @endif
+
         </div>
     </div>
+
+    @if ($tampil == 'show')
+
+                <div class="modal fade" id="modal_lanjut" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Lanjutkan Modul</h1>
+                            </div>
+                            <div class="modal-body">
+                                Ada Modul Ajar dengan judul "{{ $modul['judul'] }}" Yang belum anda selesaikan, Apakah Anda Ingin Melanjutkannya?
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{{ $action }}"><button button type="button" class="btn btn-success">Ya, Saya Ingin Melanjutkannya</button></a>
+                                <form action="{{ config('app.url') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="mod_id" value="{{ $modul['mod_id'] }}">
+                                    <button type="submit" formaction="/modul/hapus"
+                                    class="btn btn-danger"
+                                    data-bs-dismiss="modal">
+                                        Tidak, Hapus Saja
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    $(document).ready(function(){
+                        $("#modal_lanjut").modal('{{ $tampil }}');
+                    });
+                </script>
+            @endif
 @endsection

@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\lampiran;
 use App\Models\dataModul;
 
+use App\Models\logs;
+
 class modul_Lampiran_ctrl extends Controller
 {
     public function index($step){
@@ -95,7 +97,13 @@ class modul_Lampiran_ctrl extends Controller
 
             Storage::putFileAs($loc,$file3,$fname3);
         }
-
+        logs::create([
+            'user_id' => Auth::user()->id,
+            'mod_id' => $modul['mod_id'],
+            'action' => '/modul/buat/lampiran/2',
+            'modul_session' => 'lampiran file',
+            'status' => 'create'
+        ]);
         return redirect('/modul/buat/lampiran/2');
     }
 
@@ -112,7 +120,15 @@ class modul_Lampiran_ctrl extends Controller
             'glossarium' => $req->glossarium,
         ]);
 
-        $modul['l1'] = lampiran::where('id',$modul['l1']['id'])->get()->first();
+        $data = lampiran::where('id',$modul['l1']['id'])->get()->first();
+        $modul['l1'] = $data;
+        logs::create([
+            'user_id' => Auth::user()->id,
+            'mod_id' => $modul['mod_id'],
+            'action' => '/modul/buat/lampiran/3',
+            'modul_session' =>  serialize($modul),
+            'status' => 'create'
+        ]);
         session(['modul'=>$modul]);
         return redirect('/modul/buat/lampiran/3');
     }
@@ -128,8 +144,15 @@ class modul_Lampiran_ctrl extends Controller
         lampiran::where('id',$modul['l1']['id'])->update([
             'dapus' => $req->dapus,
         ]);
-
-        $modul['l1'] = lampiran::where('id',$modul['l1']['id'])->get()->first();
+        $data = lampiran::where('id',$modul['l1']['id'])->get()->first();
+        $modul['l1'] = $data;
+        logs::create([
+            'user_id' => Auth::user()->id,
+            'mod_id' => $modul['mod_id'],
+            'action' => '/modul/buat/lampiran/3',
+            'modul_session' =>  serialize($modul),
+            'status' => 'create'
+        ]);
         session(['modul'=>$modul]);
         return redirect('/modul/buat/Lampiran/selesai');
     }
@@ -138,6 +161,13 @@ class modul_Lampiran_ctrl extends Controller
         $modul = session()->get('modul');
         //dd($modul);
         //echo $modul['l1']['dapus'];
+        logs::create([
+            'user_id' => Auth::user()->id,
+            'mod_id' => $modul['mod_id'],
+            'action' => '/modul/buat/lampiran/3',
+            'modul_session' => 'Selesai',
+            'status' => 'finish'
+        ]);
         return view('modul.3selesai');
     }
 

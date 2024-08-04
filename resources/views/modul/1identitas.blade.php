@@ -23,7 +23,7 @@
         <div class="input-group flex-nowrap mt-3">
             <span class="input-group-text me-1 bg-secondary text-white" style="width: 40%">Fase dan Kelas</span>
             <div class="input-group">
-                <select class="form-select" id="fase" name="fase">
+                <select class="form-select" id="fase" name="fase" onchange="take_fase(this)">
                     <option value = 0 selected>------ Pilih Fase ------</option>
                     <option value="1" {{ $modul['i2'] != "" ? ($modul['i2']['fase'] == "1" ? "selected" : "") : "" }}>Fase 0 : Kelas TK</option>
                     <option value="A" {{ $modul['i2'] != "" ? ($modul['i2']['fase'] == "A" ? "selected" : "") : "" }}>Fase A : Kelas 1 dan 2 (SD)</option>
@@ -40,10 +40,10 @@
 
         <div class="input-group flex-nowrap mt-3">
             <span class="input-group-text me-1 bg-secondary text-white" style="width: 25%">Tahun Ajaran</span>
-            <input type="number" placeholder="{{ date('Y') - 1 }}" class="form-control" id="TA_awal" name="TA_awal" value="{{ $modul['i2'] != "" ? $modul['i2']['TAwal'] : "" }}">
+            <input type="number" placeholder="{{ date('Y') }}" class="form-control" id="TA_awal" name="TA_awal" value="{{ $modul['i2'] != "" ? $modul['i2']['TAwal'] : "" }}">
 
                 <span class="input-group-text">/</span>
-                <input type="number" placeholder="{{ date('Y') }}" class="form-control" id="TA_akhir" name="TA_akhir" value="{{ $modul['i2'] != "" ? $modul['i2']['TAkhir'] : "" }}">
+                <input type="number" placeholder="{{ date('Y') + 1 }}" class="form-control" id="TA_akhir" name="TA_akhir" value="{{ $modul['i2'] != "" ? $modul['i2']['TAkhir'] : "" }}">
         </div>
 
         <div class="input-group flex-nowrap mt-3">
@@ -62,7 +62,29 @@
                 <a href="{{ $res['batal'] }}" class="btn btn-danger col bi-x-square"> Batalkan </a>
             </div>
         </div>
+        <select id="res">
 
+        </select>
     </div>
 </div>
+
+<script>
+    function take_fase(e){
+        $ = jQuery;
+        if(e.value == ""){
+            $("#res").empty();
+        }else{
+            @Crossorigin
+            $.getJSON("{{config('app.url')}}:8000/modul/waktufase/"+e.value, function(data) {
+                $("#res").empty();
+                var results = data.result;
+                $.each(results, function(index,value) {
+                    $("#res").append(
+                        "<option>" + e.value + "</option>"
+                    );
+                });
+            });
+        }
+    }
+</script>
 

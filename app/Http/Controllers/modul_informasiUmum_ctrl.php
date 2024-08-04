@@ -10,6 +10,9 @@ use App\Models\i_identitas;
 use App\Models\i_ppp;
 use App\Models\i_modelp;
 
+use App\Models\logs;
+use App\Models\WaktuFase;
+
 use App\Models\komponen_inti;
 use Illuminate\Support\Facades\Auth;
 
@@ -120,11 +123,23 @@ class modul_informasiUmum_ctrl extends Controller
             $modul['i1'] = $data_iu;
             $modul['i2'] = $parcel;
             $modul['waktu'] = $waktu;
+             logs::create([
+                'user_id' => Auth::user()->id,
+                'mod_id' => $modul['mod_id'],
+                'action' => '/modul/buat/informasiUmum/2',
+                'modul_session' => serialize($modul),
+                'status' => 'create'
+            ]);
             session(['modul'=>$modul]);
             return redirect('/modul/buat/informasiUmum/2');
         }else{
             return back()->withErrors('Terjadi Kesalahan Input!');
         }
+    }
+
+    public function waktufase($fase){
+        $data = WaktuFase::where('fase',$fase)->get();
+        echo json_encode($data);
     }
 
     public function komponenAwal(Request $req){
@@ -139,6 +154,13 @@ class modul_informasiUmum_ctrl extends Controller
         if($parcel){
             $data = infoUmum::where('id',$modul['i1']['id'])->get()->first();
             $modul['i1'] = $data;
+             logs::create([
+                'user_id' => Auth::user()->id,
+                'mod_id' => $modul['mod_id'],
+                'action' => '/modul/buat/informasiUmum/3',
+                'modul_session' =>  serialize($modul),
+                'status' => 'create'
+            ]);
             session(['modul'=>$modul]);
             return redirect('/modul/buat/informasiUmum/3');
         }else{
@@ -179,6 +201,13 @@ class modul_informasiUmum_ctrl extends Controller
         if($parcel){
             $data = i_ppp::where('informasi_id',$modul['i1']['id'])->get()->all();
             $modul['i3'] = $data;
+             logs::create([
+                'user_id' => Auth::user()->id,
+                'mod_id' => $modul['mod_id'],
+                'action' => '/modul/buat/informasiUmum/4',
+                'modul_session' =>  serialize($modul),
+                'status' => 'create'
+            ]);
             session(['modul'=>$modul]);
             return redirect('/modul/buat/informasiUmum/4');
         }else{
@@ -203,6 +232,13 @@ class modul_informasiUmum_ctrl extends Controller
             $data = infoUmum::where('id',$modul['i1']['id'])->get()->first();
             $modul['i1'] = $data;
             session(['modul'=>$modul]);
+             logs::create([
+                'user_id' => Auth::user()->id,
+                'mod_id' => $modul['mod_id'],
+                'action' => '/modul/buat/informasiUmum/5',
+                'modul_session' =>  serialize($modul),
+                'status' => 'create'
+            ]);
             return redirect('/modul/buat/informasiUmum/5');
         }else{
             return back()->withErrors('Terjadi Kesalahan Input!');
@@ -223,6 +259,13 @@ class modul_informasiUmum_ctrl extends Controller
         if($parcel){
             $data = infoUmum::where('id',$modul['i1']['id'])->get()->first();
             $modul['i1'] = $data;
+             logs::create([
+                'user_id' => Auth::user()->id,
+                'mod_id' => $modul['mod_id'],
+                'action' => '/modul/buat/informasiUmum/6',
+                'modul_session' =>  serialize($modul),
+                'status' => 'create'
+            ]);
             session(['modul'=>$modul]);
             return redirect('/modul/buat/informasiUmum/6');
         }else{
@@ -318,6 +361,13 @@ class modul_informasiUmum_ctrl extends Controller
             $data = i_modelp::where('informasi_id',$modul['i1']['id'])->get()->all();
             $modul['i4'] = $data;
             $modul['i4t'] = $wt;
+            logs::create([
+                'user_id' => Auth::user()->id,
+                'mod_id' => $modul['mod_id'],
+                'action' => '/modul/buat/komponenInti/1',
+                'modul_session' =>  serialize($modul),
+                'status' => 'create'
+            ]);
             session(['modul'=>$modul]);
             return redirect('/modul/buat/informasiUmum/7');
         }else{
@@ -326,17 +376,7 @@ class modul_informasiUmum_ctrl extends Controller
     }
 
     public function selesai(){
-        $modul = session()->get('modul');
-
-        if($modul['k1'] == ""){
-            $ki = komponen_inti::create();
-            dataModul::where('id',$modul['mod_id'])->update(['komponen_id'=>$ki->id]);
-            $modul['k1'] = komponen_inti::where('id',$ki->id)->get()->first();
-            session(['modul'=>$modul]);
-            return redirect('/modul/buat/komponenInti/1');
-        }else{
-            return redirect('/modul/buat/komponenInti/1');
-        }
+        return redirect('/modul/buat/komponenInti/1');
     }
 
     //1

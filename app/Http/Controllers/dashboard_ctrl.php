@@ -18,6 +18,8 @@ use App\Models\ki_penutup;
 
 use App\Models\lampiran;
 
+use App\Models\logs;
+
 use Barryvdh\DomPDF\Facade\Pdf;
 
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +35,25 @@ class dashboard_ctrl extends Controller
     }
 
     public function modul_buat(){
-        return view('modul.1buat');
+        $log = logs::where('user_id', Auth::user()->id)->orderBy('created_at','desc')->first();
+        if($log){
+            if($log['status'] == 'create'){
+                $data = unserialize($log['modul_session']);
+                $parcel = ['modul'=>$data];
+                $parcel['action'] = $log['action'];
+                $parcel['tampil'] = 'show';
+                session(['modul'=>$data]);
+
+                return view('modul.1buat',$parcel);
+            }
+        }else{
+            $parcel = [
+                'action' => '',
+
+                'tampil' => 'hide',
+            ];
+            return view('modul.1buat',$parcel);
+        }
     }
 
     public function modul_hapus(Request $req){
@@ -97,6 +117,8 @@ class dashboard_ctrl extends Controller
         lampiran::where('id',$mod->lampiran_id)->delete();
         $mod = dataModul::where('id',$req->mod_id)->delete();
 
+        logs::where('mod_id', $req->mod_id)->delete();
+
         return redirect()->back();
     }
 
@@ -109,22 +131,31 @@ class dashboard_ctrl extends Controller
             'judul.required' => 'Silahkan Isi Judul terlebih dahulu!',
         ]);
 
+        logs::where('user_id',Auth::user()->id)->delete();
+
         $infoUmum = infoUmum::create();
-        $parcel = dataModul::create(['judul'=>$req->judul,'informasi_id'=>$infoUmum->id,'users_id'=>Auth::user()->id]);
+        $ki = komponen_inti::create();
+        $l = lampiran::create();
+        $parcel = dataModul::create([
+            'judul'=>$req->judul,
+            'informasi_id'=>$infoUmum->id,
+            'komponen_id'=>$ki->id,
+            'lampiran_id'=>$l->id,
+            'users_id'=>Auth::user()->id]);
         if($parcel){
-            $data_iu = infoUmum::where('id',$infoUmum->id)->get()->first();
+
             $data = [
                 'mod_id'=>$parcel->id,
                 'judul' => $parcel->judul,
-                'i1' => $data_iu,
+                'i1' => infoUmum::where('id',$infoUmum->id)->get()->first(),
                 'i2' => "",
                 'i3' => "",
                 'i4' => "",
-                'k1' => "",
+                'k1' => komponen_inti::where('id',$ki->id)->get()->first(),
                 'k2' => "",
                 'k3' => "",
                 'k4' => "",
-                'l1' => "",
+                'l1' => lampiran::where('id',$l->id)->get()->first(),
                 'l2' => "",
                 'l3' => "",
                 'waktu' => 0,
@@ -134,6 +165,13 @@ class dashboard_ctrl extends Controller
                 'wpenutup' => 0,
                 'i4t' => 0,
             ];
+            $logs_modul = logs::create([
+                'user_id' => Auth::user()->id,
+                'mod_id' => $parcel->id,
+                'action' => '/modul/buat/informasiUmum/1',
+                'modul_session' => serialize($data),
+                'status' => 'create'
+            ]);
             session(['modul'=>$data]);
             return redirect('/modul/buat/informasiUmum/1');
         }else{

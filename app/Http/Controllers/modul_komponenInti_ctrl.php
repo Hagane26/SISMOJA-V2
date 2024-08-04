@@ -11,6 +11,8 @@ use App\Models\ki_pembuka;
 use App\Models\ki_kegiatan;
 use App\Models\ki_penutup;
 
+use App\Models\logs;
+
 use App\Models\lampiran;
 
 use App\Models\i_modelp;
@@ -96,8 +98,16 @@ class modul_komponenInti_ctrl extends Controller
         ]);
 
         if($parcel){
-            $modul['k1'] = komponen_inti::where('id',$modul['k1']['id'])->get()->first();
+            $data = komponen_inti::where('id',$modul['k1']['id'])->get()->first();
+            $modul['k1'] = $data;
             session(['modul'=>$modul]);
+            logs::create([
+                'user_id' => Auth::user()->id,
+                'mod_id' => $modul['mod_id'],
+                'action' => '/modul/buat/komponenInti/2',
+                'modul_session' =>  serialize($modul),
+                'status' => 'create'
+            ]);
             return redirect('/modul/buat/komponenInti/2');
         }else{
             return back()->withErrors('Terjadi Kesalahan Input!');
@@ -114,8 +124,16 @@ class modul_komponenInti_ctrl extends Controller
         ]);
 
         if($parcel){
-            $modul['k1'] = komponen_inti::where('id',$modul['k1']['id'])->get()->first();
+            $data = komponen_inti::where('id',$modul['k1']['id'])->get()->first();
+            $modul['k1'] = $data;
             session(['modul'=>$modul]);
+            logs::create([
+                'user_id' => Auth::user()->id,
+                'mod_id' => $modul['mod_id'],
+                'action' => '/modul/buat/komponenInti/3',
+                'modul_session' =>  serialize($modul),
+                'status' => 'create'
+            ]);
             return redirect('/modul/buat/komponenInti/3');
         }else{
             return back()->withErrors('Terjadi Kesalahan Input!');
@@ -134,8 +152,16 @@ class modul_komponenInti_ctrl extends Controller
         ]);
 
         if($parcel){
-            $modul['k1'] = komponen_inti::where('id',$modul['k1']['id'])->get()->first();
+            $data = komponen_inti::where('id',$modul['k1']['id'])->get()->first();
+            $modul['k1'] = $data;
             session(['modul'=>$modul]);
+            logs::create([
+                'user_id' => Auth::user()->id,
+                'mod_id' => $modul['mod_id'],
+                'action' => '/modul/buat/komponenInti/4',
+                'modul_session' =>  serialize($modul),
+                'status' => 'create'
+            ]);
             return redirect('/modul/buat/komponenInti/4');
         }else{
             return back()->withErrors('Terjadi Kesalahan Input!');
@@ -154,8 +180,16 @@ class modul_komponenInti_ctrl extends Controller
         ]);
 
         if($parcel){
-            $modul['k1'] = komponen_inti::where('id',$modul['k1']['id'])->get()->first();
+            $data = komponen_inti::where('id',$modul['k1']['id'])->get()->first();
+            $modul['k1'] = $data;
             session(['modul'=>$modul]);
+            logs::create([
+                'user_id' => Auth::user()->id,
+                'mod_id' => $modul['mod_id'],
+                'action' => '/modul/buat/komponenInti/5',
+                'modul_session' =>  serialize($modul),
+                'status' => 'create'
+            ]);
             return redirect('/modul/buat/komponenInti/5');
         }else{
             return back()->withErrors('Terjadi Kesalahan Input!');
@@ -205,6 +239,13 @@ class modul_komponenInti_ctrl extends Controller
             $modul['k2'] = $data;
             $modul['wpembuka'] = $req['waktu'];
             session(['modul'=>$modul]);
+            logs::create([
+                'user_id' => Auth::user()->id,
+                'mod_id' => $modul['mod_id'],
+                'action' => '/modul/buat/komponenInti/6',
+                'modul_session' =>  serialize($modul),
+                'status' => 'create'
+            ]);
             return redirect('/modul/buat/komponenInti/6');
         }else{
             return back()->withErrors('Terjadi Kesalahan Input!');
@@ -246,6 +287,13 @@ class modul_komponenInti_ctrl extends Controller
             $modul['k3'] = $data;
             $modul['winti'] = $req->waktu;
             session(['modul'=>$modul]);
+            logs::create([
+                'user_id' => Auth::user()->id,
+                'mod_id' => $modul['mod_id'],
+                'action' => '/modul/buat/komponenInti/7',
+                'modul_session' =>  serialize($modul),
+                'status' => 'create'
+            ]);
             return redirect('/modul/buat/komponenInti/7');
         }else{
             return back()->withErrors('Terjadi Kesalahan Input!');
@@ -301,6 +349,13 @@ class modul_komponenInti_ctrl extends Controller
             $modul['k4'] = $data;
             $modul['wpenutup'] = $req->total_waktu;
             session(['modul'=>$modul]);
+            logs::create([
+                'user_id' => Auth::user()->id,
+                'mod_id' => $modul['mod_id'],
+                'action' => '/modul/buat/komponenInti/8',
+                'modul_session' =>  serialize($modul),
+                'status' => 'create'
+            ]);
             return redirect('/modul/buat/komponenInti/8');
         }else{
             return back()->withErrors('Terjadi Kesalahan Input!');
@@ -320,8 +375,16 @@ class modul_komponenInti_ctrl extends Controller
         ]);
 
         if($parcel){
-            $modul['k1'] = komponen_inti::where('id',$modul['k1']['id'])->get()->first();
+            $data = komponen_inti::where('id',$modul['k1']['id'])->get()->first();
+            $modul['k1'] = $data;
             session(['modul'=>$modul]);
+            logs::create([
+                'user_id' => Auth::user()->id,
+                'mod_id' => $modul['mod_id'],
+                'action' => '/modul/buat/lampiran/1',
+                'modul_session' =>  serialize($modul),
+                'status' => 'create'
+            ]);
             return redirect('/modul/buat/komponenInti/9');
         }else{
             return back()->withErrors('Terjadi Kesalahan Input!');
@@ -329,17 +392,7 @@ class modul_komponenInti_ctrl extends Controller
     }
 
     public function selesai(){
-        $modul = session()->get('modul');
-
-        if($modul['l1'] == ""){
-            $l = lampiran::create();
-            dataModul::where('id',$modul['mod_id'])->update(['lampiran_id'=>$l->id]);
-            $modul['l1'] = lampiran::where('id',$l->id)->get()->first();
-            session(['modul'=>$modul]);
-            return redirect('/modul/buat/lampiran/1');
-        }else{
-            return redirect('/modul/buat/lampiran/1');
-        }
+        return redirect('/modul/buat/lampiran/1');
     }
 
     //1
@@ -850,7 +903,7 @@ class modul_komponenInti_ctrl extends Controller
             array_push($btn,$s);
             array_push($kat,'Teknik');
         }
-        
+
         for( $i = 0;$i < $total;$i++){
             $k = "k-".$i;
             $parcel = i_modelp::where('id',$req[$k])->update([
