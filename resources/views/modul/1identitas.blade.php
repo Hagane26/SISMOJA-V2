@@ -85,7 +85,7 @@
             document.getElementById('res').disabled = true;
             $('#res').append("<option value=0> Pilih Fase terlebih dahulu</option>");
         }else{
-            $.getJSON("http://localhost:8000/modul/waktufase/"+e.value, function(data) {
+            $.getJSON("{{ config('app.url') }}/modul/waktufase/"+e.value, function(data) {
                 $('#res').empty();
                 document.getElementById('res').disabled = false;
                 var results = data.result;

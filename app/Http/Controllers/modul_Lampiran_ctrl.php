@@ -168,6 +168,7 @@ class modul_Lampiran_ctrl extends Controller
             'modul_session' => 'Selesai',
             'status' => 'finish'
         ]);
+
         return view('modul.3selesai');
     }
 

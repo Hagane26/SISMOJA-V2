@@ -123,10 +123,12 @@ class modul_informasiUmum_ctrl extends Controller
             $fawa = WaktuFase::where('id',$data['waktuDefault'])->first();
             $waktu = $fawa['waktu'];
             $kali = $fawa['kali'];
-            $waktu_total = $waktu * $kali;
         }else{
-            $waktu_total = $req->waktu * $req->kali;
+            $waktu = $req->waktu;
+            $kali = $req->kali;
         }
+
+        $waktu_total = $waktu * $kali;
 
         if($modul['i2'] == ""){
             $parcel = i_identitas::create($data);
