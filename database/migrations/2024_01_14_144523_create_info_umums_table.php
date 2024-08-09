@@ -19,7 +19,6 @@ return new class extends Migration
             $table->text('sarana')->nullable();
             $table->text('prasarana')->nullable();
             $table->string('target')->nullable();
-
             $table->timestamps();
         });
     }

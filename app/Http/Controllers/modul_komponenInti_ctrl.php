@@ -276,7 +276,6 @@ class modul_komponenInti_ctrl extends Controller
             ]);
         }else{
             $parcel = ki_kegiatan::where('id',$modul['k3']['id'])->update([
-                'metode' => "",
                 'isi' => $req['kegiataninti'],
                 'waktu' => $req['waktu'],
             ]);

@@ -121,14 +121,27 @@ class modul_informasiUmum_ctrl extends Controller
 
         if($data['waktupilih'] == "aw1"){
             $fawa = WaktuFase::where('id',$data['waktuDefault'])->first();
-            $waktu = $fawa['waktu'] * $fawa['kali'];
+            $waktu = $fawa['waktu'];
+            $kali = $fawa['kali'];
+            $waktu_total = $waktu * $kali;
         }else{
-            $waktu = $req->waktu * $req->kali;
+            $waktu_total = $req->waktu * $req->kali;
         }
 
         if($modul['i2'] == ""){
             $parcel = i_identitas::create($data);
         }else{
+            $data = [
+                'nama' => $req->penyusun,
+                'institusi' => $req->institusi,
+                'mapel' => $req->mapel,
+                'fase' => $req->fase,
+                'kelas' => $req->kelas,
+                'TAwal' => $req->TA_awal,
+                'TAkhir' => $req->TA_akhir,
+                'kali' => $kali,
+                'waktu' => $waktu,
+            ];
             $parcel = i_identitas::where('id',$modul['i1']['id'])->update($data);
         }
 
@@ -137,7 +150,7 @@ class modul_informasiUmum_ctrl extends Controller
             $data_iu = infoUmum::where('id',$modul['i1']['id'])->get()->first();
             $modul['i1'] = $data_iu;
             $modul['i2'] = $parcel;
-            $modul['waktu'] = $waktu;
+            $modul['waktu'] = $waktu_total;
              logs::create([
                 'user_id' => Auth::user()->id,
                 'mod_id' => $modul['mod_id'],
@@ -412,6 +425,7 @@ class modul_informasiUmum_ctrl extends Controller
             'judul' => $mod->judul,
             'aksi' => 'edit/informasiumum/identitas-aksi',
             'view' => 'modul.1identitas',
+            'batal' => 'http://localhost:8000/modul'
         ];
 
         $modul = ['id'=>$req->mod_id];
