@@ -32,7 +32,7 @@
                             <td>{{ $m->identitas != "" ? $m->identitas->nama : "" }}</td>
                             <td>{{ $m->updated_at->format('d F Y') }}</td>
                             <td>
-                                <form action="{{ config('app.url') }}" method="post">
+                                <form action="{{ config('app.url') }}" method="post" target="_blank">
                                     @csrf
                                     <input type="hidden" name="mod_id" value="{{ $m->id }}">
                                     <button type="submit" formaction="/modul/lihat" class="btn btn-primary">
