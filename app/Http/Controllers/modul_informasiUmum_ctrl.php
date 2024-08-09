@@ -104,6 +104,15 @@ class modul_informasiUmum_ctrl extends Controller
             'waktu.required' => "Waktu Tidak Lengkap",
         ]);
 
+        if($req->waktupilih == "aw1"){
+            $fawa = WaktuFase::where('id',$req->waktuDefault)->first();
+            $waktu = $fawa['waktu'];
+            $kali = $fawa['kali'];
+        }else{
+            $waktu = $req->waktu;
+            $kali = $req->kali;
+        }
+
         $data = [
             'nama' => $req->penyusun,
             'institusi' => $req->institusi,
@@ -112,21 +121,11 @@ class modul_informasiUmum_ctrl extends Controller
             'kelas' => $req->kelas,
             'TAwal' => $req->TA_awal,
             'TAkhir' => $req->TA_akhir,
-            'kali' => $req->kali,
-            'waktu' => $req->waktu,
+            'kali' => $kali,
+            'waktu' => $waktu,
             'waktuDefault' => $req->waktuDefault,
             'waktupilih' => $req->waktupilih
         ];
-
-
-        if($data['waktupilih'] == "aw1"){
-            $fawa = WaktuFase::where('id',$data['waktuDefault'])->first();
-            $waktu = $fawa['waktu'];
-            $kali = $fawa['kali'];
-        }else{
-            $waktu = $req->waktu;
-            $kali = $req->kali;
-        }
 
         $waktu_total = $waktu * $kali;
 
@@ -148,7 +147,7 @@ class modul_informasiUmum_ctrl extends Controller
         }
 
         if($parcel){
-            $infoUmum = infoUmum::where('id',$modul['i1']['id'])->update(['identitas_id'=>$parcel->id]);
+            infoUmum::where('id',$modul['i1']['id'])->update(['identitas_id'=>$parcel->id]);
             $data_iu = infoUmum::where('id',$modul['i1']['id'])->get()->first();
             $modul['i1'] = $data_iu;
             $modul['i2'] = $parcel;

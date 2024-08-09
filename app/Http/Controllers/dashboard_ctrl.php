@@ -49,6 +49,7 @@ class dashboard_ctrl extends Controller
                     'action' => '',
                     'tampil' => 'hide',
                 ];
+                logs::where('user_id', Auth::user()->id)->delete();
             }
         }else{
             $parcel = [
