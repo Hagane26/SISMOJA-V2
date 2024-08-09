@@ -425,7 +425,7 @@ class modul_informasiUmum_ctrl extends Controller
             'judul' => $mod->judul,
             'aksi' => 'edit/informasiumum/identitas-aksi',
             'view' => 'modul.1identitas',
-            'batal' => 'http://localhost:8000/modul'
+            'batal' => '/modul'
         ];
 
         $modul = ['id'=>$req->mod_id];
@@ -488,6 +488,7 @@ class modul_informasiUmum_ctrl extends Controller
             'judul' => $mod->judul,
             'aksi' => 'edit/informasiumum/ppp-aksi',
             'view' => 'modul.1ppp',
+            'batal' => '/modul'
         ];
 
         $modul = ['id'=>$req->mod_id];
@@ -533,6 +534,7 @@ class modul_informasiUmum_ctrl extends Controller
             'judul' => $mod->judul,
             'aksi' => 'edit/informasiumum/sarana-aksi',
             'view' => 'modul.1sarana',
+            'batal' => '/modul'
         ];
 
         $modul = ['id'=>$req->mod_id];
@@ -579,6 +581,7 @@ class modul_informasiUmum_ctrl extends Controller
             'judul' => $mod->judul,
             'aksi' => 'edit/informasiumum/target-aksi',
             'view' => 'modul.1target',
+            'batal' => '/modul'
         ];
 
         $modul = ['id'=>$req->mod_id];

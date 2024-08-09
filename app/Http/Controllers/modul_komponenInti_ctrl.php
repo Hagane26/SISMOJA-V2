@@ -403,6 +403,7 @@ class modul_komponenInti_ctrl extends Controller
             'judul' => $mod->judul,
             'aksi' => 'edit/komponeninti/tujuan-aksi',
             'view' => 'modul.2tujuan',
+            'batal' => '/modul'
         ];
 
         $modul = ['id'=>$req->mod_id];
@@ -446,6 +447,7 @@ class modul_komponenInti_ctrl extends Controller
             'judul' => $mod->judul,
             'aksi' => 'edit/komponeninti/asasmen-aksi',
             'view' => 'modul.2asasmen',
+            'batal' => '/modul'
         ];
 
         $modul = ['id'=>$req->mod_id];
@@ -484,6 +486,7 @@ class modul_komponenInti_ctrl extends Controller
             'judul' => $mod->judul,
             'aksi' => 'edit/komponeninti/pemahaman-aksi',
             'view' => 'modul.2pemahaman',
+            'batal' => '/modul'
         ];
 
         $modul = ['id'=>$req->mod_id];
@@ -524,6 +527,7 @@ class modul_komponenInti_ctrl extends Controller
             'judul' => $mod->judul,
             'aksi' => 'edit/komponeninti/pemantik-aksi',
             'view' => 'modul.2pemantik',
+            'batal' => '/modul'
         ];
 
         $modul = ['id'=>$req->mod_id];
