@@ -36,6 +36,7 @@ class dashboard_ctrl extends Controller
 
     public function modul_buat(){
         $log = logs::where('user_id', Auth::user()->id)->orderBy('created_at','desc')->first();
+        $parcel = array();
         if($log){
             if($log['status'] == 'create'){
                 $data = unserialize($log['modul_session']);
@@ -43,17 +44,19 @@ class dashboard_ctrl extends Controller
                 $parcel['action'] = $log['action'];
                 $parcel['tampil'] = 'show';
                 session(['modul'=>$data]);
-
-                return view('modul.1buat',$parcel);
+            }else{
+                $parcel = [
+                    'action' => '',
+                    'tampil' => 'hide',
+                ];
             }
         }else{
             $parcel = [
                 'action' => '',
-
                 'tampil' => 'hide',
             ];
-            return view('modul.1buat',$parcel);
         }
+        return view('modul.1buat',$parcel);
     }
 
     public function modul_hapus(Request $req){

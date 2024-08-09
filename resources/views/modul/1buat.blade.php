@@ -64,11 +64,10 @@
                         </div>
                     </div>
                 </div>
-
-                <script>
-                    $(document).ready(function(){
-                        $("#modal_lanjut").modal('{{ $tampil }}');
-                    });
-                </script>
-            @endif
+        @endif
+        <script>
+            $(document).ready(function(){
+                $("#modal_lanjut").modal('{{ $tampil }}');
+            });
+        </script>
 @endsection

@@ -150,8 +150,8 @@ class modul_Lampiran_ctrl extends Controller
             'user_id' => Auth::user()->id,
             'mod_id' => $modul['mod_id'],
             'action' => '/modul/buat/lampiran/3',
-            'modul_session' =>  serialize($modul),
-            'status' => 'create'
+            'modul_session' => 'Selesai',
+            'status' => 'finish'
         ]);
         session(['modul'=>$modul]);
         return redirect('/modul/buat/Lampiran/selesai');
@@ -161,14 +161,6 @@ class modul_Lampiran_ctrl extends Controller
         $modul = session()->get('modul');
         //dd($modul);
         //echo $modul['l1']['dapus'];
-        logs::create([
-            'user_id' => Auth::user()->id,
-            'mod_id' => $modul['mod_id'],
-            'action' => '/modul/buat/lampiran/3',
-            'modul_session' => 'Selesai',
-            'status' => 'finish'
-        ]);
-
         return view('modul.3selesai');
     }
 
