@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>test</title>
         <style>
 
             #tbi, #tdi {
                 border: 1px solid black;
                 border-collapse: collapse;
+            }
+
+            #tbhide table,
+            #tbhide tbody,
+            #tbhide tr,
+            #tbhide td{
+                border: none;
             }
             figure ,table, tr, td{
                 border: 2px solid black;
@@ -18,26 +26,26 @@
     <body>
 
         <p style="text-align: center;"><span style="font-size: 22pt;"><strong>MODUL AJAR</strong></span></p>
-        <p style="text-align: center;margin-top:15%;margin-bottom:15%"><img src="https://disdikbud.banyuasinkab.go.id/wp-content/uploads/sites/269/2022/11/Logo-Tut-Wuri-Handayani-PNG-Warna-1.png" style="width: 338px; height: 338px;" width="338" height="338"><br></p>
+        <p style="text-align: center;margin-top:15%;margin-bottom:15%"><img src="https://www.freepnglogos.com/uploads/tut-wuri-handayani-png-logo/darmasiswa-indonesian-scholarship-program-24.png" style="width: 338px; height: 338px;" width="338" height="338"><br></p>
 
         <center>
-            <table style="width: 54%; text-align: center;font-size:18pt; margin-left:24%;margin-right:30%;border:none;" >
+            <table style="width: 54%; text-align: center;font-size:18pt; margin-left:24%;margin-right:30%;border:none" id="tbhide" >
                 <tbody>
-                    <tr>
-                        <td style="width: 15%; border:0px">
+                    <tr >
+                        <td style="width: 15%; ">
                             <div style="text-align: left;">MATERI</div>
                         </td>
-                        <td style="width: 9.7669%; border:0px">:</td>
-                        <td style="width: 58.4871%; border:0px">
+                        <td style="width: 9.7669%; ">:</td>
+                        <td style="width: 58.4871%; ">
                             <div style="text-align: left;">{{ $res->judul }}</div>
                         </td>
                     </tr>
-                    <tr>
-                        <td style="width: 15%;border:0px">
+                    <tr >
+                        <td style="width: 15%;">
                             <div style="text-align: left;">Nama</div>
                         </td>
-                        <td style="width: 9.7669%;border:0px">:</td>
-                        <td style="width: 58.4871%;border:0px">
+                        <td style="width: 9.7669%;">:</td>
+                        <td style="width: 58.4871%;">
                             <div style="text-align: left;">{{ $res->data_informasi->identitas->nama }}</div>
                         </td>
                     </tr>
@@ -64,35 +72,35 @@
         <ol>
         <li style="font-weight: bold; font-size: 14px;"><strong>INFORMASI UMUM</strong>
             <ol style="list-style-type: upper-alpha; font-weight: initial; font-size: initial;">
-                <li style="font-size: 16px;"><strong>IDENTITAS MODUL</strong><br>
-                    <table style="width: 100%;margin-bottom: 1%;">
+                <li style="font-size: 16px;margin-top:15px"><strong>IDENTITAS MODUL</strong><br>
+                    <table style="width: 100%;margin-bottom: 1px; margin-top: 15px;border:none" id="tbhide">
                         <tbody>
                             <tr>
                                 <td style="width: 33.7329%;"><span style="font-size: 14px;">Nama Penyusun</span></td>
                                 <td style="width: 5.137%;"><span style="font-size: 14px;">:</span></td>
                                 <td style="width: 61.0044%;"><span style="font-size: 14px;">{{ $res->data_informasi->identitas->nama }}</span></td>
                             </tr>
-                            <tr>
+                            <tr >
                                 <td style="width: 33.7329%;"><span style="font-size: 14px;">Institusi</span></td>
                                 <td style="width: 5.137%;"><span style="font-size: 14px;">:</span></td>
                                 <td style="width: 61.0044%;"><span style="font-size: 14px;">{{ $res->data_informasi->identitas->institusi }}</span></td>
                             </tr>
-                            <tr>
+                            <tr >
                                 <td style="width: 33.7329%;"><span style="font-size: 14px;">Tahun Ajaran</span></td>
                                 <td style="width: 5.137%;"><span style="font-size: 14px;">:</span></td>
                                 <td style="width: 61.0044%;"><span style="font-size: 14px;">{{ $res->data_informasi->identitas->TAwal ." / ". $res->data_informasi->identitas->TAkhir }}</span></td>
                             </tr>
-                            <tr>
+                            <tr >
                                 <td style="width: 33.7329%;"><span style="font-size: 14px;">Mata Pelajaran</span></td>
                                 <td style="width: 5.137%;"><span style="font-size: 14px;">:</span></td>
                                 <td style="width: 61.0044%;"><span style="font-size: 14px;">{{ $res->data_informasi->identitas->mapel }}</span></td>
                             </tr>
-                            <tr>
+                            <tr >
                                 <td style="width: 33.7329%;"><span style="font-size: 14px;">Kelas / Fase</span></td>
                                 <td style="width: 5.137%;"><span style="font-size: 14px;">:</span></td>
                                 <td style="width: 61.0044%;"><span style="font-size: 14px;">{{ $res->data_informasi->identitas->kelas }} / Fase {{ $res->data_informasi->identitas->fase }}</span></td>
                             </tr>
-                            <tr>
+                            <tr >
                                 <td style="width: 33.7329%;"><span style="font-size: 14px;">Alokasi Waktu</span></td>
                                 <td style="width: 5.137%;"><span style="font-size: 14px;">:</span></td>
                                 <td style="width: 61.0044%;">{{ $res->data_informasi->identitas->waktu *  $res->data_informasi->identitas->kali . " Menit ( " . $res->data_informasi->identitas->kali . " x " . $res->data_informasi->identitas->waktu . " Menit )"}}</td>
@@ -100,7 +108,7 @@
                         </tbody>
                     </table>
                 </li>
-                <li style="font-size: 16px;"><strong>KOMPONEN AWAL</strong>
+                <li style="font-size: 16px;margin-top:15px"><strong>KOMPONEN AWAL</strong>
 
                         @php
                             echo $res->data_informasi->komponenAwal;
@@ -120,7 +128,7 @@
                 </li>
                 <li style="font-size: 16px;"><strong>SARANA DAN PRASARANA</strong>
                     <ol>
-                        <li style="font-size: 16px;"><strong>SARANA</strong><br>
+                        <li style="font-size: 16px;margin-top:10px"><strong>SARANA</strong><br>
 
                             @php
                                 echo $res->data_informasi->sarana;
@@ -200,7 +208,7 @@
             </ol>
         </li>
 
-            <li style="font-size: 16px; margin-top:2%"><strong>KOMPONEN INTI</strong>
+            <li style="font-size: 16px; margin-top:2%;margin-top:15px"><strong>KOMPONEN INTI</strong>
                 <ol style="list-style-type: upper-alpha; font-weight: initial; font-size: initial;">
                     <li style="font-size: 16px;"><strong>TUJUAN PEMBELAJARAN</strong><br>
 
@@ -319,7 +327,7 @@
             </li>
             <li style="font-weight: bold; font-size: 14px;"><strong>LAMPIRAN</strong>
                 <ol style="list-style-type: upper-alpha; font-weight: initial; font-size: initial;">
-                    <li style="font-size: 16px;"><strong>GLOSSARIUM</strong>
+                    <li style="font-size: 16px;margin-top:10px"><strong>GLOSSARIUM</strong>
                         @php
                             echo $res->lampiran->glossarium;
                         @endphp

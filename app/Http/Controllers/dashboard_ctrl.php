@@ -388,7 +388,7 @@ class dashboard_ctrl extends Controller
 
         $merge->merge();
 
-        return $merge->stream($nama);
+        return $merge->stream($folout);
 
     }
 
